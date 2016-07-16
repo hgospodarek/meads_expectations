@@ -1,19 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <title>Mead Minder</title>
+<%= stylesheet_link_tag 'application', media: 'all' %>
+<%= javascript_include_tag 'application' %>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<%= csrf_meta_tags %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
 
-    <title>MeadMinder</title>
+<body>
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li class="menu-text"><%= link_to 'Mead Minder', root_path %></li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu">
+        <% if user_signed_in? %>
+          <li><%= link_to 'Sign Out' %></li>
+        <% else %>
+          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+          <li><%= link_to 'Sign In' %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
-  </head>
+  <% flash.each do |key, value| %>
+    <div class="alert alert<%= key %>">
+      <ul>
+        <li>
+        <%= value %>
+      </li>
+      </ul>
+    </div>
+  <% end %>
 
-  <body>
-
+  <div class="row column">
     <%= yield %>
+  </div>
 
-  </body>
+</body>
 </html>
