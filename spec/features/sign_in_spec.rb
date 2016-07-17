@@ -7,10 +7,10 @@ feature 'user signs in', %Q{
 } do
 
   # ACCEPTANCE CRITERIA
-  # [ ] If I specify a valid, previously-registered email and password,
+  # [x] If I specify a valid, previously-registered email and password,
   #     I am authenticated and aI gain access to the system
-  # [ ] If I specify an invalid email and password, I remain unauthenticated
-  # [ ] If I am already signed in, I can't sign in again
+  # [x] If I specify an invalid email and password, I remain unauthenticated
+  # [x] If I am already signed in, I can't sign in again
 
   scenario 'an existing user provides a valid email and password' do
     user = FactoryGirl.create(:user)
