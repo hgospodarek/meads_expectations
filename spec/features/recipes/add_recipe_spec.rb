@@ -31,6 +31,8 @@ feature 'user adds recipe', %Q{
    fill_in 'Title', with: 'Basic Mead'
    select('Basic', from: 'Type')
    select('Semi-Sweet', from: 'Sweetness')
+
+
  end
 
  scenario 'user submits a blank form'
