@@ -32,7 +32,13 @@ feature 'user adds recipe', %Q{
    select('Basic', from: 'Type')
    select('Semi-Sweet', from: 'Sweetness')
 
+   fill_in 'Ingredients', with: "1 packet yeast\n3lb honey\n1 gal water"
+   save_and_open_page
+   fill_in 'Steps', with: "Heat honey and water gently\nFollow yeast instrux\nWait forever"
+   click_button 'Add Recipe'
 
+   expect(page).to have_content('Recipe added successfully')
+   expect(page).to have_content('Basic Mead')
  end
 
  scenario 'user submits a blank form'
