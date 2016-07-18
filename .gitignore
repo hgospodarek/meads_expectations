@@ -14,3 +14,5 @@
 
 #Ignore env
 .env
+
+/coverage
