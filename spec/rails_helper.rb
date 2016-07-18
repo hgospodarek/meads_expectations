@@ -66,9 +66,9 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 end
 
-RSpec.configure do |config|
-  config.include Devise::Test::IntegrationHelpers, type: :feature
-end
+# RSpec.configure do |config|
+#   config.include Devise::Test::IntegrationHelpers, type: :feature
+# end
 
 Capybara::Webkit.configure do |config|
     config.allow_url("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css")
