@@ -7,5 +7,19 @@ FactoryGirl.define do
     password_confirmation 'password'
   end
 
+  factory :recipe do
+    user
+    title 'Basic Mead'
+    sweetness 'Semi-Sweet'
+    variety 'Basic'
+  end
 
+  factory :ingredient do
+    name ['honey', 'water', 'yeast'].sample
+  end
+
+  factory :recipe_ingredient do
+    recipe
+    ingredient
+  end
 end
