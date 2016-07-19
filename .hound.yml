@@ -177,7 +177,6 @@ ruby:
   config_file: .ruby-style.yml
   enabled: true
 
-
 SelfAssignment:
   Enabled: false
 
