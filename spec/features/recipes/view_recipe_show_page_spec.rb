@@ -7,9 +7,9 @@ feature 'user views their recipes', %{
 } do
 
   # ACCEPTANCE CRITERIA
-  # [ ] I must be logged in
-  # [ ] Ingredients are listed alphabetically
-  # [ ] Steps are listed in order
+  # [x] I must be logged in
+  # [x] Ingredients are listed alphabetically
+  # [x] Steps are listed in order
 
   let(:user) { FactoryGirl.create(:user) }
 
@@ -21,10 +21,10 @@ feature 'user views their recipes', %{
     click_button 'Sign In'
   end
 
-
   scenario 'user views recipe show page' do
     recipe1 = FactoryGirl.create(:recipe, user_id: user.id)
-    ingredients = FactoryGirl.create_list(:ingredient, 5, recipe: recipe1)
+    honey = FactoryGirl.create(:ingredient, name: 'honey', recipe: recipe1)
+    water = FactoryGirl.create(:ingredient, name: 'water', recipe: recipe1)
     step1 = Step.create(recipe: recipe1, step_num: 1, action: 'Pour honey')
     step2 = Step.create(recipe: recipe1, step_num: 2, action: 'Mix')
 
@@ -42,6 +42,7 @@ feature 'user views their recipes', %{
       expect(page).to have_content(ingredient.amount)
     end
 
+    expect(honey.name).to appear_before(water.name)
     expect(step1.action).to appear_before(step2.action)
   end
 
@@ -53,5 +54,4 @@ feature 'user views their recipes', %{
     visit recipe_path(recipe1)
     expect(page).to have_content('Dude, sign in or sign up first.')
   end
-
 end
