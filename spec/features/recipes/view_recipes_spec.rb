@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-feature 'user views their recipes', %Q{
+feature 'user views their recipes', %{
   As an authenticated user
   I want to view all my recipes
   So I can decide which one to use
 } do
 
-# ACCEPTANCE CRITERIA
-# [x] I must be logged into see my recipes
-# [x] I can only see my recipes, not other users'
-# [ ] Recipes are listed alphabetically
+  # ACCEPTANCE CRITERIA
+  # [x] I must be logged into see my recipes
+  # [x] I can only see my recipes, not other users'
+  # [x] Recipes are listed alphabetically
 
   let(:user) { FactoryGirl.create(:user) }
   let(:user2) { FactoryGirl.create(:user) }
@@ -24,8 +24,10 @@ feature 'user views their recipes', %Q{
 
   scenario 'authenticated user views list of recipes' do
     recipe1 = FactoryGirl.create(:recipe, user_id: user.id)
-    recipe2 = FactoryGirl.create(:recipe, title: 'Another Mead', user_id: user.id)
-    not_yours = FactoryGirl.create(:recipe, title: 'Not Your Mead Recipe', user_id: user2.id)
+    recipe2 = FactoryGirl.create(:recipe, title: 'Another Mead',
+                                  user_id: user.id)
+    not_yours = FactoryGirl.create(:recipe, title: 'Not Your Mead Recipe',
+                                    user_id: user2.id)
 
     sign_in(user)
     click_link 'Recipes'
@@ -36,15 +38,11 @@ feature 'user views their recipes', %Q{
     expect(recipe2.title).to appear_before(recipe1.title)
   end
 
-  scenario 'user has no recipes' do
-
-  end
-
   scenario 'unathenticated user does not see list of recipes' do
     visit root_path
     expect(page).to_not have_content('Recipes')
 
     visit recipes_path
-    expect(page).to have_content("Dude, sign in or sign up first.")
+    expect(page).to have_content('Dude, sign in or sign up first.')
   end
 end

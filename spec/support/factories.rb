@@ -15,7 +15,7 @@ FactoryGirl.define do
   end
 
   factory :ingredient do
-    name ['honey', 'water', 'yeast'].sample
+    name (%w(honey water yeast)).sample
   end
 
   factory :recipe_ingredient do
