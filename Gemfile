@@ -18,10 +18,12 @@ group :development, :test do
   gem 'valid_attribute'
   gem 'capybara-webkit'
   gem 'database_cleaner'
+  gem 'orderly'
 end
 
 group :test do
   gem 'launchy', require: false
+  gem 'coveralls', require: false
 end
 
 group :production do
