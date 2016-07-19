@@ -1,0 +1,19 @@
+<h1><%= @recipe.title %></h1>
+<h3><%= @recipe.variety %></h3>
+<h3><%= @recipe.sweetness %></h3>
+
+<% unless @recipe.ingredients.empty? %>
+  <ul>
+    <% @recipe.ingredients.each do |ingredient| %>
+      <li> <%= ingredient.amount %> <%= ingredient.unit %> <%= ingredient.name %> </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% unless @recipe.steps.empty? %>
+  <ul>
+    <% @recipe.steps.each_with_index do |step, index| %>
+      <li> <%= index + 1 %>. <%= step.action %> </li>
+    <% end %>
+  </ul>
+<% end %>

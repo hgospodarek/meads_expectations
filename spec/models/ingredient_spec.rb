@@ -4,6 +4,13 @@ RSpec.describe Ingredient, type: :model do
   it { should have_valid(:name).when('honey', 'water') }
   it { should_not have_valid(:name).when('', nil) }
 
-  it { should have_many :recipe_ingredients }
-  it { should have_many(:recipes) }
+  it { should belong_to :recipe }
+  it { should validate_presence_of :recipe }
+
+  it { should have_valid(:amount).when(1, 0.5) }
+  it { should_not have_valid(:amount).when(nil, 0, -1, -0.5) }
+
+  it { should have_valid(:unit).when('cups', 'teaspoons') }
+  it { should_not have_valid(:unit).when('', nil) }
+
 end
