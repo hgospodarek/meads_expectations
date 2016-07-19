@@ -12,7 +12,7 @@ feature 'user deletes their account', %Q{
 
   let(:user) {FactoryGirl.create(:user)}
 
-  xscenario 'user deletes their account', js:true do
+  xscenario 'user deletes their account', js: true do
     login_as(user, scope: :user)
 
     visit root_path
@@ -25,7 +25,7 @@ feature 'user deletes their account', %Q{
     expect(page).to have_content("We never liked you anyway. Just kidding, we are actually really sad you canclled your account.")
   end
 
-  xscenario 'user accidentally clicked but does not want to delete', js:true do
+  xscenario 'user accidentally clicked but does not want to delete', js: true do
     login_as(user, scope: :user)
 
     visit root_path
