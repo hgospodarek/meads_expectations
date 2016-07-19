@@ -4,8 +4,19 @@ const RecipeForm = props => {
 
   let sweetnesses = ['Sweet', 'Semi-Sweet', 'Dry']
 
-  // let sweetness_options = sweetnesses.map()
+  let varieties = ['Basic', 'Melomel', 'Braggot', 'Hydromel', 'Pyment', 'Cyser', 'Metheglin', 'Rhodomel', 'Sack Mead', 'Show Mead', 'Great Mead', 'Sparkling Mead', 'Morat', 'Hippocras', 'Omphacomel', 'Oxymel', 'Acerglyn', 'Bochet', 'Capsicumel', 'Black Mead', 'Mulled Mead', 'Tej', 'Acan', 'Gverc', 'Dwojniak', 'Poltorak', 'Czworniak', 'Sima', 'Pitarilla', 'Medica', 'Dandaghare', 'Medovina', 'Medovukha', 'iQhilika']
 
+  let sweetness_options = sweetnesses.map(sweetness => {
+    return (
+      <option>{sweetness}</option>
+    )
+  });
+
+  let variety_options = varieties.map(variety => {
+    return (
+      <option>{variety}</option>
+    )
+  });
 
   return (
     <div className="row grocery-form">
@@ -23,16 +34,14 @@ const RecipeForm = props => {
               value={props.sweetness}
               onChange={props.handleSweetness}
             >
-              <option>Sweet</option>
-              <option>Semi-Sweet</option>
-              <option>Dry</option>
+            {sweetness_options}
             </select>
-            <input
-              className="input-group-field"
-              type="select"
+            <select
               value={props.variety}
               onChange={props.handleVariety}
-            />
+            >
+            {variety_options}
+            </select>
             <div className="input-group-button">
               <input type="submit" className="button" value="Submit Recipe" />
             </div>
@@ -44,10 +53,3 @@ const RecipeForm = props => {
 };
 
 export default RecipeForm;
-
-// eturn (
-//     <div className="row grocery-list">
-//       <div className="small-11 small-centered columns">
-//         <ul>
-//           {groceries}
-//         </ul>

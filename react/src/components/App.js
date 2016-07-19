@@ -8,12 +8,17 @@ class App extends Component {
       title: 'title',
       sweetness: 'testing',
       variety: 'variety',
+      ingredients: [],
+      steps: []
     }
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleTitle = this.handleTitle.bind(this);
     this.handleSweetness = this.handleSweetness.bind(this);
     this.handleVariety = this.handleVariety.bind(this);
+    this.handleIngredients = this.handleIngredients.bind(this);
+    this.handleSteps = this.handleSteps.bind(this);
+
 
   }
 
