@@ -12,7 +12,7 @@ feature 'user deletes their account', %(
 
   let(:user) { FactoryGirl.create(:user) }
 
-  xscenario 'user deletes their account', js: true do
+  scenario 'user deletes their account', js: true do
     login_as(user, scope: :user)
 
     visit root_path

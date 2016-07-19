@@ -16,6 +16,7 @@
         <li class="menu-text"><%= link_to 'Meads Expectations', root_path %></li>
         <% if user_signed_in? %>
           <li><%= link_to 'Recipes', recipes_path %></li>
+          <li><%= link_to 'New Recipe', new_recipe_path %></li>
         <% end %>
       </ul>
     </div>

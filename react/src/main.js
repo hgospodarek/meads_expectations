@@ -1,10 +1,12 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './components/App';
+
 
 $(function() {
   ReactDOM.render(
-    <h1>Test</h1>,
-    document.getElementById('app')
+    <App />,
+    document.getElementById('recipe-form')
   );
 });
