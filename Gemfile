@@ -18,6 +18,7 @@ group :development, :test do
   gem 'valid_attribute'
   gem 'capybara-webkit'
   gem 'database_cleaner'
+  gem 'orderly'
 end
 
 group :test do

@@ -1,0 +1,43 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/Hillary/challenges/meads_expectations/app/models/user.rb": [
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/Users/Hillary/challenges/meads_expectations/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/Hillary/challenges/meads_expectations/app/controllers/welcome_controller.rb": [
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/Hillary/challenges/meads_expectations/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        46,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1468875193
+  }
+}
