@@ -26,7 +26,7 @@ feature 'user deletes their account', %(
     Just kidding, we are actually really sad you canclled your account.")
   end
 
-  xscenario 'user accidentally clicked but does not want to delete', js: true do
+  scenario 'user accidentally clicked but does not want to delete', js: true do
     login_as(user, scope: :user)
 
     visit root_path
