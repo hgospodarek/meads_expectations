@@ -3,7 +3,7 @@
 <% if @recipes != nil %>
   <ul>
     <% @recipes.each do |recipe| %>
-      <li><%= recipe.title %></li>
+      <li><%= link_to recipe.title, recipe_path(recipe) %></li>
       <li><%= recipe.variety %></li>
       <li><%= recipe.sweetness %></li>
     <% end %>
