@@ -14,22 +14,10 @@ FactoryGirl.define do
     variety 'Basic'
   end
 
-  # factory :recipe do
-  #   user
-  #   title 'Basic Mead'
-  #   sweetness 'Semi-Sweet'
-  #   variety 'Basic'
-  # end
-  #
   factory :ingredient do
     recipe
     name (%w(honey water yeast)).sample
     unit 'cups'
     amount 3
   end
-  #
-  # factory :recipe_ingredient do
-  #   recipe
-  #   ingredient
-  # end
 end
