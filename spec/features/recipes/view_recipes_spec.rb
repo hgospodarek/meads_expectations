@@ -14,14 +14,6 @@ feature 'user views their recipes', %{
   let(:user) { FactoryGirl.create(:user) }
   let(:user2) { FactoryGirl.create(:user) }
 
-  def sign_in(user)
-    visit root_path
-    click_link 'Sign In'
-    fill_in 'Email', with: user.email
-    fill_in 'user_password', with: user.password
-    click_button 'Sign In'
-  end
-
   scenario 'authenticated user views list of recipes' do
     recipe1 = FactoryGirl.create(:recipe, user_id: user.id)
     recipe2 = FactoryGirl.create(:recipe, title: 'Another Mead',
@@ -29,7 +21,9 @@ feature 'user views their recipes', %{
     not_yours = FactoryGirl.create(:recipe, title: 'Not Your Mead Recipe',
                                     user_id: user2.id)
 
-    sign_in(user)
+    login_as(user, scope: :user)
+    visit root_path
+
     click_link 'Recipes'
 
     expect(page).to have_content(recipe1.title)

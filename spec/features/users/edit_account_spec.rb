@@ -12,75 +12,70 @@ feature 'user edits their account', %Q{
 
   let(:user) {FactoryGirl.create(:user)}
 
-  def sign_in(user)
+  scenario 'user provides new email and password, and correct current password' do
+    login_as(user, scope: :user)
     visit root_path
-    click_link 'Sign In'
-    fill_in 'Email', with: user.email
-    fill_in 'user_password', with: user.password
-    click_button 'Sign In'
+    click_link 'Settings'
+
+    fill_in 'Email', with: 'another@mail.com'
+    fill_in 'user_password', with: 'newpassword'
+    fill_in 'user_password_confirmation', with: 'newpassword'
+    fill_in 'Current password', with: user.password
+    click_button 'Update'
+
+    expect(page).to have_content('You updated your account, look at you go!')
   end
 
-scenario 'user provides new email and password, and correct current password' do
-  sign_in(user)
-  visit root_path
-  click_link 'Settings'
+  scenario 'user updates only their email' do
+    login_as(user, scope: :user)
 
-  fill_in 'Email', with: 'another@mail.com'
-  fill_in 'user_password', with: 'newpassword'
-  fill_in 'user_password_confirmation', with: 'newpassword'
-  fill_in 'Current password', with: user.password
-  click_button 'Update'
+    visit root_path
+    click_link 'Settings'
 
-  expect(page).to have_content('You updated your account, look at you go!')
-end
+    fill_in 'Email', with: 'another@mail.com'
+    fill_in 'Current password', with: user.password
+    click_button 'Update'
 
-scenario 'user updates only their email' do
-  sign_in(user)
-  visit root_path
-  click_link 'Settings'
+    expect(page).to have_content('You updated your account, look at you go!')
+  end
 
-  fill_in 'Email', with: 'another@mail.com'
-  fill_in 'Current password', with: user.password
-  click_button 'Update'
+  scenario 'user updates only their password' do
+    login_as(user, scope: :user)
 
-  expect(page).to have_content('You updated your account, look at you go!')
-end
+    visit root_path
+    click_link "Settings"
 
-scenario 'user updates only their password' do
-  sign_in(user)
-  visit root_path
-  click_link "Settings"
+    fill_in "user_password", with: "newpassword"
+    fill_in "user_password_confirmation", with: "newpassword"
+    fill_in "Current password", with: user.password
+    click_button "Update"
 
-  fill_in "user_password", with: "newpassword"
-  fill_in "user_password_confirmation", with: "newpassword"
-  fill_in "Current password", with: user.password
-  click_button "Update"
+    expect(page).to have_content("You updated your account, look at you go!")
+  end
 
-  expect(page).to have_content("You updated your account, look at you go!")
-end
+  scenario 'user provides incorrect current password' do
+    login_as(user, scope: :user)
 
-scenario 'user provides incorrect current password' do
-  sign_in(user)
-  visit root_path
-  click_link 'Settings'
+    visit root_path
+    click_link 'Settings'
 
-  fill_in 'Email', with: 'another@mail.com'
-  fill_in 'user_password', with: 'newpassword'
-  fill_in 'user_password_confirmation', with: 'newpassword'
-  fill_in 'Current password', with: 'totallynotmypassword'
-  click_button 'Update'
+    fill_in 'Email', with: 'another@mail.com'
+    fill_in 'user_password', with: 'newpassword'
+    fill_in 'user_password_confirmation', with: 'newpassword'
+    fill_in 'Current password', with: 'totallynotmypassword'
+    click_button 'Update'
 
-  expect(page).to_not have_content('You updated your account, look at you go!')
-  expect(page).to have_content('is invalid')
-end
+    expect(page).to_not have_content('You updated your account, look at you go!')
+    expect(page).to have_content('is invalid')
+  end
 
 
-scenario 'user cannot edit their account unless they are signed in' do
-  visit root_path
-  expect(page).to_not have_content('Settings')
+  scenario 'user cannot edit their account unless they are signed in' do
+    visit root_path
+    expect(page).to_not have_content('Settings')
 
-  visit edit_user_registration_path
-  expect(page).to have_content("Dude, sign in or sign up first.")
-end
+    visit edit_user_registration_path
+    expect(page).to have_content("Dude, sign in or sign up first.")
+  end
 
 end

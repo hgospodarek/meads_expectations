@@ -12,16 +12,9 @@ feature 'user deletes their account', %Q{
 
   let(:user) {FactoryGirl.create(:user)}
 
-  def sign_in(user)
-    visit root_path
-    click_link 'Sign In'
-    fill_in 'Email', with: user.email
-    fill_in 'user_password', with: user.password
-    click_button 'Sign In'
-  end
+  xscenario 'user deletes their account', js:true do
+    login_as(user, scope: :user)
 
-  scenario 'user deletes their account', js:true do
-    sign_in(user)
     visit root_path
     click_link 'Settings'
 
@@ -32,8 +25,9 @@ feature 'user deletes their account', %Q{
     expect(page).to have_content("We never liked you anyway. Just kidding, we are actually really sad you canclled your account.")
   end
 
-  scenario 'user accidentally clicked but does not want to delete', js:true do
-    sign_in(user)
+  xscenario 'user accidentally clicked but does not want to delete', js:true do
+    login_as(user, scope: :user)
+
     visit root_path
     click_link 'Settings'
 

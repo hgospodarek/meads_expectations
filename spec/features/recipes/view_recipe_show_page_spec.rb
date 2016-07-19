@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-feature 'user views their recipes', %{
+feature 'user views recipe show page', %{
   As an authenticated user
-  I want to view all my recipes
-  So I can decide which one to use
+  I want to view one of my recipes
+  So I can get the details
 } do
 
   # ACCEPTANCE CRITERIA
@@ -13,14 +13,6 @@ feature 'user views their recipes', %{
 
   let(:user) { FactoryGirl.create(:user) }
 
-  def sign_in(user)
-    visit root_path
-    click_link 'Sign In'
-    fill_in 'Email', with: user.email
-    fill_in 'user_password', with: user.password
-    click_button 'Sign In'
-  end
-
   scenario 'user views recipe show page' do
     recipe1 = FactoryGirl.create(:recipe, user_id: user.id)
     honey = FactoryGirl.create(:ingredient, name: 'honey', recipe: recipe1)
@@ -28,7 +20,9 @@ feature 'user views their recipes', %{
     step1 = Step.create(recipe: recipe1, step_num: 1, action: 'Pour honey')
     step2 = Step.create(recipe: recipe1, step_num: 2, action: 'Mix')
 
-    sign_in(user)
+    login_as(user, scope: :user)
+    visit root_path
+
     click_link 'Recipes'
     click_link recipe1.title
 
