@@ -36,7 +36,7 @@ feature 'user views their recipes', %{
     expect(page).to have_content(recipe1.variety)
     expect(page).to have_content(recipe1.sweetness)
 
-    ingredients.each do |ingredient|
+    recipe1.ingredients.each do |ingredient|
       expect(page).to have_content(ingredient.name)
       expect(page).to have_content(ingredient.unit)
       expect(page).to have_content(ingredient.amount)
