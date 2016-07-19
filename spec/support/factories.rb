@@ -21,5 +21,7 @@ FactoryGirl.define do
   factory :recipe_ingredient do
     recipe
     ingredient
+    unit 'cups'
+    amount 3
   end
 end

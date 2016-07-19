@@ -33,7 +33,11 @@ feature 'user views their recipes', %{
     click_link 'Recipes'
 
     expect(page).to have_content(recipe1.title)
+    expect(page).to have_content(recipe1.sweetness)
+    expect(page).to have_content(recipe1.variety)
     expect(page).to have_content(recipe2.title)
+    expect(page).to have_content(recipe2.sweetness)
+    expect(page).to have_content(recipe2.variety)
     expect(page).to_not have_content(not_yours.title)
     expect(recipe2.title).to appear_before(recipe1.title)
   end
