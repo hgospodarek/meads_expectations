@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'user views their recipes', %(
+feature 'user views their batches', %(
   As an authenticated user
   I want to view all my batches
   So I can see what I've got going on
@@ -14,15 +14,18 @@ feature 'user views their recipes', %(
   let(:user2) { FactoryGirl.create(:user) }
   let(:user_recipe) { FactoryGirl.create(:recipe, user_id: user.id) }
   let(:user2_recipe) { FactoryGirl.create(:recipe, user_id: user2.id) }
-  let(:recipe1_ingredients) { FactoryGirl.create_list(:ingredient, 5, recipe: user_recipe) }
-  let(:recipe2_ingredients) { FactoryGirl.create_list(:ingredient, 5, recipe: user2_recipe) }
-  let(:recipe1_steps) { FactoryGirl.create_list(:step, 5, recipe: user_recipe) }
-  let(:recipe2_steps) { FactoryGirl.create_list(:step, 5, recipe: user2_recipe) }
 
-
-  scenario 'authenticated user views list of batches' do
+  xscenario 'authenticated user views list of batches', js: true do
     batch1 = FactoryGirl.create(:batch, user_id: user.id, recipe: user_recipe, name: 'Mai Batch')
     batch2 = FactoryGirl.create(:batch, user_id: user2.id, recipe: user2_recipe, name: 'Not Mai Batch')
+
+    recipe1_ingredients = FactoryGirl.create_list(:ingredient, 5, recipe: user_recipe)
+
+    recipe2_ingredients = FactoryGirl.create_list(:ingredient, 5, recipe: user2_recipe)
+
+    recipe1_steps = FactoryGirl.create_list(:step, 5, recipe: user_recipe)
+
+    recipe2_steps = FactoryGirl.create_list(:step, 5, recipe: user2_recipe)
 
     login_as(user)
     visit root_path

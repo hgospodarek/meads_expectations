@@ -10,7 +10,7 @@ feature 'user edits their account', %Q{
   # [x] I must provide my current password to make any changes
   # [x] I can update my email address, password, or both
 
-  let(:user) {FactoryGirl.create(:user)}
+  let(:user) { FactoryGirl.create(:user) }
 
   scenario 'user provides new email and password, and correct current password' do
     login_as(user, scope: :user)
