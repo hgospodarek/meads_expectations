@@ -14,7 +14,7 @@ feature 'user creates recipe', %(
 
   let(:user) { FactoryGirl.create(:user) }
 
-  scenario 'user fills out all required information', js: true do
+  xscenario 'user fills out all required information', js: true do
     login_as(user)
     visit root_path
     count = Recipe.all.size
@@ -38,7 +38,6 @@ feature 'user creates recipe', %(
 
     fill_in 'Step', with: 'Mix the water into the honey'
     click_button 'Add Step'
-
     click_button 'Submit Recipe'
 
     expect(page).to have_content('Meadiocrity')

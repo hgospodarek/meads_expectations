@@ -6,8 +6,6 @@ import StepForm from './StepForm'
 import StepList from './StepList'
 import RecipeList from './RecipeList'
 
-
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +20,7 @@ class App extends Component {
       amount: 0,
       unit: '',
       tempId: 1,
-      step: ''
+      action: ''
     }
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -68,11 +66,11 @@ class App extends Component {
   handleAddStep(event){
     event.preventDefault();
     let updated_steps = this.state.steps
-    let addedStep = {id: this.state.tempId, step: this.state.step }
+    let addedStep = {id: this.state.tempId, action: this.state.action }
 
     let new_temp_id = this.state.tempId + 1
     updated_steps.push(addedStep)
-    this.setState({ steps: updated_steps, tempId: new_temp_id, step: ''});
+    this.setState({ steps: updated_steps, tempId: new_temp_id, action: ''});
   }
 
   handleFormSubmit(event) {
@@ -170,7 +168,7 @@ class App extends Component {
                 handleStepDelete={this.handleStepDelete}
                 />
               <StepForm
-                step={this.state.step}
+                action={this.state.action}
                 handleChange={this.handleChange}
                 handleAddStep={this.handleAddStep}
                 />

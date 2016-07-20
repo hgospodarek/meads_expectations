@@ -8,6 +8,7 @@ const RecipeList = props => {
     return (
       <Recipe
         key={id}
+        id={id}
         title={title}
         sweetness={sweetness}
         variety={variety}

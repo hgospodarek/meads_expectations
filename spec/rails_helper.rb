@@ -10,7 +10,7 @@ require "valid_attribute"
 
 # Add additional requires below this line. Rails is not loaded until this point!
 Capybara.javascript_driver = :webkit
-Capybara.default_max_wait_time = 20
+Capybara.default_max_wait_time = 5
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
@@ -47,5 +47,5 @@ end
 
 Capybara::Webkit.configure do |config|
     config.allow_unknown_urls
-    config.timeout = 10
+    config.timeout = 5
   end

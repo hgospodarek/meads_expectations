@@ -4,13 +4,13 @@ const StepForm = props => {
   return (
     <div className="row steps-form">
         <form onSubmit={props.handleAddStep}>
-          <label htmlFor="step">Step</label>
+          <label htmlFor="action">Step</label>
             <input
-              id="step"
+              id="action"
               type="text"
-              name="step"
+              name="action"
               placeholder="step"
-              value={props.step}
+              value={props.action}
               onChange={props.handleChange}
               required={true}
             />
