@@ -16,61 +16,35 @@ class App extends Component {
       ingredients: [],
       ingredient: '',
       steps: [],
-      ingredientNumber: 0,
+      amount: 0,
       unit: '',
       tempId: 1,
       action: ''
     }
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleTitle = this.handleTitle.bind(this);
-    this.handleSweetness = this.handleSweetness.bind(this);
-    this.handleVariety = this.handleVariety.bind(this);
-    this.handleIngredient = this.handleIngredient.bind(this);
-    this.handleAction = this.handleAction.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleAddIngredient = this.handleAddIngredient.bind(this);
     this.handleAddStep = this.handleAddStep.bind(this);
-    this.handleIngredientNumber = this.handleIngredientNumber.bind(this);
-    this.handleUnit = this.handleUnit.bind(this);
     this.handleIngredientDelete = this.handleIngredientDelete.bind(this);
     this.handleStepDelete = this.handleStepDelete.bind(this);
 
-
   }
 
-  handleTitle(event){
-    let newTitle = event.target.value;
-    this.setState({ title: newTitle });
-  }
-
-  handleSweetness(event){
-    let newSweetness = event.target.value;
-    this.setState({ sweetness: newSweetness });
-  }
-
-  handleVariety(event){
-    let newVariety = event.target.value;
-    this.setState({ variety: newVariety });
-  }
-
-  handleIngredient(event){
-    let newIngredient = event.target.value;
-    this.setState({ ingredient: newIngredient });
-  }
-
-  handleAction(event){
-    let newAction = event.target.value;
-    this.setState({ action: newAction });
+  handleChange(e){
+    let nextState = {}
+    nextState[e.target.name] = e.target.value
+    this.setState(nextState)
   }
 
   handleAddIngredient(event){
     event.preventDefault();
     let updated_ingredients = this.state.ingredients
-    let addedIngredient = {id: this.state.tempId, name: this.state.ingredient, unit: this.state.unit, amount: this.state.ingredient_number }
+    let addedIngredient = {id: this.state.tempId, name: this.state.ingredient, unit: this.state.unit, amount: this.state.amount }
 
     let new_temp_id = this.state.tempId + 1
     updated_ingredients.push(addedIngredient)
-    this.setState({ ingredients: updated_ingredients, tempId: new_temp_id, ingredient: '', unit: '', ingredientNumber: 0 });
+    this.setState({ ingredients: updated_ingredients, tempId: new_temp_id, ingredient: '', unit: '', amount: 0 });
   }
 
   handleAddStep(event){
@@ -81,16 +55,6 @@ class App extends Component {
     let new_temp_id = this.state.tempId + 1
     updated_steps.push(addedStep)
     this.setState({ steps: updated_steps, tempId: new_temp_id, action: ''});
-  }
-
-  handleIngredientNumber(event){
-    let newIngredientNumber = event.target.value;
-    this.setState({ ingredient_number: newIngredientNumber });
-  }
-
-  handleUnit(event){
-    let newUnit = event.target.value;
-    this.setState({ unit: newUnit });
   }
 
   handleFormSubmit(event) {
@@ -136,11 +100,9 @@ class App extends Component {
 
   handleStepDelete(id) {
     event.preventDefault();
-    let newStepss = this.state.steps.filter(item => item.id != id)
+    let newSteps = this.state.steps.filter(item => item.id != id)
     this.setState({steps: newSteps})
   };
-
-
 
   render() {
     return(
@@ -148,14 +110,10 @@ class App extends Component {
         <h3>New Recipe</h3>
         <RecipeForm
           handleFormSubmit={this.handleFormSubmit}
-          handleTitle={this.handleTitle}
-          handleSweetness={this.handleSweetness}
-          handleVariety={this.handleVariety}
+          handleChange={this.handleChange}
           title={this.state.title}
           sweetness={this.state.sweetness}
           variety={this.state.variety}
-          steps={this.state.steps}
-          handleAddStep={this.handleAddStep}
           />
         <IngredientList
           ingredients={this.state.ingredients}
@@ -168,15 +126,13 @@ class App extends Component {
         <IngredientForm
           ingredient={this.state.ingredient}
           unit={this.state.unit}
-          ingredientNumber={this.props.ingredientNumber}
-          handleIngredient={this.handleIngredient}
+          amount={this.state.amount}
           handleAddIngredient={this.handleAddIngredient}
-          handleIngredientNumber={this.handleIngredientNumber}
-          handleUnit={this.handleUnit}
+          handleChange={this.handleChange}
         />
       <StepForm
           action={this.state.action}
-          handleAction={this.handleAction}
+          handleChange={this.handleChange}
           handleAddStep={this.handleAddStep}
         />
       </div>

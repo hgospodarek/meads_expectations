@@ -1,10 +1,7 @@
 class Api::RecipesController < ApiController
   def create
-    binding.pry
     recipe = Recipe.new(recipe_params)
-    binding.pry
     recipe.user = current_user
-    binding.pry
     if recipe.save
       render json: { recipe: recipe }, status: :created
     else

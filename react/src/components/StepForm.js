@@ -6,8 +6,10 @@ const StepForm = props => {
         <form onSubmit={props.handleAddStep}>
             <input
               type="text"
+              name="action"
               placeholder="action"
-              onChange={props.handleAction}
+              value={props.action}
+              onChange={props.handleChange}
             />
           <input type="submit" className="button" value="Add Step" />
         </form>

@@ -6,19 +6,24 @@ const IngredientForm = props => {
         <form onSubmit={props.handleAddIngredient}>
             <input
               type="number"
+              name="amount"
               placeholder="0"
-              onChange={props.handleIngredientNumber}
+              value={props.amount}
+              onChange={props.handleChange}
             />
             <input
               type="text"
+              name="unit"
               placeholder="unit"
-              onChange={props.handleUnit}
+              value={props.unit}
+              onChange={props.handleChange}
             />
             <input
               type="text"
+              name="ingredient"
               placeholder="ingredient"
               value={props.ingredient}
-              onChange={props.handleIngredient}
+              onChange={props.handleChange}
             />
               <input type="submit" className="button" value="Add Ingredient" />
         </form>

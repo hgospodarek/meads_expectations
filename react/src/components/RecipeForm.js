@@ -23,19 +23,22 @@ const RecipeForm = props => {
         <form onSubmit={props.handleFormSubmit}>
             <input
               type="text"
+              name="title"
               placeholder="recipe title"
               value={props.title}
-              onChange={props.handleTitle}
+              onChange={props.handleChange}
             />
             <select
+              name="sweetness"
               value={props.sweetness}
-              onChange={props.handleSweetness}
+              onChange={props.handleChange}
             >
             {sweetness_options}
             </select>
             <select
+              name="variety"
               value={props.variety}
-              onChange={props.handleVariety}
+              onChange={props.handleChange}
             >
             {variety_options}
             </select>
