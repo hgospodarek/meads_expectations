@@ -6,8 +6,10 @@ class Batch < ActiveRecord::Base
   validates_presence_of :recipe
 
   validates :name, presence: true
-  validates :initial_hydrometer, numericality: { greater_than: 0 }, allow_nil: true
-  validates :final_hydrometer, numericality: { greater_than: 0 }, allow_nil: true
+  validates :initial_hydrometer, numericality: { greater_than: 0 },
+  allow_nil: true
+  validates :final_hydrometer, numericality: { greater_than: 0 },
+  allow_nil: true
   validates :approx_abv, numericality: { greater_than: 0 }, allow_nil: true
 
   def approx_abv

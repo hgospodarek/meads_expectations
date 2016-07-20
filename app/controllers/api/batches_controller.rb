@@ -11,7 +11,6 @@ class Api::BatchesController < ApiController
     batch = Batch.new(batch_params)
     batch.recipe = recipe
     batch.user = current_user
-    binding.pry
 
     if batch.save
       render json: { batch: batch }, status: :created
