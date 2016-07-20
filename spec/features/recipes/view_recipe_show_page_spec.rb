@@ -15,10 +15,10 @@ feature 'user views recipe show page', %{
 
   scenario 'user views recipe show page' do
     recipe1 = FactoryGirl.create(:recipe, user_id: user.id)
-    honey = FactoryGirl.create(:ingredient, name: 'honey', recipe: recipe1)
     water = FactoryGirl.create(:ingredient, name: 'water', recipe: recipe1)
-    step1 = Step.create(recipe: recipe1, step_num: 1, action: 'Pour honey')
+    honey = FactoryGirl.create(:ingredient, name: 'honey', recipe: recipe1)
     step2 = Step.create(recipe: recipe1, step_num: 2, action: 'Mix')
+    step1 = Step.create(recipe: recipe1, step_num: 1, action: 'Pour honey')
 
     login_as(user, scope: :user)
     visit recipe_path(recipe1)

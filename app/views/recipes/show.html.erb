@@ -4,7 +4,7 @@
 
 <% unless @recipe.ingredients.empty? %>
   <ul>
-    <% @recipe.ingredients.each do |ingredient| %>
+    <% @ingredients.each do |ingredient| %>
       <li> <%= ingredient.amount %> <%= ingredient.unit %> <%= ingredient.name %> </li>
     <% end %>
   </ul>
@@ -12,7 +12,7 @@
 
 <% unless @recipe.steps.empty? %>
   <ul>
-    <% @recipe.steps.each_with_index do |step, index| %>
+    <% @steps.each_with_index do |step, index| %>
       <li> <%= index + 1 %>. <%= step.action %> </li>
     <% end %>
   </ul>
