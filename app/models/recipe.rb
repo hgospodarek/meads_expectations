@@ -13,4 +13,12 @@ class Recipe < ActiveRecord::Base
   validates :success_count, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :failure_count, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
+  def ingredient_names
+    if ingredients.empty?
+      return 'No ingredients'
+    else
+      return ingredients.map {|ingredient| ingredient.name}
+    end
+  end
+
 end
