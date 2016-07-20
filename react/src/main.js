@@ -1,12 +1,21 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import RecipesPage from './components/RecipesPage';
 
 
 $(function() {
-  ReactDOM.render(
-    <App />,
-    document.getElementById('recipe-form')
-  );
+  if(document.getElementById('recipe-form')) {
+    ReactDOM.render(
+      <RecipesPage />,
+      document.getElementById('recipe-form')
+    )};
+});
+
+$(function() {
+  if(document.getElementById('batches')) {
+    ReactDOM.render(
+      <BatchesPage />,
+      document.getElementById('batches')
+    )};
 });
