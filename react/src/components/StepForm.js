@@ -2,8 +2,7 @@ import React from 'react';
 
 const StepForm = props => {
   return (
-    <div className="row steps-form">
-      <div className="small-12 columns">
+    <div className="small-12 medium-6 columns steps-form">
         <form onSubmit={props.handleAddStep}>
             <input
               type="text"
@@ -12,7 +11,6 @@ const StepForm = props => {
             />
           <input type="submit" className="button" value="Add Step" />
         </form>
-      </div>
     </div>
 
   );

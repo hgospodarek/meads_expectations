@@ -3,11 +3,8 @@ import React from 'react';
 const Ingredient = props => {
 
   return (
-    <li className="ingredient">
-      <span>{props.amount} {props.unit} {props.name}</span>
-      <div className="float-right">
+    <li className="ingredient"> {props.amount} {props.unit} {props.name}
         <button className="button" type="button" onClick={props.handleDelete}>Delete</button>
-      </div>
     </li>
   );
 };

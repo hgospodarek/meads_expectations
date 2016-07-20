@@ -24,20 +24,22 @@ feature 'user creates recipe', %(
     select('Sweet', from: 'Sweetness')
     select('Basic', from: 'Variety')
 
-    3.times do
-      click_button('Up')
-    end
+    fill_in 'Amount', with: 3
     select('lbs', from: 'unit')
     fill_in 'Ingredient', with: 'honey'
     click_button 'Add Ingredient'
 
+    fill_in 'Amount', with: 1
     select('gal', from: 'unit')
     fill_in 'Ingredient', with: 'water'
+    click_button 'Add Ingredient'
+
 
     fill_in 'Step', with: 'Heat the honey gently for a while'
     click_button 'Add Step'
 
     fill_in 'Step', with: 'Mix the water into the honey'
+    click_button 'Add Step'
 
     click_button 'Submit Recipe'
 

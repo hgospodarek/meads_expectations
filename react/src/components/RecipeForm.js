@@ -19,12 +19,9 @@ const RecipeForm = props => {
   });
 
   return (
-    <div className="row recipe-form">
-      <div className="small-12 columns">
+    <div className="small-12 columns recipe-form">
         <form onSubmit={props.handleFormSubmit}>
-          <div className="input-group">
             <input
-              className="input-group-field"
               type="text"
               placeholder="recipe title"
               value={props.title}
@@ -42,12 +39,8 @@ const RecipeForm = props => {
             >
             {variety_options}
             </select>
-            <div className="input-group-button">
               <input type="submit" className="button" value="Submit Recipe" />
-            </div>
-          </div>
         </form>
-      </div>
     </div>
   );
 };

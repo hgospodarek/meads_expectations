@@ -2,11 +2,11 @@ import React from 'react';
 
 const IngredientForm = props => {
   return (
-    <div className="row ingredients-form">
-      <div className="small-12 columns">
+    <div className="small-12 medium-6 columns ingredients-form">
         <form onSubmit={props.handleAddIngredient}>
             <input
               type="number"
+              placeholder="0"
               onChange={props.handleIngredientNumber}
             />
             <input
@@ -22,7 +22,6 @@ const IngredientForm = props => {
             />
               <input type="submit" className="button" value="Add Ingredient" />
         </form>
-      </div>
     </div>
 
   );

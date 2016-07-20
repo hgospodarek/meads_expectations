@@ -144,7 +144,7 @@ class App extends Component {
 
   render() {
     return(
-      <div className="react-recipe-form">
+      <div className="react-recipe-form row">
         <h3>New Recipe</h3>
         <RecipeForm
           handleFormSubmit={this.handleFormSubmit}
@@ -161,6 +161,10 @@ class App extends Component {
           ingredients={this.state.ingredients}
           handleIngredientDelete={this.handleIngredientDelete}
         />
+      <StepList
+        steps={this.state.steps}
+        handleStepDelete={this.handleStepDelete}
+        />
         <IngredientForm
           ingredient={this.state.ingredient}
           unit={this.state.unit}
@@ -169,10 +173,6 @@ class App extends Component {
           handleAddIngredient={this.handleAddIngredient}
           handleIngredientNumber={this.handleIngredientNumber}
           handleUnit={this.handleUnit}
-        />
-      <StepList
-          steps={this.state.steps}
-          handleStepDelete={this.handleStepDelete}
         />
       <StepForm
           action={this.state.action}
