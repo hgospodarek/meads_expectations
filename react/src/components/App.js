@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import RecipeForm from './RecipeForm'
+import IngredientForm from './IngredientForm'
+import IngredientList from './IngredientList'
 
 class App extends Component {
   constructor(props) {
@@ -9,16 +11,24 @@ class App extends Component {
       sweetness: 'testing',
       variety: 'variety',
       ingredients: [],
-      steps: []
+      ingredient: '',
+      steps: [],
+      ingredientNumber: 0,
+      unit: '',
+      tempId: 1
     }
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleTitle = this.handleTitle.bind(this);
     this.handleSweetness = this.handleSweetness.bind(this);
     this.handleVariety = this.handleVariety.bind(this);
-    this.handleIngredients = this.handleIngredients.bind(this);
+    this.handleIngredient = this.handleIngredient.bind(this);
     this.handleSteps = this.handleSteps.bind(this);
-
+    this.handleAddIngredient = this.handleAddIngredient.bind(this);
+    this.handleAddStep = this.handleAddStep.bind(this);
+    this.handleIngredientNumber = this.handleIngredientNumber.bind(this);
+    this.handleUnit = this.handleUnit.bind(this);
+    this.handleIngredientDelete = this.handleIngredientDelete.bind(this)
 
   }
 
@@ -37,7 +47,44 @@ class App extends Component {
     this.setState({ variety: newVariety });
   }
 
+  handleIngredient(event){
+    let newIngredient = event.target.value;
+    this.setState({ ingredient: newIngredient });
+  }
+
+  handleSteps(event){
+    let newSteps = event.target.value;
+    this.setState({ steps: newSteps });
+  }
+
+  handleAddIngredient(event){
+    event.preventDefault();
+    let updated_ingredients = this.state.ingredients
+    let addedIngredient = {id: this.state.tempId, name: this.state.ingredient, unit: this.state.unit, amount: this.state.ingredient_number }
+
+    let new_temp_id = this.state.tempId + 1
+    updated_ingredients.push(addedIngredient)
+    this.setState({ ingredients: updated_ingredients, tempId: new_temp_id });
+  }
+
+  handleAddStep(event){
+    let newAddStep = event.target.value;
+    this.setState({ steps: newAddStep });
+  }
+
+  handleIngredientNumber(event){
+
+    let newIngredientNumber = event.target.value;
+    this.setState({ ingredient_number: newIngredientNumber });
+  }
+
+  handleUnit(event){
+    let newUnit = event.target.value;
+    this.setState({ unit: newUnit });
+  }
+
   handleFormSubmit(event) {
+    debugger;
     event.preventDefault();
     $.ajax({
       method: "POST",
@@ -50,6 +97,12 @@ class App extends Component {
       } })
 
     });
+  };
+
+  handleIngredientDelete(id) {
+    event.preventDefault();
+    let newIngredients = this.state.ingredients.filter(item => item.id != id)
+    this.setState({ingredients: newIngredients})
   };
 
 
@@ -65,7 +118,23 @@ class App extends Component {
           title={this.state.title}
           sweetness={this.state.sweetness}
           variety={this.state.variety}
+          steps={this.state.steps}
+          handleAddStep={this.handleAddStep}
           />
+        <IngredientList
+          ingredients={this.state.ingredients}
+          handleIngredientDelete={this.handleIngredientDelete}
+        />
+        <IngredientForm
+          ingredient={this.state.ingredient}
+          unit={this.state.unit}
+          ingredientNumber={this.props.ingredientNumber}
+          handleIngredient={this.handleIngredient}
+          handleAddIngredient={this.handleAddIngredient}
+          handleIngredientNumber={this.handleIngredientNumber}
+          handleUnit={this.handleUnit}
+        />
+
       </div>
     )
   }

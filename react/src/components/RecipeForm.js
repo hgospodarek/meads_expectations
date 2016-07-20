@@ -19,7 +19,7 @@ const RecipeForm = props => {
   });
 
   return (
-    <div className="row grocery-form">
+    <div className="row recipe-form">
       <div className="small-12 columns">
         <form onSubmit={props.handleFormSubmit}>
           <div className="input-group">

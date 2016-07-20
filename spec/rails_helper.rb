@@ -45,6 +45,7 @@ RSpec.configure do |config|
 end
 
 Capybara::Webkit.configure do |config|
-    config.allow_url("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css")
+    # config.allow_url("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css")
+    config.allow_unknown_urls
     config.timeout = 5
   end
