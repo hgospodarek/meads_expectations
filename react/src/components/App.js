@@ -73,7 +73,6 @@ class App extends Component {
   }
 
   handleIngredientNumber(event){
-
     let newIngredientNumber = event.target.value;
     this.setState({ ingredient_number: newIngredientNumber });
   }
