@@ -4,8 +4,8 @@ RSpec.describe Recipe, type: :model do
   it { should belong_to :user }
   it { should validate_presence_of :user }
 
-  it { should have_many(:ingredients) }
-  it { should have_many(:steps) }
+  it { should have_many(:ingredients).dependent(:destroy) }
+  it { should have_many(:steps).dependent(:destroy) }
 
   it { should have_valid(:title).when('Basic Mead', 'Strawberry Pyment No. 8') }
   it { should_not have_valid(:title).when('', nil) }
