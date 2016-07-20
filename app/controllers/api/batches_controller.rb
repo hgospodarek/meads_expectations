@@ -3,8 +3,6 @@ class Api::BatchesController < ApiController
 
   def index
     batches = Batch.where(user: current_user).order("start_date ASC")
-
     render json: batches, status: :ok
   end
-
 end

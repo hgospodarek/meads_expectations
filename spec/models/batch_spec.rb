@@ -15,5 +15,4 @@ RSpec.describe Batch, type: :model do
 
   it { should have_valid(:final_hydrometer).when(1, 1.5, 1.094) }
   it { should_not have_valid(:final_hydrometer).when(-5, 'wordswordswords') }
-
 end

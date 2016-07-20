@@ -21,8 +21,7 @@ class Recipe < ActiveRecord::Base
     if ingredients.empty?
       return 'No ingredients'
     else
-      return ingredients.map {|ingredient| ingredient.name}
+      return ingredients.map { |ingredient| ingredient.name }
     end
   end
-
 end

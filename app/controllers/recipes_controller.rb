@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
 
   def index
   end
-  
+
   def show
     @recipe = Recipe.find(params[:id])
     @recipe.steps.order("step_num ASC")
