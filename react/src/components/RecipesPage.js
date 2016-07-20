@@ -30,6 +30,7 @@ class RecipesPage extends Component {
     this.handleIngredientDelete = this.handleIngredientDelete.bind(this);
     this.handleStepDelete = this.handleStepDelete.bind(this);
     this.loadRecipes = this.loadRecipes.bind(this);
+    this.handleRecipeDelete = this.handleRecipeDelete.bind(this);
 
   }
   componentDidMount(){
@@ -42,10 +43,14 @@ class RecipesPage extends Component {
       contentType: "application/json"
     })
     .success(data => {
+<<<<<<< HEAD
       this.setState({recipes: data.recipes});
     })
     .error(data => {
       alert('oh god no')
+=======
+      this.setState({recipes: data.recipes})
+>>>>>>> master
     })
   }
 
@@ -130,6 +135,16 @@ class RecipesPage extends Component {
     this.setState({steps: newSteps})
   };
 
+  handleRecipeDelete(id) {
+      $.ajax({
+        method: "Delete",
+        url: "/api/recipes/" + id
+      })
+      .done(() => {
+        this.loadRecipes();
+      });
+    }
+
   render() {
     return(
       <div className="react-recipes row">
@@ -137,6 +152,7 @@ class RecipesPage extends Component {
           <h3>Recipes</h3>
           <RecipeList
             recipes={this.state.recipes}
+            handleRecipeDelete={this.handleRecipeDelete}
           />
         </div>
         <div className="recipes-index-right small-12 medium-6 columns">

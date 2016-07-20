@@ -8,6 +8,7 @@ const Recipe = props => {
         <p><a href={link}>{props.title}</a></p>
         <p>{props.variety}</p>
         <p>{props.sweetness}</p>
+        <button className="button" type="button" onClick={props.handleDelete}>Delete</button>
     </li>
   );
 };
