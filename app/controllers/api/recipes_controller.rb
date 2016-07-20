@@ -22,7 +22,6 @@ class Api::RecipesController < ApiController
     head :no_content
 end
 
-
   private
 
   def recipe_params
