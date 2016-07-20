@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :batches, only: [:index]
 
   namespace :api do
-    resources :batches, only: [:index]
+    resources :batches, only: [:index, :create]
     resources :recipes, only: [:index, :create] do
       resources :ingredients, only: [:create, :index, :destroy]
       resources :steps, only: [:create, :index, :destroy]

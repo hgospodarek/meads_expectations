@@ -2,6 +2,7 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import RecipesPage from './components/RecipesPage';
+import BatchesPage from './components/BatchesPage';
 
 
 $(function() {

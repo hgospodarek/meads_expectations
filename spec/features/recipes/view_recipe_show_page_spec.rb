@@ -13,7 +13,7 @@ feature 'user views recipe show page', %{
 
   let(:user) { FactoryGirl.create(:user) }
 
-  xscenario 'user views recipe show page', js: true do
+  scenario 'user views recipe show page' do
     recipe1 = FactoryGirl.create(:recipe, user_id: user.id)
     honey = FactoryGirl.create(:ingredient, name: 'honey', recipe: recipe1)
     water = FactoryGirl.create(:ingredient, name: 'water', recipe: recipe1)
@@ -21,10 +21,7 @@ feature 'user views recipe show page', %{
     step2 = Step.create(recipe: recipe1, step_num: 2, action: 'Mix')
 
     login_as(user, scope: :user)
-    visit root_path
-
-    click_link 'Recipes'
-    click_link recipe1.title
+    visit recipe_path(recipe1)
 
     expect(page).to have_content(recipe1.title)
     expect(page).to have_content(recipe1.variety)
