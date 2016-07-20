@@ -5,7 +5,7 @@ class Recipe < ActiveRecord::Base
   has_many :ingredients, dependent: :destroy, inverse_of: :recipe
   has_many :steps, dependent: :destroy, inverse_of: :recipe
 
-  has_many :batches
+  has_many :batches, dependent: :destroy
 
   accepts_nested_attributes_for :ingredients, :steps
 

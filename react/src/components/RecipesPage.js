@@ -43,15 +43,11 @@ class RecipesPage extends Component {
       contentType: "application/json"
     })
     .success(data => {
-<<<<<<< HEAD
       this.setState({recipes: data.recipes});
     })
     .error(data => {
-      alert('oh god no')
-=======
-      this.setState({recipes: data.recipes})
->>>>>>> master
-    })
+      alert('oh god something went wrong')
+    });
   }
 
 
@@ -136,14 +132,14 @@ class RecipesPage extends Component {
   };
 
   handleRecipeDelete(id) {
-      $.ajax({
-        method: "Delete",
-        url: "/api/recipes/" + id
-      })
-      .done(() => {
-        this.loadRecipes();
-      });
-    }
+    $.ajax({
+      method: "Delete",
+      url: "/api/recipes/" + id
+    })
+    .done(() => {
+      this.loadRecipes();
+    });
+  }
 
   render() {
     return(
@@ -153,7 +149,7 @@ class RecipesPage extends Component {
           <RecipeList
             recipes={this.state.recipes}
             handleRecipeDelete={this.handleRecipeDelete}
-          />
+            />
         </div>
         <div className="recipes-index-right small-12 medium-6 columns">
           <h3>New Recipe</h3>

@@ -35,7 +35,7 @@ class BatchesPage extends Component {
       contentType: "application/json"
     })
     .success(data => {
-      this.setState({recipes: data})
+      this.setState({recipes: data.recipes})
     })
   }
 

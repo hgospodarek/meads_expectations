@@ -2,7 +2,7 @@ import React from 'react';
 
 const Batch = props => {
   let batchClass = `batch-${props.id}`
-  let link = `/batchs/${props.id}`
+  let link = `/batches/${props.id}`
   return (
     <li className={batchClass}>
       <p><a href={link}>{props.name}</a></p>
