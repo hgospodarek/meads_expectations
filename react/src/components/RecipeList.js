@@ -2,6 +2,7 @@ import React from 'react';
 import Recipe from './Recipe';
 
 const RecipeList = props => {
+  console.log(props.recipes.nil)
   let recipes = props.recipes.map(recipe => {
     const { id, title, sweetness, variety } = recipe;
 

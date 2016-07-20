@@ -2,7 +2,7 @@ class Api::RecipesController < ApiController
   before_action :authenticate_user!
 
   def index
-    recipes = Recipe.where(user: current_user).order("title ASC")
+    recipes = Recipe.order('lower(title)').where(user: current_user)
     render json: recipes, status: :ok
   end
 

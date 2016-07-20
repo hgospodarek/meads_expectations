@@ -32,6 +32,9 @@ class RecipesPage extends Component {
     this.loadRecipes = this.loadRecipes.bind(this);
 
   }
+  componentDidMount(){
+    this.loadRecipes();
+  }
 
   loadRecipes(){
     $.ajax({
@@ -39,13 +42,13 @@ class RecipesPage extends Component {
       contentType: "application/json"
     })
     .success(data => {
-      this.setState({recipes: data})
+      this.setState({recipes: data.recipes});
+    })
+    .error(data => {
+      alert('oh god no')
     })
   }
 
-  componentDidMount(){
-    this.loadRecipes();
-  }
 
   handleChange(e){
     let nextState = {}
