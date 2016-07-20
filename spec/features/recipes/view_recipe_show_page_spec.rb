@@ -13,7 +13,7 @@ feature 'user views recipe show page', %{
 
   let(:user) { FactoryGirl.create(:user) }
 
-  scenario 'user views recipe show page' do
+  xscenario 'user views recipe show page', js: true do
     recipe1 = FactoryGirl.create(:recipe, user_id: user.id)
     honey = FactoryGirl.create(:ingredient, name: 'honey', recipe: recipe1)
     water = FactoryGirl.create(:ingredient, name: 'water', recipe: recipe1)

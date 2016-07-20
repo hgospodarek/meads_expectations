@@ -9,4 +9,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe.steps.order("step_num ASC")
   end
+
+  def new
+  end
 end
