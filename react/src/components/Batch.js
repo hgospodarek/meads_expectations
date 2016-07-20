@@ -7,15 +7,11 @@ const Batch = props => {
     <li className={batchClass}>
       <p><a href={link}>{props.name}</a></p>
       <p>{props.description}</p>
-      <p>{props.startDate}</p>
-      <p>{props.endDate}</p>
-      <p>{props.initialHydrometer}</p>
-      <p>{props.finalHydrometer}</p>
-      <p>{props.approxABV}</p>
-      <p>{props.notes}</p>
-      <p>{props.createdAt}</p>
-      <p>{props.updatedAt}</p>
-
+      <p>Start Date: {props.startDate}</p>
+      <p>End Date: {props.endDate}</p>
+      <p>Recipe: {props.recipe.title}</p>
+      <p>Sweetness: {props.recipe.sweetness}</p>
+      <p>Variety: {props.recipe.variety}</p>
     </li>
   );
 };

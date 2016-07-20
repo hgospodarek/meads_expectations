@@ -3,7 +3,7 @@ class Api::RecipesController < ApiController
 
   def index
     recipes = Recipe.where(user: current_user).order("title ASC")
-
+    
     render json: recipes, status: :ok
   end
 
