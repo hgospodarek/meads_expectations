@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   resources :recipes, only: [:index, :show, :new, :create]
 
   namespace :api do
-    resources :recipes, only: [:create]
+    resources :recipes, only: [:index, :create] do
       resources :ingredients, only: [:create, :index, :destroy]
       resources :steps, only: [:create, :index, :destroy]
+    end
   end
 end

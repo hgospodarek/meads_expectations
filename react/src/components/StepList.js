@@ -17,11 +17,9 @@ const StepList = props => {
 
   return (
     <div className="row step-list">
-      <div className="small-6 small-centered columns">
         <ul>
           {steps}
         </ul>
-      </div>
     </div>
   );
 };

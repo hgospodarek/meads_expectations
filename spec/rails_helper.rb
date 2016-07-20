@@ -10,6 +10,7 @@ require "valid_attribute"
 
 # Add additional requires below this line. Rails is not loaded until this point!
 Capybara.javascript_driver = :webkit
+Capybara.default_max_wait_time = 20
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
@@ -45,7 +46,6 @@ RSpec.configure do |config|
 end
 
 Capybara::Webkit.configure do |config|
-    # config.allow_url("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css")
     config.allow_unknown_urls
-    config.timeout = 5
+    config.timeout = 10
   end

@@ -4,12 +4,15 @@ import IngredientForm from './IngredientForm'
 import IngredientList from './IngredientList'
 import StepForm from './StepForm'
 import StepList from './StepList'
+import RecipeList from './RecipeList'
+
 
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      recipes: [],
       title: '',
       sweetness: 'Semi-Sweet',
       variety: 'Basic',
@@ -19,7 +22,7 @@ class App extends Component {
       amount: 0,
       unit: '',
       tempId: 1,
-      action: ''
+      step: ''
     }
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -28,7 +31,22 @@ class App extends Component {
     this.handleAddStep = this.handleAddStep.bind(this);
     this.handleIngredientDelete = this.handleIngredientDelete.bind(this);
     this.handleStepDelete = this.handleStepDelete.bind(this);
+    this.loadRecipes = this.loadRecipes.bind(this);
 
+  }
+
+  loadRecipes(){
+    $.ajax({
+      url: "/api/recipes",
+      contentType: "application/json"
+    })
+    .success(data => {
+      this.setState({recipes: data})
+    })
+  }
+
+  componentDidMount(){
+    this.loadRecipes();
   }
 
   handleChange(e){
@@ -50,11 +68,11 @@ class App extends Component {
   handleAddStep(event){
     event.preventDefault();
     let updated_steps = this.state.steps
-    let addedStep = {id: this.state.tempId, action: this.state.action }
+    let addedStep = {id: this.state.tempId, step: this.state.step }
 
     let new_temp_id = this.state.tempId + 1
     updated_steps.push(addedStep)
-    this.setState({ steps: updated_steps, tempId: new_temp_id, action: ''});
+    this.setState({ steps: updated_steps, tempId: new_temp_id, step: ''});
   }
 
   handleFormSubmit(event) {
@@ -89,7 +107,14 @@ class App extends Component {
       contentType: "application/json",
       data: jstring
 
-    });
+    })
+    .success(data => {
+      this.loadRecipes();
+      this.setState({title: ''})
+    })
+    .error(data => {
+      alert(data.errors)
+    })
   };
 
   handleIngredientDelete(id) {
@@ -106,35 +131,52 @@ class App extends Component {
 
   render() {
     return(
-      <div className="react-recipe-form row">
-        <h3>New Recipe</h3>
-        <RecipeForm
-          handleFormSubmit={this.handleFormSubmit}
-          handleChange={this.handleChange}
-          title={this.state.title}
-          sweetness={this.state.sweetness}
-          variety={this.state.variety}
+      <div className="react-recipes row">
+        <div className="recipes-index-left small-12 medium-6 columns">
+          <h3>Recipes</h3>
+          <RecipeList
+            recipes={this.state.recipes}
           />
-        <IngredientList
-          ingredients={this.state.ingredients}
-          handleIngredientDelete={this.handleIngredientDelete}
-        />
-      <StepList
-        steps={this.state.steps}
-        handleStepDelete={this.handleStepDelete}
-        />
-        <IngredientForm
-          ingredient={this.state.ingredient}
-          unit={this.state.unit}
-          amount={this.state.amount}
-          handleAddIngredient={this.handleAddIngredient}
-          handleChange={this.handleChange}
-        />
-      <StepForm
-          action={this.state.action}
-          handleChange={this.handleChange}
-          handleAddStep={this.handleAddStep}
-        />
+        </div>
+        <div className="recipes-index-right small-12 medium-6 columns">
+          <h3>New Recipe</h3>
+          <div className="react">
+
+          </div>
+          <RecipeForm
+            handleFormSubmit={this.handleFormSubmit}
+            handleChange={this.handleChange}
+            title={this.state.title}
+            sweetness={this.state.sweetness}
+            variety={this.state.variety}
+            />
+          <div className="react-recipe-form-sub-bits row">
+            <div className="ingredients-sub-bit small-12 medium-6 columns">
+              <IngredientList
+                ingredients={this.state.ingredients}
+                handleIngredientDelete={this.handleIngredientDelete}
+                />
+              <IngredientForm
+                ingredient={this.state.ingredient}
+                unit={this.state.unit}
+                amount={this.state.amount}
+                handleAddIngredient={this.handleAddIngredient}
+                handleChange={this.handleChange}
+                />
+            </div>
+            <div className="steps-sub-bit small-12 medium-6 columns">
+              <StepList
+                steps={this.state.steps}
+                handleStepDelete={this.handleStepDelete}
+                />
+              <StepForm
+                step={this.state.step}
+                handleChange={this.handleChange}
+                handleAddStep={this.handleAddStep}
+                />
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

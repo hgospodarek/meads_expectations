@@ -5,7 +5,6 @@ feature 'user creates recipe', %(
   I want to create a recipe
   So I can use it in the future
 ) do
-
   # ACCEPTANCE CRITERIA
   # [ ] Must be logged in
   # [ ] Navigate to new recipe path from root
@@ -15,25 +14,24 @@ feature 'user creates recipe', %(
 
   let(:user) { FactoryGirl.create(:user) }
 
-  scenario 'user fills out all required information' do
+  scenario 'user fills out all required information', js: true do
     login_as(user)
     visit root_path
-
-    click_link 'Add Recipe'
+    count = Recipe.all.size
+    click_link 'Recipes'
     fill_in 'Title', with: 'Meadiocrity'
     select('Sweet', from: 'Sweetness')
     select('Basic', from: 'Variety')
 
     fill_in 'Amount', with: 3
-    select('lbs', from: 'unit')
+    fill_in 'Unit', with: 'lbs'
     fill_in 'Ingredient', with: 'honey'
     click_button 'Add Ingredient'
 
     fill_in 'Amount', with: 1
-    select('gal', from: 'unit')
+    fill_in 'Unit', with: 'gallons'
     fill_in 'Ingredient', with: 'water'
     click_button 'Add Ingredient'
-
 
     fill_in 'Step', with: 'Heat the honey gently for a while'
     click_button 'Add Step'
@@ -43,8 +41,7 @@ feature 'user creates recipe', %(
 
     click_button 'Submit Recipe'
 
-    expect(page).to have_content 'Recipe added successfully'
-
+    expect(page).to have_content('Meadiocrity')
   end
 
   scenario 'user leaves one or more fields blank'

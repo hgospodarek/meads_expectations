@@ -2,14 +2,17 @@ import React from 'react';
 
 const StepForm = props => {
   return (
-    <div className="small-12 medium-6 columns steps-form">
+    <div className="row steps-form">
         <form onSubmit={props.handleAddStep}>
+          <label htmlFor="step">Step</label>
             <input
+              id="step"
               type="text"
-              name="action"
-              placeholder="action"
-              value={props.action}
+              name="step"
+              placeholder="step"
+              value={props.step}
               onChange={props.handleChange}
+              required={true}
             />
           <input type="submit" className="button" value="Add Step" />
         </form>

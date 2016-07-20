@@ -19,11 +19,9 @@ const IngredientList = props => {
 
   return (
     <div className="row ingredient-list">
-      <div className="small-6 small-centered columns">
         <ul>
           {ingredients}
         </ul>
-      </div>
     </div>
   );
 };

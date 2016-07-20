@@ -8,6 +8,8 @@ gem 'jquery-rails'
 gem 'simple_form'
 gem 'foundation-rails'
 gem 'devise'
+gem "active_model_serializers"
+
 
 group :development, :test do
   gem 'capybara'
