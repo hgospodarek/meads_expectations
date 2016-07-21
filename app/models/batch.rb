@@ -5,6 +5,9 @@ class Batch < ActiveRecord::Base
   belongs_to :recipe
   validates_presence_of :recipe
 
+  has_many :ingredients, dependent: :destroy
+  has_many :steps, dependent: :destroy
+
   validates :name, presence: true
   validates :initial_hydrometer, numericality: { greater_than: 0 },
   allow_nil: true
@@ -12,27 +15,17 @@ class Batch < ActiveRecord::Base
   allow_nil: true
   validates :approx_abv, numericality: { greater_than: 0 }, allow_nil: true
 
-  # def approx_abv
-  #   if initial_hydrometer && final_hydrometer
-  #     return (initial_hydrometer - final_hydrometer) / 0.00736
-  #   else
-  #     return 'Not yet calculated'
-  #   end
-  # end
-
-  def ingredients
-    if recipe.ingredients
-      return recipe.ingredients
+  def approx_abv
+    if initial_hydrometer && final_hydrometer
+      return (initial_hydrometer - final_hydrometer) / 0.00736
     else
-      return "This batch's recipe doesn't list any ingredients."
+      return nil
     end
   end
 
-  def steps
-    if recipe.steps
-      return recipe.steps
-    else
-      return "This batch's recipe doesn't list any steps."
-    end
+  def current_step
+    incomplete = steps.select {|s| s.completed? == false}
+    return incomplete.first
   end
+
 end

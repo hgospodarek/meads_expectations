@@ -17,10 +17,10 @@ class RecipesPage extends Component {
       ingredients: [],
       ingredient: '',
       steps: [],
-      amount: 0,
+      amount: 0.0,
       unit: '',
       tempId: 1,
-      action: ''
+      action: '',
     }
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -60,11 +60,11 @@ class RecipesPage extends Component {
   handleAddIngredient(event){
     event.preventDefault();
     let updated_ingredients = this.state.ingredients
-    let addedIngredient = {id: this.state.tempId, name: this.state.ingredient, unit: this.state.unit, amount: this.state.amount }
+    let addedIngredient = {id: this.state.tempId, name: this.state.ingredient, unit: this.state.unit, amount: Number.parseFloat(this.state.amount) }
 
     let new_temp_id = this.state.tempId + 1
     updated_ingredients.push(addedIngredient)
-    this.setState({ ingredients: updated_ingredients, tempId: new_temp_id, ingredient: '', unit: '', amount: 0 });
+    this.setState({ ingredients: updated_ingredients, tempId: new_temp_id, ingredient: '', unit: '', amount: 0.0 });
   }
 
   handleAddStep(event){
@@ -112,7 +112,7 @@ class RecipesPage extends Component {
     })
     .success(data => {
       this.loadRecipes();
-      this.setState({title: ''})
+      this.setState({title: '', ingredients: [], steps: []})
     })
     .error(data => {
       alert(data.errors)

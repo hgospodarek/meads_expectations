@@ -7,6 +7,9 @@ RSpec.describe Batch, type: :model do
   it { should belong_to :recipe }
   it { should validate_presence_of :recipe }
 
+  it { should have_many(:ingredients).dependent(:destroy) }
+  it { should have_many(:steps).dependent(:destroy) }
+
   it { should have_valid(:name).when('Batch 1', 'My Hopefully Not Awful Mead') }
   it { should_not have_valid(:name).when('', nil) }
 

@@ -19,7 +19,7 @@
     <% if !@batch.recipe.steps.empty? %>
     <h4>Steps</h4>
     <ul>
-      <% @batch.steps.each_with_index do |step, index| %>
+      <% @batch.recipe.steps.each_with_index do |step, index| %>
       <li> <%= index + 1 %>. <%= step.action %> </li>
       <% end %>
     </ul>
@@ -27,7 +27,9 @@
     <h4>This batch's recipe does not list any steps</h4>
     <% end %>
   </div>
-  <div class="batch-info small-6 columns">
-    <h3>Batch Info</h3>
+  <div class="small-12 medium-6 columns">
+    <div id="batch-info" class="<%= @batch.id %>">
+      <h3>Please rplace me</h3>
+    </div>
   </div>
 </div>
