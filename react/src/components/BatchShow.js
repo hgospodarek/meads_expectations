@@ -75,11 +75,15 @@ class BatchShow extends Component {
   // };
 
   render() {
+    const { start_date, end_date, initial_hydrometer, final_hydrometer, approx_abv, current_step, description, notes } = this.state.batch;
     return(
       <div className="react-batch-row">
         <div className="batch-index-left small-12">
           <h3>Batch Info</h3>
-          <h5>Next Step: {}</h5>
+          <h6>Description:</h6>
+          <p>{description}</p>
+          <p>Initial hydrometer reading: {initial_hydrometer}</p>
+          <p>Final hydrometer reading: {final_hydrometer}</p>
         </div>
       </div>
     )
