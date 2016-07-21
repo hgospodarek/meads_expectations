@@ -22,14 +22,14 @@ const Step = props => {
   }
 
   if(props.yesButton == true) {
-    maybebutton =  <button className="button" type="button" onClick={props.handleStepButton} >{props.buttonText}</button>
+    maybebutton =  <button className="button" type="button" onClick={props.handleStepButton}>{props.buttonText}</button>
 
   } else {
     maybebutton = <span></span>
   }
 
   return (
-    <li> <span className={stepClass}>{props.action}</span>{maybebutton}{completeDate}</li>
+    <li> <span className={stepClass}>{props.action}</span> {maybebutton}{completeDate}</li>
   );
 };
 

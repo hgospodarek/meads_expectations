@@ -6,20 +6,20 @@ const StartEndBatch = props => {
   let end;
 
   if (props.startDate == null) {
-    start = <button className="button" onClick={props.startClick}>Start Batch</button>
+    start = <h6 onClick={props.startClick}>Start Batch</h6>
   } else {
-    start = <h6>Start Date: {props.startDate}</h6>
+    start = <h6>Started: {props.startDate}</h6>
   }
 
   if (props.endDate == null) {
-    end = <button className="button" onClick={props.endClick}>Finish Batch</button>
+    end = <h6 onClick={props.endClick}>Finish Batch</h6>
   } else {
-    end = <h6>End Date: {props.endDate}</h6>
+    end = <h6>Finished: {props.endDate}</h6>
   }
 
 
   return (
-    <div>{start} {end}</div>
+    <div><span>{start}</span> <span>{end}</span></div>
   );
 };
 
