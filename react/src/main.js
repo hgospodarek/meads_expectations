@@ -9,7 +9,7 @@ $(function() {
   if(document.getElementById('recipe-form')) {
     ReactDOM.render(
       <RecipesPage />,
-      document.getElementById('batches')
+      document.getElementById('recipe-form')
     )};
 });
 
