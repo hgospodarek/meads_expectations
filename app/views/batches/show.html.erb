@@ -1,0 +1,33 @@
+<div class="row">
+  <h1><%= @batch.name %></h1>
+  <div class="batch-recipe small-6 columns">
+    <h3>Recipe</h3>
+    <h3><%= @batch.recipe.title %></h3>
+    <h3><%= @batch.recipe.sweetness %> <%= @batch.recipe.variety %></h3>
+
+    <% if !@batch.recipe.ingredients.empty? %>
+    <h4>Ingredients</h4>
+    <ul>
+      <% @batch.recipe.ingredients.each do |ingredient| %>
+      <li><%= ingredient.amount %> <%= ingredient.unit %> <%= ingredient.name %></li>
+      <% end %>
+    </ul>
+    <% else %>
+    <h4>This batch's recipe does not list any ingredients</h4>
+    <% end %>
+
+    <% if !@batch.recipe.steps.empty? %>
+    <h4>Steps</h4>
+    <ul>
+      <% @batch.steps.each_with_index do |step, index| %>
+      <li> <%= index + 1 %>. <%= step.action %> </li>
+      <% end %>
+    </ul>
+    <% else %>
+    <h4>This batch's recipe does not list any steps</h4>
+    <% end %>
+  </div>
+  <div class="batch-info small-6 columns">
+    <h3>Batch Info</h3>
+  </div>
+</div>

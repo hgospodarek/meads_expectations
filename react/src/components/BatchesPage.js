@@ -73,7 +73,7 @@ class BatchesPage extends Component {
       this.setState({name: '', description: ''})
     })
     .error(data => {
-      alert(data.errors)
+      alert(data.batch.errors)
     })
   };
 

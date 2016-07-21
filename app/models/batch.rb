@@ -12,11 +12,27 @@ class Batch < ActiveRecord::Base
   allow_nil: true
   validates :approx_abv, numericality: { greater_than: 0 }, allow_nil: true
 
-  def approx_abv
-    if initial_hydrometer && final_hydrometer
-      return (initial_hydrometer - final_hydrometer) / 0.00736
+  # def approx_abv
+  #   if initial_hydrometer && final_hydrometer
+  #     return (initial_hydrometer - final_hydrometer) / 0.00736
+  #   else
+  #     return 'Not yet calculated'
+  #   end
+  # end
+
+  def ingredients
+    if recipe.ingredients
+      return recipe.ingredients
     else
-      return 'Not yet calculated'
+      return "This batch's recipe doesn't list any ingredients."
+    end
+  end
+
+  def steps
+    if recipe.steps
+      return recipe.steps
+    else
+      return "This batch's recipe doesn't list any steps."
     end
   end
 end
