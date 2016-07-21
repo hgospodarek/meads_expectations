@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import BatchList from './BatchList'
 import IngredientForm from './IngredientForm'
+import StartEndBatch from './StartEndBatch'
 
 class BatchShow extends Component {
   constructor(props) {
@@ -84,6 +85,10 @@ class BatchShow extends Component {
           <p>{description}</p>
           <p>Initial hydrometer reading: {initial_hydrometer}</p>
           <p>Final hydrometer reading: {final_hydrometer}</p>
+          <StartEndBatch
+            startDate={start_date}
+            endDate={end_date}
+          />
         </div>
       </div>
     )
