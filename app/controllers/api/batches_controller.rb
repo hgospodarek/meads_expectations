@@ -24,10 +24,20 @@ class Api::BatchesController < ApiController
     batch = Batch.find(params[:id])
     render json: batch, include: :recipe, status: :ok
   end
+
+  def update
+    batch = Batch.find(params[:id])
+    if batch.update(batch_params)
+      render json: batch, include: :recipe, status: :ok
+    else
+      render json: { errors: batch.errors }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def batch_params
-    params.require(:batch).permit(:name, :description)
+    params.require(:batch).permit(:name, :description, :start_date)
   end
 
   def copy_recipe_attributes(batch, recipe)

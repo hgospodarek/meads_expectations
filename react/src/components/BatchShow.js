@@ -8,13 +8,21 @@ class BatchShow extends Component {
     super(props);
     this.state = {
       id: `${props.id}`,
-      batch: ''
+      startDate: null,
+      endDate: null,
+      initialHydrometer: null,
+      finalHydrometer: null,
+      approxABV: null,
+      current_step: null,
+      description: '',
+      notes: ''
     }
 
-    // this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.loadBatch = this.loadBatch.bind(this);
-    // this.loadRecipes = this.loadRecipes.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleStartClick = this.handleStartClick.bind(this);
+    this.handleEndClick = this.handleEndClick.bind(this);
+    this.updateBatch = this.updateBatch.bind(this);
 
   }
   loadBatch(){
@@ -23,23 +31,21 @@ class BatchShow extends Component {
       contentType: "application/json"
     })
     .success(data => {
-      this.setState({batch: data.batch})
+      this.setState({
+        startDate: data.batch.start_date,
+        endDate: data.batch.end_date,
+        initialHydrometer: data.batch.initial_hydrometer,
+        finalHydrometer: data.batch.final_hydrometer,
+        approxABV: data.batch.approx_abv,
+        current_step: data.batch.current_step.action,
+        description: data.batch.description,
+        notes: data.batch.notes
+      })
     })
   }
 
-  // loadRecipes(){
-  //   $.ajax({
-  //     url: "/api/recipes",
-  //     contentType: "application/json"
-  //   })
-  //   .success(data => {
-  //     this.setState({recipes: data.recipes})
-  //   })
-  // }
-
   componentDidMount(){
     this.loadBatch();
-    // this.loadRecipes();
   }
 
   handleChange(e){
@@ -47,47 +53,53 @@ class BatchShow extends Component {
     nextState[e.target.name] = e.target.value
     this.setState(nextState)
   }
-  //
-  // handleFormSubmit(event) {
-  //   event.preventDefault();
-  //
-  //   let jstring = JSON.stringify({
-  //     "batch": {
-  //       "name": this.state.name,
-  //       "recipe": this.state.recipe,
-  //       "description": this.state.description,
-  //     }
-  //   });
-  //
-  //   $.ajax({
-  //     method: "POST",
-  //     url:"/api/batches",
-  //     contentType: "application/json",
-  //     data: jstring
-  //
-  //   })
-  //   .success(data => {
-  //     this.loadBatches();
-  //     this.setState({name: '', description: ''})
-  //   })
-  //   .error(data => {
-  //     alert(data.batch.errors)
-  //   })
-  // };
+
+  handleStartClick() {
+    event.preventDefault();
+    let newDate = new Date();
+    this.setState({startDate: newDate})
+    let jstring = JSON.stringify({
+      "batch": {"start_date": newDate}
+    })
+    this.updateBatch(jstring)
+  }
+
+  handleEndClick() {
+    event.preventDefault();
+    let newDate = new Date();
+    this.setState({endDate: newDate})
+    let jstring = JSON.stringify({
+      "batch": {"end_date": newDate}
+    })
+    this.updateBatch(jstring)
+  }
+
+  updateBatch(jstring) {
+    $.ajax({
+      method: "Patch",
+      url: "/api/batches/" + this.state.id,
+      contentType: "application/json",
+      data: jstring
+    })
+    .done(data => {
+      this.loadBatch();
+    })
+  }
 
   render() {
-    const { start_date, end_date, initial_hydrometer, final_hydrometer, approx_abv, current_step, description, notes } = this.state.batch;
     return(
       <div className="react-batch-row">
         <div className="batch-index-left small-12">
           <h3>Batch Info</h3>
           <h6>Description:</h6>
-          <p>{description}</p>
-          <p>Initial hydrometer reading: {initial_hydrometer}</p>
-          <p>Final hydrometer reading: {final_hydrometer}</p>
+          <p>{this.state.description}</p>
+          <p>Initial hydrometer reading: {this.state.initial_hydrometer}</p>
+          <p>Final hydrometer reading: {this.state.final_hydrometer}</p>
           <StartEndBatch
-            startDate={start_date}
-            endDate={end_date}
+            startDate={this.state.startDate}
+            endDate={this.state.endDate}
+            startClick={this.handleStartClick}
+            endClick={this.handleEndClick}
           />
         </div>
       </div>
