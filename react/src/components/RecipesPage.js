@@ -13,7 +13,7 @@ class RecipesPage extends Component {
       recipes: [],
       title: '',
       sweetness: 'Semi-Sweet',
-      variety: 'Basic',
+      variety: 'Mead',
       ingredients: [],
       ingredient: '',
       steps: [],
@@ -180,7 +180,8 @@ class RecipesPage extends Component {
             <div className="steps-sub-bit small-12 medium-6 columns">
               <StepList
                 steps={this.state.steps}
-                handleStepDelete={this.handleStepDelete}
+                buttonText="Delete"
+                handleStepButton={this.handleStepDelete}
                 />
               <StepForm
                 action={this.state.action}

@@ -1,9 +1,8 @@
 <div class="row">
-  <h1><%= @batch.name %></h1>
+  <h1 class="text-center"><%= @batch.name %></h1>
   <div class="batch-recipe small-6 columns">
-    <h3>Recipe</h3>
-    <h3><%= @batch.recipe.title %></h3>
-    <h3><%= @batch.recipe.sweetness %> <%= @batch.recipe.variety %></h3>
+    <h3 class="text-center">Recipe: <%= @batch.recipe.title %></h3>
+    <h4 class="text-center"><%= @batch.recipe.sweetness %> <%= @batch.recipe.variety %></h3>
 
     <% if !@batch.recipe.ingredients.empty? %>
     <h4>Ingredients</h4>
@@ -28,8 +27,31 @@
     <% end %>
   </div>
   <div class="small-12 medium-6 columns">
-    <div id="batch-info" class="<%= @batch.id %>">
-      <h3>Please rplace me</h3>
-    </div>
+    <h3 class=text-center>Batch</h3>
+    <h4 class="text-center">Start Date: <%= @batch.start_date %>  End Date: <%= @batch.end_date %></h4>
+    <h5>Initial hydrometer Reading: <%= @batch.initial_hydrometer %></h5>
+    <h5>Final hydrometer Reading: <%= @batch.final_hydrometer %></h5>
+    <h5>Approximate ABV: <%= @batch.approx_abv %></h5>
+    <h5>Progress</h5>
+    <% unless @batch.completed_steps.nil? %>
+      <ol>
+        <% @batch.completed_steps.each do |step| %>
+          <li class="strikethrough"><%= step.action %></li>
+        <% end %>
+      </ol>
+    <% end %>
+    <% if @batch.current_step %>
+      <h6>Next Step: <%= @batch.current_step.action %></h6>
+      <div id="batch-info" class="<%= @batch.id %>"></div>
+    <% end %>
+    <h5>Description:</h5>
+    <p>
+      <%= @batch.description %>
+    </p>
+    <h5>Notes:</h5>
+    <p>
+      <%= @batch.notes %>
+    </p>
+    <a><%= link_to 'Edit Batch', edit_batch_path(@batch) %></a>
   </div>
 </div>

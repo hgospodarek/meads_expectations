@@ -11,7 +11,7 @@ FactoryGirl.define do
     user
     title 'Basic Mead'
     sweetness 'Semi-Sweet'
-    variety 'Basic'
+    variety 'Mead'
   end
 
   factory :ingredient do

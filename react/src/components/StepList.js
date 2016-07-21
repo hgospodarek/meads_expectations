@@ -2,18 +2,22 @@ import React from 'react';
 import Step from './Step';
 
 const StepList = props => {
-  let steps = props.steps.map(step => {
-    const { id, action } = step;
-    let onDelete = () => props.handleStepDelete(id);
+  let steps = null
+  if (props.steps != null) {
+    steps = props.steps.map(step => {
+      const { id, action } = step;
+      let onStepButton = () => props.handleStepButton(id);
 
-    return (
-      <Step
-        key={id}
-        action={action}
-        handleDelete={onDelete}
-      />
-    );
-  });
+      return (
+        <Step
+          key={id}
+          action={action}
+          handleStepButton={onStepButton}
+          buttonText={props.buttonText}
+          />
+      );
+    });
+  }
 
   return (
     <div className="row step-list">

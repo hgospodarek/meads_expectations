@@ -5,8 +5,10 @@ class Batch < ActiveRecord::Base
   belongs_to :recipe
   validates_presence_of :recipe
 
-  has_many :ingredients, dependent: :destroy
-  has_many :steps, dependent: :destroy
+  has_many :ingredients, dependent: :destroy, inverse_of: :batch
+  has_many :steps, dependent: :destroy, inverse_of: :batch
+
+  accepts_nested_attributes_for :ingredients, :steps
 
   validates :name, presence: true
   validates :initial_hydrometer, numericality: { greater_than: 0 },
@@ -28,4 +30,7 @@ class Batch < ActiveRecord::Base
     return incomplete.first
   end
 
+  def completed_steps
+    return steps.select {|s| s.completed? == true}
+  end
 end
