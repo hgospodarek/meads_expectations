@@ -40,7 +40,6 @@ class BatchShow extends Component {
       contentType: "application/json"
     })
     .success(data => {
-      alert('yay!')
       this.setState({
         startDate: data.batch.start_date,
         endDate: data.batch.end_date,
@@ -115,10 +114,18 @@ class BatchShow extends Component {
   render() {
     return(
       <div className="react-batch-row">
+        <h6>Progress:</h6>
+        <StepList
+          steps={this.state.completed_steps}
+          buttonText="Complete"
+          handleStepButton={this.handleStepComplete}
+          />
+        <h6>Next Step:</h6>
         <StepList
           steps={this.state.current_step}
           buttonText="Complete"
           handleStepButton={this.handleStepComplete}
+          yesButton={true}
           />
       </div>
     )

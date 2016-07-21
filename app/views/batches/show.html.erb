@@ -32,18 +32,7 @@
     <h5>Initial hydrometer Reading: <%= @batch.initial_hydrometer %></h5>
     <h5>Final hydrometer Reading: <%= @batch.final_hydrometer %></h5>
     <h5>Approximate ABV: <%= @batch.approx_abv %></h5>
-    <h5>Progress</h5>
-    <% unless @batch.completed_steps.nil? %>
-      <ol>
-        <% @batch.completed_steps.each do |step| %>
-          <li class="strikethrough"><%= step.action %></li>
-        <% end %>
-      </ol>
-    <% end %>
-    <% if @batch.current_step %>
-      <h6>Next Step: <%= @batch.current_step.action %></h6>
       <div id="batch-info" class="<%= @batch.id %>"></div>
-    <% end %>
     <h5>Description:</h5>
     <p>
       <%= @batch.description %>

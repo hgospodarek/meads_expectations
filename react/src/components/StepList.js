@@ -3,9 +3,11 @@ import Step from './Step';
 
 const StepList = props => {
   let steps = null
+  let completed;
   if (props.steps != null) {
     steps = props.steps.map(step => {
       const { id, action } = step;
+      completed = step['completed?']
       let onStepButton = () => props.handleStepButton(id);
 
       return (
@@ -14,6 +16,8 @@ const StepList = props => {
           action={action}
           handleStepButton={onStepButton}
           buttonText={props.buttonText}
+          yesButton={props.yesButton}
+          completed={completed}
           />
       );
     });
@@ -21,9 +25,9 @@ const StepList = props => {
 
   return (
     <div className="row step-list">
-        <ul>
+        <ol>
           {steps}
-        </ul>
+        </ol>
     </div>
   );
 };
