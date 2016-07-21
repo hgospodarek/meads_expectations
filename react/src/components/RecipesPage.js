@@ -182,6 +182,7 @@ class RecipesPage extends Component {
                 steps={this.state.steps}
                 buttonText="Delete"
                 handleStepButton={this.handleStepDelete}
+                yesButton={true}
                 />
               <StepForm
                 action={this.state.action}

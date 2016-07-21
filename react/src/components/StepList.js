@@ -6,7 +6,7 @@ const StepList = props => {
   let completed;
   if (props.steps != null) {
     steps = props.steps.map(step => {
-      const { id, action } = step;
+      const { id, action, updated_at } = step;
       completed = step['completed?']
       let onStepButton = () => props.handleStepButton(id);
 
@@ -18,6 +18,7 @@ const StepList = props => {
           buttonText={props.buttonText}
           yesButton={props.yesButton}
           completed={completed}
+          updated={updated_at}
           />
       );
     });
