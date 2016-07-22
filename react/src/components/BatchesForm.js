@@ -31,15 +31,6 @@ const BatchesForm = props => {
             <option defaultValue="" disabled selected>Select your option</option>
             {recipe_options}
             </select>
-            <label htmlFor="description">Description</label>
-              <input
-                id="description"
-                type="textarea"
-                name="description"
-                placeholder="this batch is going to be totally awesome..."
-                value={props.description}
-                onChange={props.handleChange}
-              />
               <input type="submit" className="button" value="Submit Batches" />
         </form>
     </div>

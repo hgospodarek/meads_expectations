@@ -13,14 +13,14 @@ class RecipesPage extends Component {
       recipes: [],
       title: '',
       sweetness: 'Semi-Sweet',
-      variety: 'Basic',
+      variety: 'Mead',
       ingredients: [],
       ingredient: '',
       steps: [],
-      amount: 0,
+      amount: 0.0,
       unit: '',
       tempId: 1,
-      action: ''
+      action: '',
     }
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -33,6 +33,9 @@ class RecipesPage extends Component {
     this.handleRecipeDelete = this.handleRecipeDelete.bind(this);
 
   }
+  componentDidMount(){
+    this.loadRecipes();
+  }
 
   loadRecipes(){
     $.ajax({
@@ -40,13 +43,13 @@ class RecipesPage extends Component {
       contentType: "application/json"
     })
     .success(data => {
-      this.setState({recipes: data.recipes})
+      this.setState({recipes: data.recipes});
     })
+    .error(data => {
+      alert('oh god something went wrong')
+    });
   }
 
-  componentDidMount(){
-    this.loadRecipes();
-  }
 
   handleChange(e){
     let nextState = {}
@@ -57,11 +60,11 @@ class RecipesPage extends Component {
   handleAddIngredient(event){
     event.preventDefault();
     let updated_ingredients = this.state.ingredients
-    let addedIngredient = {id: this.state.tempId, name: this.state.ingredient, unit: this.state.unit, amount: this.state.amount }
+    let addedIngredient = {id: this.state.tempId, name: this.state.ingredient, unit: this.state.unit, amount: Number.parseFloat(this.state.amount) }
 
     let new_temp_id = this.state.tempId + 1
     updated_ingredients.push(addedIngredient)
-    this.setState({ ingredients: updated_ingredients, tempId: new_temp_id, ingredient: '', unit: '', amount: 0 });
+    this.setState({ ingredients: updated_ingredients, tempId: new_temp_id, ingredient: '', unit: '', amount: 0.0 });
   }
 
   handleAddStep(event){
@@ -86,7 +89,6 @@ class RecipesPage extends Component {
 
     for (let i = 0; i < this.state.steps.length; i++) {
       delete this.state.steps[i].id
-      this.state.steps[i]['step_num'] = i + 1
       recipe_steps.push(this.state.steps[i])
     }
 
@@ -109,7 +111,7 @@ class RecipesPage extends Component {
     })
     .success(data => {
       this.loadRecipes();
-      this.setState({title: ''})
+      this.setState({title: '', ingredients: [], steps: []})
     })
     .error(data => {
       alert(data.errors)
@@ -129,14 +131,14 @@ class RecipesPage extends Component {
   };
 
   handleRecipeDelete(id) {
-      $.ajax({
-        method: "Delete",
-        url: "/api/recipes/" + id
-      })
-      .done(() => {
-        this.loadRecipes();
-      });
-    }
+    $.ajax({
+      method: "Delete",
+      url: "/api/recipes/" + id
+    })
+    .done(() => {
+      this.loadRecipes();
+    });
+  }
 
   render() {
     return(
@@ -146,7 +148,7 @@ class RecipesPage extends Component {
           <RecipeList
             recipes={this.state.recipes}
             handleRecipeDelete={this.handleRecipeDelete}
-          />
+            />
         </div>
         <div className="recipes-index-right small-12 medium-6 columns">
           <h3>New Recipe</h3>
@@ -177,7 +179,9 @@ class RecipesPage extends Component {
             <div className="steps-sub-bit small-12 medium-6 columns">
               <StepList
                 steps={this.state.steps}
-                handleStepDelete={this.handleStepDelete}
+                buttonText="Delete"
+                handleStepButton={this.handleStepDelete}
+                yesButton={true}
                 />
               <StepForm
                 action={this.state.action}

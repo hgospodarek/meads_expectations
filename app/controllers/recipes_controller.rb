@@ -6,6 +6,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @recipe.steps.order("step_num ASC")
+    @ingredients = @recipe.ingredients.order("name ASC")
+    @steps = @recipe.steps
   end
 end
