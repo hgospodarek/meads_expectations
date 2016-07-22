@@ -9,7 +9,6 @@ class BatchesPage extends Component {
       batches: [],
       recipes: [],
       name: '',
-      description: '',
       recipe: ''
     }
 
@@ -69,7 +68,7 @@ class BatchesPage extends Component {
     })
     .success(data => {
       this.loadBatches();
-      this.setState({name: '', description: ''})
+      this.setState({name: ''})
     })
     .error(data => {
       alert(data.batch.errors)
@@ -91,7 +90,6 @@ class BatchesPage extends Component {
             recipes={this.state.recipes}
             recipe={this.state.recipe}
             name={this.state.name}
-            description={this.state.description}
             handleChange={this.handleChange}
             handleFormSubmit={this.handleFormSubmit}
           />
