@@ -21,7 +21,7 @@ class BatchShow extends Component {
       completed_steps: null,
       steps: null,
       action: '',
-      branched: false,
+      variation: null,
     }
 
     this.loadBatch = this.loadBatch.bind(this);
@@ -32,6 +32,7 @@ class BatchShow extends Component {
     this.handleStepComplete = this.handleStepComplete.bind(this);
     this.handleBranchOff = this.handleBranchOff.bind(this);
     this.createStep = this.createStep.bind(this);
+    this.removeStepsAhead = this.removeStepsAhead.bind(this);
 
   }
 
@@ -56,7 +57,8 @@ class BatchShow extends Component {
         notes: data.batch.notes,
         completed_steps: data.batch.completed_steps,
         steps: data.batch.steps,
-        recipe: data.batch.recipe
+        recipe: data.batch.recipe,
+        variation: data.batch.variation
       })
     })
     .error(data => {
@@ -118,7 +120,9 @@ class BatchShow extends Component {
   }
 
   createStep() {
-    let next_step_num = this.state.current_step[0]['step_num'] + 1
+    debugger;
+    let last_step = this.state.steps[this.state.steps.length - 1]
+    let next_step_num = last_step['step_num'] + 1
     $.ajax({
       method: "POST",
       url: "/api/batches/:batch_id/steps",
@@ -132,29 +136,33 @@ class BatchShow extends Component {
       })
     })
     .done(data => {
-      alert(data)
     })
   }
 
   removeStepsAhead() {
-    let stepsAhead = this.state.steps.filter(item => item.step_num >= current_step[0]['step_num'])
-    for(let step of stepsAhead) {
+    let stepsAhead = this.state.steps.filter(item => item.step_num >= this.state.current_step[0]['step_num']);
+
+    for (let step of stepsAhead) {
       $.ajax({
         method: "Delete",
         url: "/api/batches/" + this.state.id + "/steps/" + step.id
       })
       .done(data => {
-        alert(data)
-      })
+      });
     }
-    })
   }
 
   handleBranchOff() {
     event.preventDefault()
-    this.removeStepsAhead();
+    debugger;
+    if (this.state.variation != true) {
+      let jstring = JSON.stringify({"batch": {"variation": true}})
+      this.updateBatch(jstring)
+      this.setState({ variation: true })
+      this.removeStepsAhead();
+    }
     this.createStep();
-    this.setState({branched: true, action: ''})
+    this.setState({action: ''})
     this.loadBatch();
   }
 
@@ -170,19 +178,6 @@ class BatchShow extends Component {
 
 
   render() {
-    let conditionalDiv;
-    if (this.state.branched == false) {
-      conditionalDiv = <div>
-      <h6>Next Step:</h6>
-      <StepList
-        steps={this.state.current_step}
-        buttonText="Complete"
-        handleStepButton={this.handleStepComplete}
-        yesButton={true}
-        />
-      </div>
-
-    }
     return(
       <div className="react-batch-row">
         <StartEndBatch
@@ -197,7 +192,13 @@ class BatchShow extends Component {
           buttonText="Complete"
           handleStepButton={this.handleStepComplete}
           />
-        {conditionalDiv}
+          <h6>Next Step:</h6>
+          <StepList
+            steps={this.state.current_step}
+            buttonText="Complete"
+            handleStepButton={this.handleStepComplete}
+            yesButton={true}
+            />
           <StepForm
             action={this.state.action}
             handleChange={this.handleChange}

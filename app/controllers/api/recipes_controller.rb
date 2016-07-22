@@ -20,7 +20,7 @@ class Api::RecipesController < ApiController
     recipe = Recipe.find(params[:id])
     recipe.destroy
     head :no_content
-end
+  end
 
   private
 

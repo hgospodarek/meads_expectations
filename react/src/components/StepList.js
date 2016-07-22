@@ -4,7 +4,7 @@ import Step from './Step';
 const StepList = props => {
   let steps = null
   let completed;
-  if (props.steps != null) {
+  if (props.steps != null && props.steps[0] != null) {
     steps = props.steps.map(step => {
       const { id, action, updated_at } = step;
       completed = step['completed?']

@@ -37,7 +37,7 @@ class Api::BatchesController < ApiController
   private
 
   def batch_params
-    params.require(:batch).permit(:name, :description, :start_date, :steps_attributes => [:id, :action, :step_num, :completed?])
+    params.require(:batch).permit(:name, :description, :start_date, :variation, :steps_attributes => [:id, :action, :step_num, :completed?])
   end
 
   def copy_recipe_attributes(batch, recipe)

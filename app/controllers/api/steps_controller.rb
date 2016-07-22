@@ -1,6 +1,5 @@
 class Api::StepsController < ApiController
   def create
-    binding.pry
     step = Step.new(step_params)
     if step.save
       render json: {step: step}, status: :created
@@ -11,7 +10,6 @@ class Api::StepsController < ApiController
   end
 
   def destroy
-    binding.pry
     step = Step.find(params[:id])
     step.destroy
     head :no_content
