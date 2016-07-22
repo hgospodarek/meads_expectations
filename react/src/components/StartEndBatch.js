@@ -7,14 +7,14 @@ const StartEndBatch = props => {
   let prettyStartDate = moment(props.startDate).format("MMM Do YYYY")
 
   if (props.endDate == null) {
-    end = <h6 onClick={props.endClick}>Finish Batch</h6>
+    end = <button className="button" onClick={props.endClick}>Finish Batch</button>
   } else {
     let prettyEndDate = moment(props.endDate).format("MMM Do YYYY")
-    end = <h6>Finished: {prettyEndDate}</h6>
+    end = <span>Finished: {prettyEndDate}</span>
   }
 
   return (
-    <div><h6>Start Date: {prettyStartDate}</h6> <span>{end}</span></div>
+      <h4 className="text-center">Start Date: {prettyStartDate} {end}</h4>
   );
 };
 

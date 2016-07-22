@@ -4,6 +4,7 @@ import IngredientForm from './IngredientForm'
 import StartEndBatch from './StartEndBatch'
 import StepList from './StepList'
 import StepForm from './StepForm'
+import Hydrometer from './Hydrometer'
 
 class BatchShow extends Component {
   constructor(props) {
@@ -22,17 +23,18 @@ class BatchShow extends Component {
       steps: null,
       action: '',
       variation: null,
+      hydrometerField: ''
     }
 
     this.loadBatch = this.loadBatch.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    // this.handleStartClick = this.handleStartClick.bind(this);
     this.handleEndClick = this.handleEndClick.bind(this);
     this.updateBatch = this.updateBatch.bind(this);
     this.handleStepComplete = this.handleStepComplete.bind(this);
     this.handleBranchOff = this.handleBranchOff.bind(this);
     this.createStep = this.createStep.bind(this);
     this.removeStepsAhead = this.removeStepsAhead.bind(this);
+    this.handleHydrometer = this.handleHydrometer.bind(this);
 
   }
 
@@ -62,7 +64,7 @@ class BatchShow extends Component {
       })
     })
     .error(data => {
-      alert('WHAAT')
+      console.log(data)
     })
   }
 
@@ -71,16 +73,6 @@ class BatchShow extends Component {
     nextState[e.target.name] = e.target.value
     this.setState(nextState)
   }
-
-  // handleStartClick() {
-  //   event.preventDefault();
-  //   let newDate = new Date();
-  //   this.setState({startDate: newDate})
-  //   let jstring = JSON.stringify({
-  //     "batch": {"start_date": newDate}
-  //   })
-  //   this.updateBatch(jstring)
-  // }
 
   handleEndClick() {
     event.preventDefault();
@@ -162,25 +154,49 @@ class BatchShow extends Component {
     this.loadBatch();
   }
 
-  // handleAddStep(event){
-  //   event.preventDefault();
-  //   let updated_steps = this.state.steps
-  //   let addedStep = {id: this.state.tempId, action: this.state.action }
-  //
-  //   let new_temp_id = this.state.tempId + 1
-  //   updated_steps.push(addedStep)
-  //   this.setState({ steps: updated_steps, tempId: new_temp_id, action: ''});
-  // }
+  handleHydrometer(attr_name) {
+    event.preventDefault();
+    let obj = {};
+    obj[attr_name] = this.state.hydrometerField;
 
+    let jstring = JSON.stringify({
+      "batch": obj
+    })
+    this.setState({hydrometerField: ''})
+    this.updateBatch(jstring)
+  }
 
   render() {
+    let finalHydro;
+    if (this.state.initialHydrometer != null) {
+      finalHydro = <Hydrometer
+        hydrometerField={this.state.hydrometerField}
+        reading={this.state.finalHydrometer}
+        name="hydrometerField"
+        label="Final Hydrometer Reading"
+        modelAttr="final_hydrometer"
+        handleChange={this.handleChange}
+        formSubmit={this.handleHydrometer}
+      />
+    }
     return(
-      <div className="react-batch-row">
+      <div className="react-batch">
         <StartEndBatch
           startDate={this.state.startDate}
           endDate={this.state.endDate}
           endClick={this.handleEndClick}
           />
+          <Hydrometer
+            hydrometerField={this.state.hydrometerField}
+            reading={this.state.initialHydrometer}
+            name="hydrometerField"
+            label="Initial Hydrometer Reading"
+            modelAttr="initial_hydrometer"
+            handleChange={this.handleChange}
+            formSubmit={this.handleHydrometer}
+          />
+        {finalHydro}
+        <h5>Approx. ABV: {this.state.approxABV}</h5>
         <h6>Progress:</h6>
         <StepList
           steps={this.state.completed_steps}
@@ -204,10 +220,3 @@ class BatchShow extends Component {
   };
 }
 export default BatchShow;
-// <div className="batch-index-left small-12">
-//   <h3>Batch Info</h3>
-//   <h6>Description:</h6>
-//   <p>{this.state.description}</p>
-//   <p>Initial hydrometer reading: {this.state.initial_hydrometer}</p>
-//   <p>Final hydrometer reading: {this.state.final_hydrometer}</p>
-// </div>

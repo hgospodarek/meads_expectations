@@ -30,7 +30,6 @@ FactoryGirl.define do
     user
     recipe
     name 'Batch 1'
-    description 'This is my first batch, look at me go.'
     initial_hydrometer 1.060
     final_hydrometer 1.020
   end

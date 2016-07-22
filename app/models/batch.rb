@@ -15,7 +15,6 @@ class Batch < ActiveRecord::Base
   allow_nil: true
   validates :final_hydrometer, numericality: { greater_than: 0 },
   allow_nil: true
-  validates :approx_abv, numericality: { greater_than: 0 }, allow_nil: true
 
   def approx_abv
     if initial_hydrometer && final_hydrometer

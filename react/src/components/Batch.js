@@ -15,7 +15,6 @@ const Batch = props => {
   return (
     <li className={batchClass}>
       <p><a href={link}>{props.name}</a></p>
-      <p>{props.description}</p>
       <p>Start Date: {prettyStartDate}</p>
       <p>End Date: {prettyEndDate}</p>
       <p>Recipe: {props.recipe.title}</p>

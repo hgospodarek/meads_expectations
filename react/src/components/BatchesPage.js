@@ -56,8 +56,7 @@ class BatchesPage extends Component {
     let jstring = JSON.stringify({
       "batch": {
         "name": this.state.name,
-        "recipe": this.state.recipe,
-        "description": this.state.description,
+        "recipe": this.state.recipe
       }
     });
 
