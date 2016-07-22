@@ -32,6 +32,12 @@ feature 'user views recipe show page', %{
       expect(page).to have_content(ingredient.amount)
     end
 
+    recipe1.steps.each do |step|
+      expect(page).to have_content(step.action)
+    end
+
+    expect(honey.name).to appear_before(water.name)
+
   end
 
   scenario 'an unauthenticated user cannot go to recipe show page' do

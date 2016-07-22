@@ -8,8 +8,4 @@ class BatchesController < ApplicationController
     @batch = Batch.find(params[:id])
   end
 
-  def update
-
-  end
-
 end

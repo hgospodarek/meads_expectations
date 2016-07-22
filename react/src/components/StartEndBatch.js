@@ -14,7 +14,7 @@ const StartEndBatch = props => {
   }
 
   return (
-      <h4 className="text-center">Start Date: {prettyStartDate} {end}</h4>
+      <h4 className="text-center">Started: {prettyStartDate} {end}</h4>
   );
 };
 

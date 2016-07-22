@@ -18,22 +18,23 @@ class Batch < ActiveRecord::Base
 
   def approx_abv
     if initial_hydrometer && final_hydrometer
-      return (initial_hydrometer - final_hydrometer) / 0.00736
+      (initial_hydrometer - final_hydrometer) / 0.00736
     else
-      return nil
+      nil
     end
   end
 
   def current_step
-    incomplete = steps.select {|s| s.completed? == false}
-    return incomplete.first
+    incomplete = steps.select { |s| s.completed? == false }
+
+    incomplete.first
   end
 
   def completed_steps
-    return steps.select {|s| s.completed? == true}
+    steps.select { |s| s.completed? == true }
   end
 
   def last_step
-    return steps.max_by {|s| s.created_at}
+    steps.max_by { |s| s.created_at }
   end
 end
