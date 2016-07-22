@@ -1,9 +1,9 @@
 import React from 'react';
+import moment from 'moment';
 
 const Batch = props => {
   let batchClass = `batch-${props.id}`
   let link = `/batches/${props.id}`
-  let moment = require('moment');
   let prettyStartDate = moment(props.startDate).format("MMM Do YYYY")
   let prettyEndDate;
 

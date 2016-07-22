@@ -1,9 +1,9 @@
 import React from 'react';
+import moment from 'moment';
 
 const StartEndBatch = props => {
 
   let end;
-  let moment = require('moment');
   let prettyStartDate = moment(props.startDate).format("MMM Do YYYY")
 
   if (props.endDate == null) {
