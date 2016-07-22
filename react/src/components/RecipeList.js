@@ -6,7 +6,6 @@ const RecipeList = props => {
     const { id, title, sweetness, variety } = recipe;
     let onDelete = () => props.handleRecipeDelete(id);
 
-
     return (
       <Recipe
         key={id}

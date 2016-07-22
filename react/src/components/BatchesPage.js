@@ -9,7 +9,6 @@ class BatchesPage extends Component {
       batches: [],
       recipes: [],
       name: '',
-      description: '',
       recipe: ''
     }
 
@@ -25,7 +24,7 @@ class BatchesPage extends Component {
       contentType: "application/json"
     })
     .success(data => {
-      this.setState({batches: data})
+      this.setState({batches: data.batches})
     })
   }
 
@@ -35,7 +34,7 @@ class BatchesPage extends Component {
       contentType: "application/json"
     })
     .success(data => {
-      this.setState({recipes: data})
+      this.setState({recipes: data.recipes})
     })
   }
 
@@ -56,8 +55,7 @@ class BatchesPage extends Component {
     let jstring = JSON.stringify({
       "batch": {
         "name": this.state.name,
-        "recipe": this.state.recipe,
-        "description": this.state.description,
+        "recipe": this.state.recipe
       }
     });
 
@@ -70,10 +68,10 @@ class BatchesPage extends Component {
     })
     .success(data => {
       this.loadBatches();
-      this.setState({name: '', description: ''})
+      this.setState({name: ''})
     })
     .error(data => {
-      alert(data.errors)
+      alert(data.batch.errors)
     })
   };
 
@@ -92,7 +90,6 @@ class BatchesPage extends Component {
             recipes={this.state.recipes}
             recipe={this.state.recipe}
             name={this.state.name}
-            description={this.state.description}
             handleChange={this.handleChange}
             handleFormSubmit={this.handleFormSubmit}
           />

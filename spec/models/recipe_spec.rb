@@ -6,6 +6,8 @@ RSpec.describe Recipe, type: :model do
 
   it { should have_many(:ingredients).dependent(:destroy) }
   it { should have_many(:steps).dependent(:destroy) }
+  it { should have_many(:batches).dependent(:destroy) }
+
 
   it { should have_valid(:title).when('Basic Mead', 'Strawberry Pyment No. 8') }
   it { should_not have_valid(:title).when('', nil) }
@@ -13,7 +15,7 @@ RSpec.describe Recipe, type: :model do
   it { should have_valid(:sweetness).when('Sweet', 'Semi-Sweet', 'Dry') }
   it { should_not have_valid(:sweetness).when('', nil, 'something else') }
 
-  it { should have_valid(:variety).when('Basic', 'Pyment', 'Melomel') }
+  it { should have_valid(:variety).when('Mead', 'Pyment', 'Melomel') }
   it { should_not have_valid(:variety).when('', nil, 'something else') }
 
   it { should have_valid(:success_count).when(0, 1, 50) }
