@@ -89,7 +89,6 @@ class RecipesPage extends Component {
 
     for (let i = 0; i < this.state.steps.length; i++) {
       delete this.state.steps[i].id
-      this.state.steps[i]['step_num'] = i + 1
       recipe_steps.push(this.state.steps[i])
     }
 

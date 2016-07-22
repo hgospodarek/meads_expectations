@@ -11,9 +11,9 @@
 <% end %>
 
 <% unless @recipe.steps.empty? %>
-  <ul>
-    <% @steps.each_with_index do |step, index| %>
-      <li> <%= index + 1 %>. <%= step.action %> </li>
+  <ol>
+    <% @steps.each do |step| %>
+      <li><%= step.action %> </li>
     <% end %>
-  </ul>
+  </ol>
 <% end %>

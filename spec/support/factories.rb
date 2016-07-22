@@ -24,7 +24,6 @@ FactoryGirl.define do
   factory :step do
     recipe
     action 'Do some things'
-    sequence(:step_num) { |n| n }
   end
 
   factory :batch do

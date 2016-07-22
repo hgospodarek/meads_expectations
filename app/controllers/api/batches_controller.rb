@@ -37,7 +37,7 @@ class Api::BatchesController < ApiController
   private
 
   def batch_params
-    params.require(:batch).permit(:name, :description, :start_date, :variation, :steps_attributes => [:id, :action, :step_num, :completed?])
+    params.require(:batch).permit(:name, :description, :start_date, :variation, :steps_attributes => [:id, :action, :completed?])
   end
 
   def copy_recipe_attributes(batch, recipe)
@@ -49,8 +49,7 @@ class Api::BatchesController < ApiController
     end
     unless recipe.steps.empty?
       recipe.steps.each do |step|
-        Step.create(batch: batch, action: step.action,
-        step_num: step.step_num)
+        Step.create(batch: batch, action: step.action)
       end
     end
   end

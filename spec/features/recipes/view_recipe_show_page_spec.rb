@@ -9,7 +9,6 @@ feature 'user views recipe show page', %{
   # ACCEPTANCE CRITERIA
   # [x] I must be logged in
   # [x] Ingredients are listed alphabetically
-  # [x] Steps are listed in order
 
   let(:user) { FactoryGirl.create(:user) }
 
@@ -17,8 +16,8 @@ feature 'user views recipe show page', %{
     recipe1 = FactoryGirl.create(:recipe, user_id: user.id)
     water = FactoryGirl.create(:ingredient, name: 'water', recipe: recipe1)
     honey = FactoryGirl.create(:ingredient, name: 'honey', recipe: recipe1)
-    step2 = Step.create(recipe: recipe1, step_num: 2, action: 'Mix')
-    step1 = Step.create(recipe: recipe1, step_num: 1, action: 'Pour honey')
+    step1 = Step.create(recipe: recipe1, action: 'Pour honey')
+    step2 = Step.create(recipe: recipe1, action: 'Mix')
 
     login_as(user, scope: :user)
     visit recipe_path(recipe1)
@@ -33,8 +32,6 @@ feature 'user views recipe show page', %{
       expect(page).to have_content(ingredient.amount)
     end
 
-    expect(honey.name).to appear_before(water.name)
-    expect(step1.action).to appear_before(step2.action)
   end
 
   scenario 'an unauthenticated user cannot go to recipe show page' do

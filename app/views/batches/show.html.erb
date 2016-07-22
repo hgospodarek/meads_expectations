@@ -17,11 +17,11 @@
 
     <% if !@batch.recipe.steps.empty? %>
     <h4>Steps</h4>
-    <ul>
-      <% @batch.recipe.steps.each_with_index do |step, index| %>
-      <li> <%= index + 1 %>. <%= step.action %> </li>
+    <ol>
+      <% @batch.recipe.steps.each do |step| %>
+      <li><%= step.action %> </li>
       <% end %>
-    </ul>
+    </ol>
     <% else %>
     <h4>This batch's recipe does not list any steps</h4>
     <% end %>

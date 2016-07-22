@@ -28,6 +28,6 @@ class Api::RecipesController < ApiController
     params.require(:recipe).permit(:title, :variety, :sweetness,
                                   :ingredients_attributes =>
                                   [:name, :amount, :unit],
-                                  :steps_attributes => [:action, :step_num])
+                                  :steps_attributes => [:action])
   end
 end

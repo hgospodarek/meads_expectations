@@ -17,4 +17,8 @@ class Recipe < ActiveRecord::Base
   validates :success_count, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :failure_count, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
+  def last_step
+    return steps.max_by {|s| s.created_at}
+  end
+
 end

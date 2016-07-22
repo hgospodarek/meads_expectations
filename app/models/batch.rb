@@ -33,4 +33,8 @@ class Batch < ActiveRecord::Base
   def completed_steps
     return steps.select {|s| s.completed? == true}
   end
+
+  def last_step
+    return steps.max_by {|s| s.created_at}
+  end
 end

@@ -121,8 +121,6 @@ class BatchShow extends Component {
 
   createStep() {
     debugger;
-    let last_step = this.state.steps[this.state.steps.length - 1]
-    let next_step_num = last_step['step_num'] + 1
     $.ajax({
       method: "POST",
       url: "/api/batches/:batch_id/steps",
@@ -130,17 +128,17 @@ class BatchShow extends Component {
       data: JSON.stringify({
         step: {
           action: this.state.action,
-          step_num: next_step_num,
           batch_id: this.state.id
         }
       })
     })
     .done(data => {
+      this.loadBatch();
     })
   }
 
   removeStepsAhead() {
-    let stepsAhead = this.state.steps.filter(item => item.step_num >= this.state.current_step[0]['step_num']);
+    let stepsAhead = this.state.steps.filter(item => item['completed?'] == false);
 
     for (let step of stepsAhead) {
       $.ajax({

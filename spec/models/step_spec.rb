@@ -7,7 +7,4 @@ RSpec.describe Step, type: :model do
   it { should belong_to :recipe }
   it { should belong_to :batch }
 
-  it { should have_valid(:step_num).when(1, 2, 5) }
-  it { should_not have_valid(:step_num).when(nil, 0, -1, -0.5) }
-
 end
