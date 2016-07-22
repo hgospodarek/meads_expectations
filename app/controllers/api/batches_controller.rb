@@ -7,7 +7,7 @@ class Api::BatchesController < ApiController
   end
 
   def create
-    recipe = Recipe.find_by(title: params[:batch]['recipe'])
+    recipe = Recipe.find_by(title: params[:batch]['recipe'], user: current_user)
     batch = Batch.new(batch_params)
     batch.recipe = recipe
     batch.user = current_user
