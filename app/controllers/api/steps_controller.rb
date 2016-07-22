@@ -2,7 +2,7 @@ class Api::StepsController < ApiController
   def create
     step = Step.new(step_params)
     if step.save
-      render json: { step: step} , status: :created
+      render json: { step: step}, status: :created
     else
       render json: { errors: step.errors }, status: :unprocessable_entity
     end

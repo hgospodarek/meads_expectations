@@ -11,7 +11,7 @@ class Recipe < ActiveRecord::Base
 
   VARIETIES = ['Mead', 'Melomel', 'Braggot', 'Hydromel', 'Pyment',
     'Cyser', 'Metheglin', 'Rhodomel', 'Sack Mead', 'Show Mead', 'Great Mead',
-    'Sparkling Mead', 'Morat', 'Hippocras', 'Omphacomel', 'Oxymel','Acerglyn',
+    'Sparkling Mead', 'Morat', 'Hippocras', 'Omphacomel', 'Oxymel', 'Acerglyn',
     'Bochet', 'Capsicumel', 'Black Mead', 'Mulled Mead', 'Tej', 'Acan',
     'Gverc', 'Dwojniak', 'Poltorak', 'Czworniak', 'Sima', 'Pitarilla',
     'Medica', 'Dandaghare', 'Medovina', 'Medovukha', 'iQhilika'].freeze
