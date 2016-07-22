@@ -2,7 +2,7 @@ class Api::BatchesController < ApiController
   before_action :authenticate_user!
 
   def index
-    batches = Batch.where(user: current_user).order("start_date ASC")
+    batches = Batch.where(user: current_user).order("created_at ASC")
     render json: batches, include: :recipe, status: :ok
   end
 
@@ -37,7 +37,7 @@ class Api::BatchesController < ApiController
   private
 
   def batch_params
-    params.require(:batch).permit(:name, :description, :start_date, :variation, :steps_attributes => [:id, :action, :completed?])
+    params.require(:batch).permit(:name, :description, :variation, :end_date, :steps_attributes => [:id, :action, :completed?])
   end
 
   def copy_recipe_attributes(batch, recipe)

@@ -26,7 +26,7 @@ class BatchShow extends Component {
 
     this.loadBatch = this.loadBatch.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleStartClick = this.handleStartClick.bind(this);
+    // this.handleStartClick = this.handleStartClick.bind(this);
     this.handleEndClick = this.handleEndClick.bind(this);
     this.updateBatch = this.updateBatch.bind(this);
     this.handleStepComplete = this.handleStepComplete.bind(this);
@@ -47,7 +47,7 @@ class BatchShow extends Component {
     })
     .success(data => {
       this.setState({
-        startDate: data.batch.start_date,
+        startDate: data.batch.created_at,
         endDate: data.batch.end_date,
         initialHydrometer: data.batch.initial_hydrometer,
         finalHydrometer: data.batch.final_hydrometer,
@@ -72,15 +72,15 @@ class BatchShow extends Component {
     this.setState(nextState)
   }
 
-  handleStartClick() {
-    event.preventDefault();
-    let newDate = new Date();
-    this.setState({startDate: newDate})
-    let jstring = JSON.stringify({
-      "batch": {"start_date": newDate}
-    })
-    this.updateBatch(jstring)
-  }
+  // handleStartClick() {
+  //   event.preventDefault();
+  //   let newDate = new Date();
+  //   this.setState({startDate: newDate})
+  //   let jstring = JSON.stringify({
+  //     "batch": {"start_date": newDate}
+  //   })
+  //   this.updateBatch(jstring)
+  // }
 
   handleEndClick() {
     event.preventDefault();
@@ -120,7 +120,6 @@ class BatchShow extends Component {
   }
 
   createStep() {
-    debugger;
     $.ajax({
       method: "POST",
       url: "/api/batches/:batch_id/steps",
@@ -152,7 +151,6 @@ class BatchShow extends Component {
 
   handleBranchOff() {
     event.preventDefault()
-    debugger;
     if (this.state.variation != true) {
       let jstring = JSON.stringify({"batch": {"variation": true}})
       this.updateBatch(jstring)
@@ -181,7 +179,6 @@ class BatchShow extends Component {
         <StartEndBatch
           startDate={this.state.startDate}
           endDate={this.state.endDate}
-          startClick={this.handleStartClick}
           endClick={this.handleEndClick}
           />
         <h6>Progress:</h6>

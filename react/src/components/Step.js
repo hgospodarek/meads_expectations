@@ -6,14 +6,6 @@ const Step = props => {
   let completeDate;
   let moment = require('moment');
 
-
-
-  function dateConversion(uglyDate) {
-  let date = Date.parse(uglyDate);
-  debugger;
-  return Date(uglyDate).toLocaleString('en-US', {month: 'short', day: 'numeric', year: '2-digit'})
-  };
-
   if(props.completed == true) {
     stepClass = "strikethrough";
     completeDate = moment(props.updated).format("MMM Do YYYY, h:mm:ss a")
