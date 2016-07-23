@@ -18,7 +18,9 @@ class Batch < ActiveRecord::Base
 
   def approx_abv
     if initial_hydrometer && final_hydrometer
-      (initial_hydrometer - final_hydrometer) / 0.00736
+      result = (initial_hydrometer - final_hydrometer) / 0.00736
+
+      result.round(2)
     else
       nil
     end
