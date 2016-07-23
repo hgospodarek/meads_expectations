@@ -13,7 +13,7 @@ class Api::RecipesController < ApiController
       render json: { recipe: recipe }, status: :created
     else
       render json: { errors: recipe.errors.values },
-      status: :unprocessable_entity
+                    status: :unprocessable_entity
     end
   end
 
