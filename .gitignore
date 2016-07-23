@@ -12,6 +12,8 @@
 !/log/.keep
 /tmp
 /coverage
+/coverage/.resultset.json
+/coverage.last_run.json
 .env
 /node_modules
 /public/uploads
