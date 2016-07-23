@@ -1,8 +1,8 @@
-# This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
+
 require 'spec_helper'
 require 'rspec/rails'
 require "capybara/rails"
@@ -10,7 +10,7 @@ require "valid_attribute"
 
 # Add additional requires below this line. Rails is not loaded until this point!
 Capybara.javascript_driver = :webkit
-Capybara.default_max_wait_time = 5
+Capybara.default_max_wait_time = 30
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
@@ -19,11 +19,7 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
-  # I'm turning this off to use database cleaner / to make Capybara happy.
-  # config.use_transactional_fixtures = true
 
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
@@ -46,6 +42,6 @@ RSpec.configure do |config|
 end
 
 Capybara::Webkit.configure do |config|
-    config.allow_unknown_urls
-    config.timeout = 5
-  end
+  config.allow_unknown_urls
+  config.timeout = 30
+end
