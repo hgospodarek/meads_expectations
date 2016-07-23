@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Hydrometer = props => {
-  debugger;
   let hydrometer;
   let onHydroForm = () => props.formSubmit(props.modelAttr);
 
