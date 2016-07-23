@@ -9,10 +9,11 @@ const IngredientForm = props => {
               id="amount"
               type="number"
               name="amount"
-              placeholder="0"
+              placeholder="0.0"
               value={props.amount}
               onChange={props.handleChange}
-              min="1"
+              min="0.0"
+              step="any"
               required={true}
             />
           <label htmlFor="unit">Unit</label>

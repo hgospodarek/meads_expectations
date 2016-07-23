@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160720173844) do
+ActiveRecord::Schema.define(version: 20160722045753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "batches", force: :cascade do |t|
-    t.integer  "user_id",            null: false
-    t.integer  "recipe_id",          null: false
-    t.string   "name",               null: false
+    t.integer  "user_id",                            null: false
+    t.integer  "recipe_id",                          null: false
+    t.string   "name",                               null: false
     t.text     "description"
     t.date     "start_date"
     t.date     "end_date"
@@ -27,15 +27,17 @@ ActiveRecord::Schema.define(version: 20160720173844) do
     t.float    "final_hydrometer"
     t.float    "approx_abv"
     t.text     "notes"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.boolean  "variation",          default: false
   end
 
   create_table "ingredients", force: :cascade do |t|
     t.string  "name",      null: false
-    t.integer "recipe_id", null: false
-    t.integer "amount",    null: false
+    t.integer "recipe_id"
+    t.float   "amount",    null: false
     t.string  "unit",      null: false
+    t.integer "batch_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -51,12 +53,12 @@ ActiveRecord::Schema.define(version: 20160720173844) do
   end
 
   create_table "steps", force: :cascade do |t|
-    t.integer  "recipe_id",                  null: false
+    t.integer  "recipe_id"
     t.string   "action",                     null: false
-    t.integer  "step_num",                   null: false
     t.boolean  "completed?", default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "batch_id"
   end
 
   create_table "users", force: :cascade do |t|

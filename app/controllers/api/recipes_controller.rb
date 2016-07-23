@@ -2,7 +2,7 @@ class Api::RecipesController < ApiController
   before_action :authenticate_user!
 
   def index
-    recipes = Recipe.where(user: current_user).order("title ASC")
+    recipes = Recipe.order('lower(title)').where(user: current_user)
     render json: recipes, status: :ok
   end
 
@@ -20,7 +20,7 @@ class Api::RecipesController < ApiController
     recipe = Recipe.find(params[:id])
     recipe.destroy
     head :no_content
-end
+  end
 
   private
 
@@ -28,6 +28,6 @@ end
     params.require(:recipe).permit(:title, :variety, :sweetness,
                                   :ingredients_attributes =>
                                   [:name, :amount, :unit],
-                                  :steps_attributes => [:action, :step_num])
+                                  :steps_attributes => [:action])
   end
 end
