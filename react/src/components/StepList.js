@@ -13,6 +13,7 @@ const StepList = props => {
       return (
         <Step
           key={id}
+          id={id}
           action={action}
           handleStepButton={onStepButton}
           buttonText={props.buttonText}

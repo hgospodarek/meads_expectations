@@ -5,6 +5,7 @@ const Step = props => {
   let stepClass;
   let completeDate;
   let moment = require('moment');
+  let id = `step-${props.id}`
 
   if(props.completed == true) {
     stepClass = "strikethrough";
@@ -21,7 +22,7 @@ const Step = props => {
   }
 
   return (
-    <li> <span className={stepClass}>{props.action}</span> {maybebutton}{completeDate}</li>
+    <li id={id}> <span className={stepClass}>{props.action}</span> {maybebutton}{completeDate}</li>
   );
 };
 
