@@ -21,7 +21,9 @@ class BatchShow extends Component {
       steps: null,
       action: '',
       variation: null,
-      hydrometerField: ''
+      hydrometerField: '',
+      newTitle: '',
+      batch: null
     }
 
     this.loadBatch = this.loadBatch.bind(this);
@@ -33,6 +35,7 @@ class BatchShow extends Component {
     this.createStep = this.createStep.bind(this);
     this.removeStepsAhead = this.removeStepsAhead.bind(this);
     this.handleHydrometer = this.handleHydrometer.bind(this);
+    this.handleSaveAsRecipe = this.handleSaveAsRecipe.bind(this);
 
   }
 
@@ -56,7 +59,8 @@ class BatchShow extends Component {
         completed_steps: data.batch.completed_steps,
         steps: data.batch.steps,
         recipe: data.batch.recipe,
-        variation: data.batch.variation
+        variation: data.batch.variation,
+        batch: data.batch
       })
     })
     .error(data => {
@@ -162,8 +166,57 @@ class BatchShow extends Component {
     this.updateBatch(jstring)
   }
 
+  handleSaveAsRecipe(event) {
+    debugger;
+    event.preventDefault();
+    let recipe_ingredients = [];
+    let recipe_steps = []
+
+    for(let ingredient of this.state.batch.ingredients) {
+      delete ingredient.id
+      delete ingredient.batch_id
+      recipe_ingredients.push(ingredient)
+    }
+
+    for (let step of this.state.batch.steps) {
+      let obj = {}
+      obj['action'] = step.action
+      recipe_steps.push(obj)
+    }
+
+    let jstring = JSON.stringify({
+      "recipe": {
+        "title": this.state.newTitle,
+        "sweetness": this.state.batch.recipe.sweetness,
+        "variety": this.state.batch.recipe.variety,
+        "ingredients_attributes": recipe_ingredients,
+        "steps_attributes": recipe_steps
+      }
+    });
+
+    $.ajax({
+      method: "POST",
+      url:"/api/recipes",
+      contentType: "application/json",
+      data: jstring
+
+    })
+    .success(data => {
+      this.loadBatch();
+      this.setState({newTitle: ''})
+    })
+    .error(data => {
+      for (let error of data.responseJSON.errors) {
+        alert(error)
+      }
+    })
+  }
+
+
   render() {
     let finalHydro;
+    let saveable;
+
     if (this.state.initialHydrometer != null) {
       finalHydro = <Hydrometer
         hydrometerField={this.state.hydrometerField}
@@ -174,6 +227,21 @@ class BatchShow extends Component {
         handleChange={this.handleChange}
         formSubmit={this.handleHydrometer}
       />
+    }
+
+    if (this.state.endDate != null) {
+      saveable = <form onSubmit={this.handleSaveAsRecipe}>
+        <input
+          id="new recipe"
+          type="text"
+          name="newTitle"
+          placeholder="new recipe title"
+          value={this.state.newTitle}
+          onChange={this.handleChange}
+          required={true}
+        />
+      <input type="submit" className="button" value="Submit Batch as New Recipe?" />
+      </form>
     }
     return(
       <div className="react-batch">
@@ -211,6 +279,7 @@ class BatchShow extends Component {
             handleChange={this.handleChange}
             handleAddStep={this.handleBranchOff}
             />
+          {saveable}
         </div>
     )
   };

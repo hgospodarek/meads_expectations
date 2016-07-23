@@ -37,4 +37,5 @@ class Batch < ActiveRecord::Base
   def last_step
     steps.max_by { |s| s.created_at }
   end
+
 end
