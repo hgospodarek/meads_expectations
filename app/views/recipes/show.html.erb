@@ -17,3 +17,5 @@
     <% end %>
   </ol>
 <% end %>
+
+<a><%= link_to 'Delete Recipe', recipe_path(@recipe), data: {confirm: 'Are you sure?'}, method: :delete %></a>

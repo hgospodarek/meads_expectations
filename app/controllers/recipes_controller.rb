@@ -9,4 +9,10 @@ class RecipesController < ApplicationController
     @ingredients = @recipe.ingredients.order("name ASC")
     @steps = @recipe.steps
   end
+
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.destroy
+    redirect_to root_path, flash: { notice: "Guess you didn't like that one." }
+  end
 end
