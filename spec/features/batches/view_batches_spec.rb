@@ -6,7 +6,7 @@ feature 'user views their batches', %(
   So I can see what I've got going on
 ) do
   # ACCEPTANCE CRITERIA
-  # [ ] I must be logged into see my batches
+  # [ ] I must be logged in to see my batches
   # [ ] I can only see my batches, not other users'
   # [ ] Batches are listed by date
 

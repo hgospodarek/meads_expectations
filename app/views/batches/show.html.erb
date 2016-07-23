@@ -29,6 +29,6 @@
   <div class="small-12 medium-6 columns">
     <h3 class=text-center>Batch</h3>
       <div id="batch-info" class="<%= @batch.id %>"></div>
-    <a><%= link_to 'Edit Batch', edit_batch_path(@batch) %></a>
+    <a><%= link_to 'Delete Batch', batch_path(@batch), data: { confirm: "Are you sure?" }, method: :delete %></a>
   </div>
 </div>

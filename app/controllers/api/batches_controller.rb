@@ -30,7 +30,6 @@ class Api::BatchesController < ApiController
     if batch.update(batch_params)
       render json: batch, include: :recipe, status: :ok
     else
-      binding.pry
       render json: { errors: batch.errors }, status: :unprocessable_entity
     end
   end

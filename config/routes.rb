@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :recipes, only: [:index, :show]
-  resources :batches, only: [:index, :show, :edit, :update]
+  resources :batches, only: [:index, :show, :destroy]
 
   namespace :api do
     resources :batches, only: [:index, :show, :create, :update] do
