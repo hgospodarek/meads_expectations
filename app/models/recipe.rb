@@ -29,6 +29,9 @@ class Recipe < ActiveRecord::Base
   validates :failure_count, presence: true,
   numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
+  validates :title, uniqueness: { scope: :user,
+    message: "You'll only frustrate yourself later if you make two recipes with the same name" }
+
   def last_step
     steps.max_by { |s| s.created_at }
   end

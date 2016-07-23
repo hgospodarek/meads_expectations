@@ -113,7 +113,9 @@ class RecipesPage extends Component {
       this.setState({title: '', ingredients: [], steps: []})
     })
     .error(data => {
-      alert(data.errors)
+      for (let error of data.responseJSON.errors) {
+        alert(error)
+      }
     })
   };
 
