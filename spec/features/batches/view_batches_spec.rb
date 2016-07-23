@@ -6,50 +6,55 @@ feature 'user views their batches', %(
   So I can see what I've got going on
 ) do
   # ACCEPTANCE CRITERIA
-  # [ ] I must be logged in to see my batches
-  # [ ] I can only see my batches, not other users'
-  # [ ] Batches are listed by date
+  # [x] I must be logged in to see my batches
+  # [x] I can only see my batches, not other users'
+  # [x] Batches are listed by end date with latest first
+  # [x] Batches with no end date listed by start date, with earliest first
 
   let(:user) { FactoryGirl.create(:user) }
   let(:user2) { FactoryGirl.create(:user) }
+
   let(:user_recipe) { FactoryGirl.create(:recipe, user_id: user.id) }
   let(:user2_recipe) { FactoryGirl.create(:recipe, user_id: user2.id) }
 
-  xscenario 'authenticated user views list of batches', js: true do
-    batch1 = FactoryGirl.create(:batch, user_id: user.id, recipe: user_recipe,
-    name: 'Mai Batch')
-    batch2 = FactoryGirl.create(:batch, user_id: user2.id, recipe: user2_recipe,
-    name: 'Not Mai Batch')
+  scenario 'authenticated user views list of batches', js: true do
+    latest_incompleted = FactoryGirl.create(:batch, user_id: user.id, recipe: user_recipe,
+    name: 'Latest Incompleted Batch')
+    oldest_incompleted = FactoryGirl.create(:batch, user_id: user.id, recipe: user_recipe,
+    name: 'Oldest Incompleted Batch', start_date: Date.yesterday)
 
-    recipe1_ingredients = FactoryGirl.create_list(:ingredient, 5,
-    recipe: user_recipe)
-
-    recipe1_steps = FactoryGirl.create_list(:step, 5, recipe: user_recipe)
+    oldest_completed = FactoryGirl.create(:batch, user_id: user.id, recipe: user_recipe,
+    name: 'Oldest Completed Batch', end_date: Date.yesterday)
+    latest_completed = FactoryGirl.create(:batch, user_id: user.id, recipe: user_recipe,
+    name: 'Latest Completed Batch', end_date: Date.today)
 
     login_as(user)
     visit root_path
 
     click_link 'Batches'
 
-    expect(page).to have_content(batch1.name)
-    expect(page).to have_content(batch1.recipe.title)
-    expect(page).to have_content(batch1.recipe.variety)
-    expect(page).to have_content(batch1.recipe.sweetness)
+    expect(page).to have_content(oldest_completed.name)
+    expect(page).to have_content(oldest_completed.recipe.title)
+    expect(page).to have_content(oldest_completed.recipe.variety)
+    expect(page).to have_content(oldest_completed.recipe.sweetness)
 
-    batch1.recipe.ingredients.each do |ingredient|
-      expect(page).to have_content(ingredient.amount)
-      expect(page).to have_content(ingredient.unit)
-      expect(page).to have_content(ingredient.name)
-    end
+    expect(latest_completed.name).to appear_before(oldest_completed.name)
+    expect(latest_incompleted.name).to appear_before(latest_completed.name)
+    expect(oldest_incompleted.name).to appear_before(latest_incompleted.name)
+  end
 
-    batch1.recipe.steps.each do |step|
-      expect(page).to have_content(step.action)
-    end
+  scenario "users can't see other users' batches" do
+    batch1 = FactoryGirl.create(:batch, user_id: user.id, recipe: user_recipe,
+    name: 'Mai Batch', end_date: Date.today)
 
-    expect(page).to_not have_content(batch2.name)
-    expect(page).to_not have_content(batch2.recipe.title)
-    expect(page).to_not have_content(batch2.recipe.variety)
-    expect(page).to_not have_content(batch2.recipe.sweetness)
+    user2batch = FactoryGirl.create(:batch, user_id: user2.id, recipe: user2_recipe,
+    name: 'Not Mai Batch')
+
+    login_as(user)
+    visit root_path
+    click_link 'Batches'
+
+    expect(page).to_not have_content(user2batch.name)
   end
 
   scenario 'unathenticated user does not see list of batches' do
