@@ -11,8 +11,6 @@ class BatchesController < ApplicationController
   def destroy
     batch = Batch.find(params[:id])
     batch.destroy
-    redirect_to root_path, flash: {notice: "Batch deleted. Harsh, man. Harsh."}
+    redirect_to root_path, flash: { notice: "Batch deleted. Harsh, man. Harsh." }
   end
-
-
 end
