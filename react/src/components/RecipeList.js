@@ -12,7 +12,6 @@ const RecipeList = props => {
         title={title}
         sweetness={sweetness}
         variety={variety}
-        handleDelete={onDelete}
       />
     );
   });
