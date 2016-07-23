@@ -14,7 +14,7 @@ feature 'user deletes a batch', %(
 
   scenario 'user deletes their batch' do
     batch1 = FactoryGirl.create(:batch, user_id: user.id, recipe: user_recipe,
-    name: 'Mai Batch')
+                                name: 'Mai Batch')
 
     login_as(user)
     visit batch_path(batch1)
