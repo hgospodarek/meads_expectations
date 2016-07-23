@@ -6,6 +6,11 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @recipe.steps.order("step_num ASC")
+  end
+
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.destroy
+    redirect_to root_path, flash: {notice: "Guess you didn't like that one."}
   end
 end

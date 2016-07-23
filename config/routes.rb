@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'welcome#index'
 
-  resources :recipes, only: [:index, :show]
+  resources :recipes, only: [:index, :show, :destroy]
   resources :batches, only: [:index]
 
   namespace :api do
