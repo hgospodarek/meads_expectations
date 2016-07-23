@@ -13,7 +13,7 @@ feature 'user deletes their account', %(
   let(:user) { FactoryGirl.create(:user) }
 
   scenario 'user deletes their account', js: true do
-    login_as(user, scope: :user)
+    login_as(user)
 
     visit root_path
     click_link 'Settings'
@@ -24,10 +24,12 @@ feature 'user deletes their account', %(
 
     expect(page).to have_content("We never liked you anyway.
     Just kidding, we are actually really sad you canclled your account.")
+    expect(page).to_not have_content(user.first_name)
+
   end
 
   scenario 'user accidentally clicked but does not want to delete', js: true do
-    login_as(user, scope: :user)
+    login_as(user)
 
     visit root_path
     click_link 'Settings'
@@ -38,6 +40,7 @@ feature 'user deletes their account', %(
 
     expect(page).to_not have_content("We never liked you anyway.
     Just kidding, we are actually really sad you canclled your account.")
+    expect(page).to have_content(user.first_name)
   end
 
   scenario 'user cannot delete their account unless signed in' do
