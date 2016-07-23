@@ -18,4 +18,6 @@
   </ol>
 <% end %>
 
-<a><%= link_to 'Delete Recipe', recipe_path(@recipe), data: {confirm: 'Are you sure?'}, method: :delete %></a>
+<a><%= link_to 'Delete Recipe', recipe_path(@recipe),
+data: {confirm: 'Deleting this recipe will also delete any batches it
+      was applied to. Are you sure?'}, method: :delete %></a>

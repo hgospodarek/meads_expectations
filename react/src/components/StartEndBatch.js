@@ -4,12 +4,12 @@ import moment from 'moment';
 const StartEndBatch = props => {
 
   let end;
-  let prettyStartDate = moment(props.startDate).format("MMM Do YYYY")
+  let prettyStartDate = moment(props.startDate).format("D MMM YYYY")
 
   if (props.endDate == null) {
     end = <button className="button" onClick={props.endClick}>Finish Batch</button>
   } else {
-    let prettyEndDate = moment(props.endDate).format("MMM Do YYYY")
+    let prettyEndDate = moment(props.endDate).format("D MMM YYYY")
     end = <span>Finished: {prettyEndDate}</span>
   }
 

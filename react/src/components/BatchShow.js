@@ -261,7 +261,7 @@ class BatchShow extends Component {
           />
         {finalHydro}
         <h5>Approx. ABV: {this.state.approxABV}</h5>
-        <h6>Progress:</h6>
+        <h6 id="progress">Progress:</h6>
         <StepList
           steps={this.state.completed_steps}
           buttonText="Complete"

@@ -21,7 +21,7 @@ feature 'user views their batches', %(
     latest_incompleted = FactoryGirl.create(:batch, user_id: user.id, recipe: user_recipe,
     name: 'Latest Incompleted Batch')
     oldest_incompleted = FactoryGirl.create(:batch, user_id: user.id, recipe: user_recipe,
-    name: 'Oldest Incompleted Batch', start_date: Date.yesterday)
+    name: 'Oldest Incompleted Batch', created_at: Date.yesterday)
 
     oldest_completed = FactoryGirl.create(:batch, user_id: user.id, recipe: user_recipe,
     name: 'Oldest Completed Batch', end_date: Date.yesterday)

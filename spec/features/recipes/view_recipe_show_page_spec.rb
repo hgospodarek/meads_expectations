@@ -16,8 +16,8 @@ feature 'user views recipe show page', %{
     recipe1 = FactoryGirl.create(:recipe, user_id: user.id)
     water = FactoryGirl.create(:ingredient, name: 'water', recipe: recipe1)
     honey = FactoryGirl.create(:ingredient, name: 'honey', recipe: recipe1)
-    step1 = Step.create(recipe: recipe1, action: 'Pour honey')
-    step2 = Step.create(recipe: recipe1, action: 'Mix')
+    step1 = FactoryGirl.create(:step, recipe: recipe1, action: 'Pour honey')
+    step2 = FactoryGirl.create(:step, recipe: recipe1, action: 'Mix')
 
     login_as(user)
     visit recipe_path(recipe1)

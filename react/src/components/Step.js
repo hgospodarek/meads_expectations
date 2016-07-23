@@ -9,7 +9,7 @@ const Step = props => {
 
   if(props.completed == true) {
     stepClass = "strikethrough";
-    completeDate = moment(props.updated).format("MMM Do YYYY, h:mm:ss a")
+    completeDate = moment(props.updated).format("D MMM, h:mm a")
   } else {
     stepClass = "step"
   }

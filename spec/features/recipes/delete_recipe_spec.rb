@@ -21,6 +21,7 @@ feature 'user deletes their recipe', %(
     end
 
     expect(page).to have_content("Guess you didn't like that one.")
+    expect(page).to_not have_content(recipe.title)
   end
 
   scenario 'user accidentally clicked but does not want to delete', js: true do

@@ -13,7 +13,7 @@ feature 'user edits their account', %Q{
   let(:user) { FactoryGirl.create(:user) }
 
   scenario 'user provides new email and password, and correct current password' do
-    login_as(user, scope: :user)
+    login_as(user)
     visit root_path
     click_link 'Settings'
 
@@ -27,7 +27,7 @@ feature 'user edits their account', %Q{
   end
 
   scenario 'user updates only their email' do
-    login_as(user, scope: :user)
+    login_as(user)
 
     visit root_path
     click_link 'Settings'
@@ -40,7 +40,7 @@ feature 'user edits their account', %Q{
   end
 
   scenario 'user updates only their password' do
-    login_as(user, scope: :user)
+    login_as(user)
 
     visit root_path
     click_link "Settings"
@@ -54,7 +54,7 @@ feature 'user edits their account', %Q{
   end
 
   scenario 'user provides incorrect current password' do
-    login_as(user, scope: :user)
+    login_as(user)
 
     visit root_path
     click_link 'Settings'

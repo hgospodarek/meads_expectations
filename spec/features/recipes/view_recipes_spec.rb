@@ -13,14 +13,14 @@ feature 'user views their recipes', %{
   let(:user) { FactoryGirl.create(:user) }
   let(:user2) { FactoryGirl.create(:user) }
 
-  xscenario 'authenticated user views list of recipes', js: true do
+  scenario 'authenticated user views list of recipes', js: true do
     recipe1 = FactoryGirl.create(:recipe, user_id: user.id)
     recipe2 = FactoryGirl.create(:recipe, title: 'Another Mead',
                                   user_id: user.id)
     not_yours = FactoryGirl.create(:recipe, title: 'Not Your Mead Recipe',
                                     user_id: user2.id)
 
-    login_as(user, scope: :user)
+    login_as(user)
     visit root_path
 
     click_link 'Recipes'
@@ -31,8 +31,21 @@ feature 'user views their recipes', %{
     expect(page).to have_content(recipe2.title)
     expect(page).to have_content(recipe2.sweetness)
     expect(page).to have_content(recipe2.variety)
-    expect(page).to_not have_content(not_yours.title)
+
     expect(recipe2.title).to appear_before(recipe1.title)
+  end
+
+  scenario "users can't see other users' recipes", js: true do
+    login_as(user)
+    visit root_path
+
+    click_link 'Recipes'
+    recipe2 = FactoryGirl.create(:recipe, title: 'Another Mead',
+                                  user_id: user.id)
+    not_yours = FactoryGirl.create(:recipe, title: 'Not Your Mead Recipe',
+                                    user_id: user2.id)
+
+    expect(page).to_not have_content(not_yours.title)
   end
 
   scenario 'unathenticated user does not see list of recipes' do

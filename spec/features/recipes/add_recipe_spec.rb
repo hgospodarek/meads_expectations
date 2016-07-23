@@ -10,7 +10,6 @@ So I can use it in the future
   # [x] Must fill out title
   # [x] Sweetness and variety have defaults
   # [x] User can't have two recipes with the same name
-  # [ ] Success message if good, redirect to recipe show page if good
 
   let(:user) { FactoryGirl.create(:user) }
 

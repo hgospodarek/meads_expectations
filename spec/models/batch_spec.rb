@@ -19,29 +19,25 @@ RSpec.describe Batch, type: :model do
   it { should have_valid(:final_hydrometer).when(1, 1.5, 1.094) }
   it { should_not have_valid(:final_hydrometer).when(-5, 'wordswordswords') }
 
+  let(:user) { FactoryGirl.create(:user) }
+  let(:recipe) { FactoryGirl.create(:recipe) }
+  let(:batch) { FactoryGirl.create(:batch, user: user, recipe: recipe) }
+
   describe '#approx_abv' do
     it 'should return nil if either initial or final hydrometer readings are blank' do
-      user = FactoryGirl.create(:user)
-      recipe = FactoryGirl.create(:recipe)
-      batch = FactoryGirl.create(:batch, user: user, recipe: recipe, final_hydrometer: nil)
-
+      batch.final_hydrometer = nil
       expect(batch.approx_abv).to eq(nil)
     end
 
     it 'should calculate the approximate abv if both readings are present' do
-      user = FactoryGirl.create(:user)
-      recipe = FactoryGirl.create(:recipe)
-      batch = FactoryGirl.create(:batch, user: user, recipe: recipe, initial_hydrometer: 1.08, final_hydrometer: 1.01)
-
+      batch.initial_hydrometer = 1.08
+      batch.final_hydrometer = 1.01
       expect(batch.approx_abv).to eq(9.51)
     end
   end
 
   describe '#current_step' do
     it 'returns the first incomplete step of the batch' do
-      user = FactoryGirl.create(:user)
-      recipe = FactoryGirl.create(:recipe)
-      batch = FactoryGirl.create(:batch, user: user, recipe: recipe, initial_hydrometer: 1.08, final_hydrometer: 1.01)
 
       step1 = FactoryGirl.create(:step, batch: batch, action: 'Pour honey', completed?: true, updated_at: Time.now)
 
@@ -53,10 +49,6 @@ RSpec.describe Batch, type: :model do
 
   describe '#completed_steps' do
     it 'returns a batches completed steps' do
-      user = FactoryGirl.create(:user)
-      recipe = FactoryGirl.create(:recipe)
-      batch = FactoryGirl.create(:batch, user: user, recipe: recipe, initial_hydrometer: 1.08, final_hydrometer: 1.01)
-
       step1 = FactoryGirl.create(:step, batch: batch, action: 'Pour honey', completed?: true, updated_at: Time.now)
 
       step2 = FactoryGirl.create(:step, batch: batch, action: 'Mix it up', completed?: true)
@@ -67,9 +59,6 @@ RSpec.describe Batch, type: :model do
 
   describe '#last_step' do
     it 'should return the last step of a batch' do
-      user = FactoryGirl.create(:user)
-      recipe = FactoryGirl.create(:recipe)
-      batch = FactoryGirl.create(:batch, user: user, recipe: recipe, initial_hydrometer: 1.08, final_hydrometer: 1.01)
 
       step1 = FactoryGirl.create(:step, batch: batch, action: 'Pour honey')
 
