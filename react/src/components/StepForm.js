@@ -14,7 +14,7 @@ const StepForm = props => {
               onChange={props.handleChange}
               required={true}
             />
-          <input type="submit" className="button" value="Add Step" />
+          <input type="submit" className="button" value="New Step" />
         </form>
     </div>
 

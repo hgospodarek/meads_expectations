@@ -21,7 +21,7 @@ feature 'user creates recipe', %(
     click_link 'Recipes'
     fill_in 'Title', with: 'Meadiocrity'
     select('Sweet', from: 'Sweetness')
-    select('Basic', from: 'Variety')
+    select('Mead', from: 'Variety')
 
     fill_in 'Amount', with: 3
     fill_in 'Unit', with: 'lbs'
