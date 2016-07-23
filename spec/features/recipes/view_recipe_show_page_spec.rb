@@ -19,7 +19,7 @@ feature 'user views recipe show page', %{
     step1 = Step.create(recipe: recipe1, action: 'Pour honey')
     step2 = Step.create(recipe: recipe1, action: 'Mix')
 
-    login_as(user, scope: :user)
+    login_as(user)
     visit recipe_path(recipe1)
 
     expect(page).to have_content(recipe1.title)
@@ -37,7 +37,7 @@ feature 'user views recipe show page', %{
     end
 
     expect(honey.name).to appear_before(water.name)
-
+    expect(step1.action).to appear_before(step2.action)
   end
 
   scenario 'an unauthenticated user cannot go to recipe show page' do
