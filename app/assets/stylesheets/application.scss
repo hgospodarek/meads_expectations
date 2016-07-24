@@ -12,9 +12,12 @@
  *
  *= require_tree .
  *= require_self
- *= require foundation_and_overrides
 
  */
+@import "materialize/components/color";
+@import "materialize";
+@import "materialize/extras/nouislider";
+@import "footer";
 
 .strikethrough {
   text-decoration: line-through;

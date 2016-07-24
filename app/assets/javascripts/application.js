@@ -12,7 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require foundation
+//= require materialize-sprockets
+//= require materialize/extras/nouislider
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+// $(function(){ $(document).foundation(); });
+(function($){
+  $(function(){
+
+    $('.button-collapse').sideNav();
+    $('.parallax').parallax();
+
+  }); // end of document ready
+})(jQuery); // end of jQuery name space
