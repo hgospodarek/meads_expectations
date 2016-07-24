@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'sign up' , %(
+feature 'sign up', %(
   As an unauthenticated user
   I want to sign up
   So I can track my mead recipes and batches.
