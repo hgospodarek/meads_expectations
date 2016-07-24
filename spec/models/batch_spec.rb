@@ -24,7 +24,8 @@ RSpec.describe Batch, type: :model do
   let(:batch) { FactoryGirl.create(:batch, user: user, recipe: recipe) }
 
   describe '#approx_abv' do
-    it 'should return nil if either initial or final hydrometer readings are blank' do
+    it 'should return nil if either initial or final hydrometer
+        readings are blank' do
       batch.final_hydrometer = nil
       expect(batch.approx_abv).to eq(nil)
     end
@@ -39,7 +40,8 @@ RSpec.describe Batch, type: :model do
   describe '#current_step' do
     it 'returns the first incomplete step of the batch' do
 
-      step1 = FactoryGirl.create(:step, batch: batch, action: 'Pour honey', completed?: true, updated_at: Time.now)
+      step1 = FactoryGirl.create(:step, batch: batch, action: 'Pour honey',
+              completed?: true, updated_at: Time.now)
 
       step2 = FactoryGirl.create(:step, batch: batch, action: 'Mix it up')
 
@@ -49,9 +51,11 @@ RSpec.describe Batch, type: :model do
 
   describe '#completed_steps' do
     it 'returns a batches completed steps' do
-      step1 = FactoryGirl.create(:step, batch: batch, action: 'Pour honey', completed?: true, updated_at: Time.now)
+      step1 = FactoryGirl.create(:step, batch: batch, action: 'Pour honey',
+              completed?: true, updated_at: Time.now)
 
-      step2 = FactoryGirl.create(:step, batch: batch, action: 'Mix it up', completed?: true)
+      step2 = FactoryGirl.create(:step, batch: batch, action: 'Mix it up',
+              completed?: true)
 
       expect(batch.completed_steps).to eq([step1, step2])
     end

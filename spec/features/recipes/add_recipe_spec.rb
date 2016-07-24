@@ -41,7 +41,8 @@ So I can use it in the future
     expect(page).to have_content('Meadiocrity')
   end
 
-  scenario 'user deletes some added steps/ingredients before submitting', js: true do
+  scenario 'user deletes some added steps/ingredients before submitting',
+            js: true do
     login_as(user)
     visit recipes_path
     fill_in 'Title', with: 'Meadiocrity'

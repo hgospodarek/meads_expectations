@@ -24,9 +24,9 @@ feature 'user views their batches', %(
     name: 'Oldest Incompleted Batch', created_at: Date.yesterday)
 
     oldest_completed = FactoryGirl.create(:batch, user_id: user.id, recipe: user_recipe,
-    name: 'Oldest Completed Batch', end_date: Date.yesterday)
+    name: 'Oldest Completed Batch', created_at: 1.month.ago.to_date, end_date: 1.week.ago.to_date)
     latest_completed = FactoryGirl.create(:batch, user_id: user.id, recipe: user_recipe,
-    name: 'Latest Completed Batch', end_date: Date.today)
+    name: 'Latest Completed Batch', created_at: Date.yesterday, end_date: Date.today)
 
     login_as(user)
     visit root_path
@@ -37,7 +37,6 @@ feature 'user views their batches', %(
     expect(page).to have_content(oldest_completed.recipe.title)
     expect(page).to have_content(oldest_completed.recipe.variety)
     expect(page).to have_content(oldest_completed.recipe.sweetness)
-
     expect(latest_completed.name).to appear_before(oldest_completed.name)
     expect(latest_incompleted.name).to appear_before(latest_completed.name)
     expect(oldest_incompleted.name).to appear_before(latest_incompleted.name)
