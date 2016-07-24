@@ -45,12 +45,12 @@ class Api::BatchesController < ApiController
   def copy_recipe_attributes(batch, recipe)
     unless recipe.ingredients.empty?
       recipe.ingredients.each do |ingredient|
-        ingredient.update({batch: batch})
+        ingredient.update({ batch: batch })
       end
     end
     unless recipe.steps.empty?
       recipe.steps.each do |step|
-        step.update({batch: batch})
+        step.update({ batch: batch })
       end
     end
   end
