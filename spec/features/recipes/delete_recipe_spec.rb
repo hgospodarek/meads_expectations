@@ -6,18 +6,34 @@ feature 'user deletes their recipe', %(
   Because I didn't work
 ) do
   # ACCEPTANCE CRITERIA
-  # [ ] I must be signed in to delete my recipe
+  # [x] I must be signed in to delete my recipe
+  # [x] I am asked for confirmation before deleting
 
   let(:user) { FactoryGirl.create(:user) }
   let(:recipe) { FactoryGirl.create(:recipe, user: user) }
 
-  scenario 'user deletes their recipe' do
+  scenario 'user deletes their recipe', js: true do
     login_as(user)
-
     visit recipe_path(recipe)
-    click_link 'Delete Recipe'
+
+    accept_confirm do
+      click_link 'Delete Recipe'
+    end
 
     expect(page).to have_content("Guess you didn't like that one.")
+    expect(page).to_not have_content(recipe.title)
+  end
+
+  scenario 'user accidentally clicked but does not want to delete', js: true do
+    login_as(user)
+    visit recipe_path(recipe)
+
+    dismiss_confirm do
+      click_link 'Delete Recipe'
+    end
+
+    expect(page).to_not have_content("Guess you didn't like that one.")
+    expect(page).to have_content(recipe.title)
   end
 
   scenario 'user cannot delete their recipe unless signed in' do

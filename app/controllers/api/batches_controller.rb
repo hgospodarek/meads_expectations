@@ -2,7 +2,7 @@ class Api::BatchesController < ApiController
   before_action :authenticate_user!
 
   def index
-    batches = Batch.where(user: current_user).order("created_at ASC")
+    batches = Batch.order('end_date DESC, created_at ASC').where(user: current_user)
     render json: batches, include: :recipe, status: :ok
   end
 

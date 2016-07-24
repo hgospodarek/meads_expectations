@@ -4,11 +4,11 @@ import moment from 'moment';
 const Batch = props => {
   let batchClass = `batch-${props.id}`
   let link = `/batches/${props.id}`
-  let prettyStartDate = moment(props.startDate).format("MMM Do YYYY")
+  let prettyStartDate = moment(props.startDate).format("D MMM YYYY")
   let prettyEndDate;
 
   if (props.endDate) {
-    prettyEndDate = moment(props.endDate).format("MMM Do YYYY")
+    prettyEndDate = moment(props.endDate).format("D MMM YYYY")
   }
 
 

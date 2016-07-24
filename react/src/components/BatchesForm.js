@@ -31,7 +31,7 @@ const BatchesForm = props => {
             <option defaultValue="" disabled selected>Select your option</option>
             {recipe_options}
             </select>
-              <input type="submit" className="button" value="Submit Batches" />
+              <input type="submit" className="button" value="Submit Batch" />
         </form>
     </div>
   );

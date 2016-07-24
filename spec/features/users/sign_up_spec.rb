@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-feature 'sign up' , %Q{
+feature 'sign up', %(
   As an unauthenticated user
   I want to sign up
   So I can track my mead recipes and batches.
-} do
+) do
 
   # ACCEPTANCE CRITERIA
   # [x] I must specify a valid email address
