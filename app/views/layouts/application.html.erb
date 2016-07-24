@@ -12,19 +12,44 @@
 </head>
 
 <body>
-  <nav class="black" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">Logo</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
+  <div class="navbar-fixed">
+    <nav class="white" role="navigation">
+      <div class="nav-wrapper">
+        <ul class="left hide-on-med-and-down">
+          <% if user_signed_in? %>
+            <li><%= link_to 'Recipes', recipes_path %></li>
+            <li><%= link_to 'Batches', batches_path %></li>
+          <% end %>
+        </ul>
+        <%= link_to (image_tag 'noun_18918_cc.svg', class: "bee"), root_path, class: "brand-logo center" %>
+        <ul class="right hide-on-med-and-down">
+          <% if user_signed_in? %>
+            <li><%= link_to 'Settings', edit_user_registration_path %></li>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+            <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <% end %>
+        </ul>
+        <ul id="nav-mobile" class="side-nav">
+          <% if user_signed_in? %>
+            <li><%= link_to 'Recipes', recipes_path %></li>
+            <li><%= link_to 'Batches', batches_path %></li>
+          <% end %>
+          <% if user_signed_in? %>
+            <li><%= link_to 'Settings', edit_user_registration_path %></li>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+            <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <% end %>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
+  </div>
 
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
+
   <% flash.each do |key, value| %>
     <div class="alert alert<%= key %>">
       <ul>
