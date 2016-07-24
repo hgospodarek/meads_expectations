@@ -1,10 +1,20 @@
 .bee {
   display: block;
   width: 100px;
-  max-width: 100%;
   height: auto;
 }
 
-nav ul a{
-  color: black;
+nav {
+  ul {
+    &.left {
+      padding-left: 200px;
+    }
+    &.right {
+      padding-right: 200px;
+    }
+  li {
+    // margin: 0 20px;
+  }
+  }
+
 }
