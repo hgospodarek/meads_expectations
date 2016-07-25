@@ -32,8 +32,14 @@ class RecipesPage extends Component {
     this.loadRecipes = this.loadRecipes.bind(this);
 
   }
+
   componentDidMount(){
     this.loadRecipes();
+    $(this.sweetness).change(this.onChange)
+  }
+
+  componentWillUnmount() {
+    $(this.sweetness).unbind();
   }
 
   loadRecipes(){
