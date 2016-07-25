@@ -16,6 +16,14 @@
 
  */
 
-.strikethrough {
+.completed-step {
   text-decoration: line-through;
+}
+
+.original-step {
+  color: grey;
+}
+
+.new-step {
+  color: yellow;
 }

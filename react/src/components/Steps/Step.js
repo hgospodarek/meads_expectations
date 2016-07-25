@@ -2,19 +2,19 @@ import React from 'react';
 
 const Step = props => {
   let maybebutton;
-  let stepClass;
+  // let stepClass;
   let completeDate;
   let moment = require('moment');
   let id = `step-${props.id}`
 
   if(props.completed == true) {
-    stepClass = "strikethrough";
+    // stepClass = "strikethrough";
     completeDate = moment(props.updated).format("D MMM, h:mm a")
-  } else {
-    stepClass = "step"
+  // } else {
+  //   stepClass = "step"
   }
 
-  if(props.yesButton == true) {
+  if(props.buttonText) {
     maybebutton =  <button className="button" type="button" onClick={props.handleStepButton}>{props.buttonText}</button>
 
   } else {
@@ -22,7 +22,7 @@ const Step = props => {
   }
 
   return (
-    <li id={id}> <span className={stepClass}>{props.action}</span> {maybebutton}{completeDate}</li>
+    <li id={id}> <span className={props.stepType}>{props.action}</span> {maybebutton}{completeDate}</li>
   );
 };
 

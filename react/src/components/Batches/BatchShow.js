@@ -250,7 +250,8 @@ class BatchShow extends Component {
 
     if ((this.state.endDate != null ) && this.state.batch.variation == true ) {
       comparison = <BatchComparison
-                    recipeSteps={this.state.batch.original_steps}
+                    originalSteps={this.state.batch.original_steps}
+                    recipeSteps={this.state.batch.recipe.steps}
                     batchSteps={this.state.batch.new_steps}
                   />
     }
@@ -275,8 +276,7 @@ class BatchShow extends Component {
         <h6 id="progress">Progress:</h6>
         <StepList
           steps={this.state.completed_steps}
-          buttonText="Complete"
-          handleStepButton={this.handleStepComplete}
+          stepType={"completed-step"}
           />
           <h6>Next Step:</h6>
           <StepList
@@ -284,6 +284,7 @@ class BatchShow extends Component {
             buttonText="Complete"
             handleStepButton={this.handleStepComplete}
             yesButton={true}
+            stepType="normal-step"
             />
           <StepForm
             action={this.state.action}
