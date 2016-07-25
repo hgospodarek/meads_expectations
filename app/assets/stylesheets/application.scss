@@ -15,10 +15,12 @@
  *= require foundation_and_overrides
 
  */
+ @import 'https://fonts.googleapis.com/css?family=PT+Sans|Roboto';
  @import "foundation_and_overrides";
  @import "colors";
  @import "welcome";
  @import "nav";
+
 
 .completed-step {
   text-decoration: line-through;

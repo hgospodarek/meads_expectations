@@ -46,3 +46,12 @@
     color: $main-color;
   }
 }
+
+.title-bar {
+  background-color: black;
+  color: $main-color;
+  font-size: 1.5rem;
+  .menu-icon {
+    color: $main-color;
+  }
+}
