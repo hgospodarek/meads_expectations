@@ -1,0 +1,48 @@
+@import "colors";
+
+.top-bar, .top-bar ul {
+  a {
+    color: black;
+    border-bottom: 2px solid black;
+    font-size: 2rem;
+    display: flex;
+    padding-top: 0;
+    &.push-down-link {
+      padding-top: 50px;
+    }
+  }
+  background-color: white;
+}
+
+.top-bar ul {
+  a {
+    &:hover {
+      border-bottom: 2px solid $main-color;
+    }
+  }
+}
+
+.menu:not(.vertical) {
+  display: flex;
+  justify-content: space-between;
+}
+
+.vertical {
+  background-color: white;
+  a {
+    font-size: 2rem;
+    color: black;
+    padding: 10px 0;
+    &:hover {
+      border-bottom: 2px solid $main-color;
+    }
+  }
+}
+
+.bee {
+  width: 90px;
+  height: 90px;
+  &:hover {
+    color: $main-color;
+  }
+}
