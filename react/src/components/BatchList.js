@@ -23,7 +23,7 @@ const BatchList = props => {
   });
 
   return (
-    <div className="batch-list">
+    <div className="batch-list center">
         <ul>
           {batches}
         </ul>

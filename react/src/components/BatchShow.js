@@ -244,7 +244,7 @@ class BatchShow extends Component {
       </form>
     }
     return(
-      <div className="react-batch">
+      <div className="react-batch container">
         <StartEndBatch
           startDate={this.state.startDate}
           endDate={this.state.endDate}

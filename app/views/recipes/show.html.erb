@@ -1,23 +1,33 @@
-<h1><%= @recipe.title %></h1>
-<h3><%= @recipe.variety %></h3>
-<h3><%= @recipe.sweetness %></h3>
+<div class="container">
+  <h1 class="amber-text center"><%= @recipe.title %></h1>
+  <h3 class="center"><%= @recipe.sweetness %> <%= @recipe.variety %></h3>
 
-<% unless @recipe.ingredients.empty? %>
-  <ul>
-    <% @ingredients.each do |ingredient| %>
-      <li> <%= ingredient.amount %> <%= ingredient.unit %> <%= ingredient.name %> </li>
-    <% end %>
-  </ul>
-<% end %>
+  <div class="row">
+    <div class="col s12 m6">
+      <% unless @recipe.ingredients.empty? %>
+      <h4 class="amber-text center">Ingredients</h4>
+      <ul>
+        <% @ingredients.each do |ingredient| %>
+        <li class="center"> <%= ingredient.amount %> <%= ingredient.unit %> <%= ingredient.name %> </li>
+        <% end %>
+      </ul>
+      <% end %>
+    </div>
+    <div class="col s12 m6">
+      <% unless @recipe.steps.empty? %>
+      <h4 class="amber-text center">Instructions</h4>
+      <ol>
+        <% @steps.each do |step| %>
+        <li><%= step.action %> </li>
+        <% end %>
+      </ol>
+      <% end %>
+    </div>
+  </div>
 
-<% unless @recipe.steps.empty? %>
-  <ol>
-    <% @steps.each do |step| %>
-      <li><%= step.action %> </li>
-    <% end %>
-  </ol>
-<% end %>
-
-<a><%= link_to 'Delete Recipe', recipe_path(@recipe),
-data: {confirm: 'Deleting this recipe will also delete any batches it
-      was applied to. Are you sure?'}, method: :delete %></a>
+  <div class="center">
+    <%= link_to 'Delete Recipe', recipe_path(@recipe),
+    data: {confirm: 'Deleting this recipe will also delete any batches it
+      was applied to. Are you sure?'}, method: :delete, class: "waves-effect waves-light btn" %>
+  </div>
+</div>

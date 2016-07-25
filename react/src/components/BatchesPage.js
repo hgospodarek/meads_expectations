@@ -36,6 +36,9 @@ class BatchesPage extends Component {
     .success(data => {
       this.setState({recipes: data.recipes})
     })
+    .error(data => {
+      Materialize.toast(data, 4000)
+    })
   }
 
   componentDidMount(){
@@ -77,24 +80,25 @@ class BatchesPage extends Component {
 
   render() {
     return(
-      <div className="react-batches-row">
-        <div className="batches-index-left small-12 medium-6 columns">
-          <h3>Batches</h3>
-          <BatchList
-            batches={this.state.batches}
-          />
+      <div className="react-batches container">
+        <div className="row">
+          <div className="batches-index-left s12 m6 col">
+            <h3 className="center">Batches</h3>
+            <BatchList
+              batches={this.state.batches}
+              />
+          </div>
+          <div className="batches-index-right s12 m6 col">
+            <h3 className="center">New Batch</h3>
+            <BatchesForm
+              recipes={this.state.recipes}
+              recipe={this.state.recipe}
+              name={this.state.name}
+              handleChange={this.handleChange}
+              handleFormSubmit={this.handleFormSubmit}
+              />
+          </div>
         </div>
-        <div className="batches-index-right small-12 medium-6 columns">
-          <h3>New Batch</h3>
-          <BatchesForm
-            recipes={this.state.recipes}
-            recipe={this.state.recipe}
-            name={this.state.name}
-            handleChange={this.handleChange}
-            handleFormSubmit={this.handleFormSubmit}
-          />
-        </div>
-
       </div>
     )
   }

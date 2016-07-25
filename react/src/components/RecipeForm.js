@@ -37,6 +37,7 @@ const RecipeForm = props => {
           <div className="row">
             <div className="input-field col s6">
               <select
+                className="browser-default"
                 id="sweetness"
                 name="sweetness"
                 value={props.sweetness}
@@ -47,7 +48,9 @@ const RecipeForm = props => {
               <label>Sweetness</label>
             </div>
             <div className="input-field col s6">
+              <label htmlFor="variety">Variety</label>
               <select
+                className="browser-default"
                 id="variety"
                 name="variety"
                 value={props.variety}
@@ -55,11 +58,10 @@ const RecipeForm = props => {
                 >
                 {variety_options}
               </select>
-              <label>Variety</label>
             </div>
           </div>
           <div className="center">
-            <button type="submit" className="waves-effect waves-light btn">Submit Recipe</button>            
+            <button type="submit" className="waves-effect waves-light btn">Submit Recipe</button>
           </div>
         </form>
     </div>

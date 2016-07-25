@@ -7,31 +7,40 @@ const BatchesForm = props => {
       <option>{recipe.title}</option>
     )
   })
+  $('select').material_select();
 
   return (
-    <div className="small-12 columns recipe-form">
+    <div className="batch-form">
         <form onSubmit={props.handleFormSubmit}>
-          <label htmlFor="name">Name</label>
-            <input
-              id="name"
-              type="text"
-              name="name"
-              placeholder="batch name"
-              value={props.name}
-              onChange={props.handleChange}
-              required={true}
-            />
-          <label htmlFor="recipe">Recipe</label>
-            <select
-              id="recipe"
-              name="recipe"
-              onChange={props.handleChange}
-              required={true}
-            >
-            <option defaultValue="" disabled selected>Select your option</option>
-            {recipe_options}
-            </select>
-              <input type="submit" className="button" value="Submit Batch" />
+          <div className="row">
+            <div className="input-field s6">
+              <label htmlFor="name">Name</label>
+              <input
+                id="name"
+                type="text"
+                name="name"
+                placeholder="batch name"
+                value={props.name}
+                onChange={props.handleChange}
+                required={true}
+                />
+            </div>
+            <div className="input-field s6">
+              <select
+                id="recipe"
+                name="recipe"
+                onChange={props.handleChange}
+                required={true}
+                >
+                <option disabled selected>Select your option</option>
+                {recipe_options}
+              </select>
+              <label>Recipe</label>
+            </div>
+          </div>
+          <div className="center">
+            <button type="submit" className="waves-effect waves-light btn">Submit Batch</button>
+          </div>
         </form>
     </div>
   );

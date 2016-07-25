@@ -7,14 +7,21 @@ const StartEndBatch = props => {
   let prettyStartDate = moment(props.startDate).format("D MMM YYYY")
 
   if (props.endDate == null) {
-    end = <button className="button" onClick={props.endClick}>Finish Batch</button>
+    end = <button className="waves-effect waves-light btn" onClick={props.endClick}>Finish Batch</button>
   } else {
     let prettyEndDate = moment(props.endDate).format("D MMM YYYY")
-    end = <span>Finished: {prettyEndDate}</span>
+    end = <h6>Finished: {prettyEndDate}</h6>
   }
 
   return (
-      <h4 className="text-center">Started: {prettyStartDate} {end}</h4>
+      <div className="row">
+        <div className="col s6">
+          <h6>Started: {prettyStartDate}</h6>
+        </div>
+        <div className="col s6">
+          {end}
+        </div>
+      </div>
   );
 };
 
