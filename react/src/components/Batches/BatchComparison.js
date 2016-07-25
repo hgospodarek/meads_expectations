@@ -9,8 +9,8 @@ const BatchComparison = props => {
         <h5>Batch to Recipe Comparison</h5>
         <h6>Followed Recipe Steps Steps</h6>
         <StepList
-          steps={props.originalSteps}
-          stepType={"original-step"}
+          steps={props.completedRecipeSteps}
+          stepType={"original-step completed-step"}
           />
       </div>
       <div className="row">

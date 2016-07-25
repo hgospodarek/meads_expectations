@@ -250,8 +250,8 @@ class BatchShow extends Component {
 
     if ((this.state.endDate != null ) && this.state.batch.variation == true ) {
       comparison = <BatchComparison
-                    originalSteps={this.state.batch.original_steps}
-                    recipeSteps={this.state.batch.recipe.steps}
+                    completedRecipeSteps={this.state.batch.completed_recipe_steps}
+                    recipeSteps={this.state.batch.recipe_steps}
                     batchSteps={this.state.batch.new_steps}
                   />
     }
