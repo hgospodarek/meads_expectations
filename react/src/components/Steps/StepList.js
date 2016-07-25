@@ -8,6 +8,7 @@ const StepList = props => {
     steps = props.steps.map(step => {
       const { id, action, updated_at } = step;
       completed = step['completed?']
+
       let onStepButton = () => props.handleStepButton(id);
 
       return (
@@ -20,6 +21,7 @@ const StepList = props => {
           yesButton={props.yesButton}
           completed={completed}
           updated={updated_at}
+          stepType={props.stepType}
           />
       );
     });

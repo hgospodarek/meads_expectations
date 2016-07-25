@@ -52,12 +52,16 @@ RSpec.describe Batch, type: :model do
   describe '#completed_steps' do
     it 'returns a batches completed steps' do
       step1 = FactoryGirl.create(:step, batch: batch, action: 'Pour honey',
-              completed?: true, updated_at: Time.now)
+              completed?: true)
 
       step2 = FactoryGirl.create(:step, batch: batch, action: 'Mix it up',
               completed?: true)
 
+      step3 = FactoryGirl.create(:step, batch: batch, action: 'Do more stuff')
+
+
       expect(batch.completed_steps).to eq([step1, step2])
+      expect(batch.completed_steps).to_not include(step3)
     end
   end
 
@@ -69,6 +73,77 @@ RSpec.describe Batch, type: :model do
       step2 = FactoryGirl.create(:step, batch: batch, action: 'Mix it up')
 
       expect(batch.last_step).to eq(step2)
+    end
+  end
+
+  describe '#recipe_steps' do
+    it "returns the steps of a batch's recipe" do
+      step1 = FactoryGirl.create(:step, recipe: recipe, action: 'Pour honey')
+
+      step2 = FactoryGirl.create(:step, recipe: recipe, action: 'Mix it up')
+
+      expect(batch.recipe_steps).to eq([step1, step2])
+    end
+  end
+
+  describe "#completed_recipe_steps" do
+    it "returns the completed steps that came from a batch's recipe" do
+
+      recipe_step1 = FactoryGirl.create(:step, recipe: recipe,
+                                        action: 'Pour honey')
+
+      recipe_step2 = FactoryGirl.create(:step, recipe: recipe,
+                                        action: 'Mix it up')
+
+      completed_step = FactoryGirl.create(:step, batch: batch,
+                                          action: 'Pour honey',
+                                          completed?: true, recipe: nil)
+
+      incomplete_step = FactoryGirl.create(:step, batch: batch,
+                                            action: 'Mix it up', recipe: nil)
+
+      not_recipe_step = FactoryGirl.create(:step, batch: batch, action:
+                                            'Pitch the yeast', recipe: nil)
+
+      expect(batch.completed_recipe_steps).to eq([completed_step])
+      expect(batch.completed_recipe_steps).to_not include(recipe_step1)
+      expect(batch.completed_recipe_steps).to_not include(recipe_step2)
+      expect(batch.completed_recipe_steps).to_not include(incomplete_step)
+      expect(batch.completed_recipe_steps).to_not include(not_recipe_step)
+
+    end
+  end
+
+  describe "#new_steps" do
+    it "returns a batch's steps that were not in the original recipe" do
+      recipe_step1 = FactoryGirl.create(:step, recipe: recipe,
+                                        action: 'Pour honey')
+
+      recipe_step2 = FactoryGirl.create(:step, recipe: recipe,
+                                        action: 'Mix it up')
+
+      recipe_step3 = FactoryGirl.create(:step, recipe: recipe,
+                                        action: 'Put in some raisins')
+
+      completed_step = FactoryGirl.create(:step, batch: batch,
+                                          action: 'Pour honey',
+                                          completed?: true, recipe: nil)
+
+      incomplete_step = FactoryGirl.create(:step, batch: batch,
+                                          action: 'Mix it up', recipe: nil)
+
+      not_recipe_step = FactoryGirl.create(:step, batch: batch, action:
+                                            'Pitch the yeast', recipe: nil)
+
+      not_recipe_step2 = FactoryGirl.create(:step, batch: batch, action:
+                                            'Wait forever', recipe: nil)
+
+      expect(batch.new_steps).to eq([not_recipe_step, not_recipe_step2])
+      expect(batch.new_steps).to_not include(recipe_step1)
+      expect(batch.new_steps).to_not include(recipe_step2)
+      expect(batch.new_steps).to_not include(recipe_step3)
+      expect(batch.new_steps).to_not include(completed_step)
+      expect(batch.new_steps).to_not include(incomplete_step)
     end
   end
 end

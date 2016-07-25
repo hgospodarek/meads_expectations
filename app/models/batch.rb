@@ -39,4 +39,32 @@ class Batch < ActiveRecord::Base
   def last_step
     steps.max_by { |s| s.created_at }
   end
+
+  def recipe_steps
+    recipe.steps
+  end
+
+  def completed_recipe_steps
+    i = 0
+    result = []
+    while (i < recipe_steps.length) && (i < completed_steps.length)
+      if (recipe_steps[i].action == completed_steps[i].action)
+        result.push(completed_steps[i])
+      end
+      i += 1
+    end
+    result
+  end
+
+  def new_steps
+    i = 0
+    result = []
+    while (i < steps.length)
+      if (i > recipe_steps.length - 1) || (steps[i].action != recipe_steps[i].action)
+        result.push(steps[i])
+      end
+      i += 1
+    end
+    result
+  end
 end

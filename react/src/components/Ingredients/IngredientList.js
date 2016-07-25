@@ -5,7 +5,6 @@ const IngredientList = props => {
   let ingredients = props.ingredients.map(ingredient => {
     const { id, name, unit, amount } = ingredient;
     let onDelete = () => props.handleIngredientDelete(id);
-    debugger;
 
     return (
       <Ingredient
