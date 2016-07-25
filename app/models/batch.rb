@@ -39,4 +39,12 @@ class Batch < ActiveRecord::Base
   def last_step
     steps.max_by { |s| s.created_at }
   end
+
+  def original_steps
+    steps.select { |s| s.recipe_id }
+  end
+
+  def new_steps
+    steps.select { |s| s.recipe_id.nil? }
+  end
 end

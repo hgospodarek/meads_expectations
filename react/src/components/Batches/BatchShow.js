@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-// import BatchList from './BatchList'
-import IngredientForm from './IngredientForm'
+import IngredientForm from '../Ingredients/IngredientForm'
 import StartEndBatch from './StartEndBatch'
-import StepList from './StepList'
-import StepForm from './StepForm'
+import StepList from '../Steps/StepList'
+import StepForm from '../Steps/StepForm'
 import Hydrometer from './Hydrometer'
+import BatchComparison from './BatchComparison'
 
 class BatchShow extends Component {
   constructor(props) {
@@ -76,10 +76,13 @@ class BatchShow extends Component {
 
   handleEndClick() {
     event.preventDefault();
-    let newDate = new Date();
-    this.setState({endDate: newDate})
+
+    let nextBatch = this.state.batch
+    nextBatch.end_date = new Date();
+    this.setState({batch: nextBatch})
+
     let jstring = JSON.stringify({
-      "batch": {"end_date": newDate}
+      batch: this.state.batch
     })
     this.updateBatch(jstring)
   }
@@ -216,6 +219,7 @@ class BatchShow extends Component {
   render() {
     let finalHydro;
     let saveable;
+    let comparison;
 
     if (this.state.initialHydrometer != null) {
       finalHydro = <Hydrometer
@@ -242,6 +246,13 @@ class BatchShow extends Component {
         />
       <input type="submit" className="button" value="Submit Batch as New Recipe?" />
       </form>
+    }
+
+    if ((this.state.endDate != null ) && this.state.batch.variation == true ) {
+      comparison = <BatchComparison
+                    recipeSteps={this.state.batch.original_steps}
+                    batchSteps={this.state.batch.new_steps}
+                  />
     }
     return(
       <div className="react-batch">
@@ -280,6 +291,7 @@ class BatchShow extends Component {
             handleAddStep={this.handleBranchOff}
             />
           {saveable}
+          {comparison}
         </div>
     )
   };
