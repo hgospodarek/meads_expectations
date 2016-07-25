@@ -1,9 +1,9 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import RecipesPage from './components/RecipesPage';
-import BatchesPage from './components/BatchesPage';
-import BatchShow from './components/BatchShow';
+import RecipesPage from './components/Recipes/RecipesPage';
+import BatchesPage from './components/Batches/BatchesPage';
+import BatchShow from './components/Batches/BatchShow';
 
 $(function() {
   if(document.getElementById('recipe-form')) {

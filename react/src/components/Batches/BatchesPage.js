@@ -12,11 +12,6 @@ class BatchesPage extends Component {
       recipe: ''
     }
 
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.loadBatches = this.loadBatches.bind(this);
-    this.loadRecipes = this.loadRecipes.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-
   }
   loadBatches(){
     $.ajax({
@@ -36,11 +31,14 @@ class BatchesPage extends Component {
     .success(data => {
       this.setState({recipes: data.recipes})
     })
+    .error(data => {
+      alert(data)
+    })
   }
 
   componentDidMount(){
-    this.loadBatches();
-    this.loadRecipes();
+    this.loadBatches().bind(this);
+    this.loadRecipes().bind(this);
   }
 
   handleChange(e){
@@ -67,8 +65,8 @@ class BatchesPage extends Component {
 
     })
     .success(data => {
-      this.loadBatches();
-      this.setState({name: ''})
+      this.loadBatches().bind(this);
+      this.setState({name: '', recipe: ''})
     })
     .error(data => {
       alert(data.batch.errors)
@@ -90,8 +88,8 @@ class BatchesPage extends Component {
             recipes={this.state.recipes}
             recipe={this.state.recipe}
             name={this.state.name}
-            handleChange={this.handleChange}
-            handleFormSubmit={this.handleFormSubmit}
+            handleChange={this.handleChange.bind(this)}
+            handleFormSubmit={this.handleFormSubmit.bind(this)}
           />
         </div>
 

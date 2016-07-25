@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-// import BatchList from './BatchList'
-import IngredientForm from './IngredientForm'
+import RecipeList from '../Recipes/RecipeList'
+import IngredientForm from '../Ingredients/IngredientForm'
 import StartEndBatch from './StartEndBatch'
-import StepList from './StepList'
-import StepForm from './StepForm'
+import StepList from '../Steps/StepList'
+import StepForm from '../Steps/StepForm'
 import Hydrometer from './Hydrometer'
 
 class BatchShow extends Component {
@@ -69,8 +69,10 @@ class BatchShow extends Component {
   }
 
   handleChange(e){
-    let nextState = {}
-    nextState[e.target.name] = e.target.value
+    // let nextState = {}
+    let nextBatch = this.state.batch
+    nextBatch[e.target.name] = e.target.value
+    // nextState[e.target.name] = e.target.value
     this.setState(nextState)
   }
 

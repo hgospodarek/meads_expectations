@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import RecipeForm from './RecipeForm'
-import IngredientForm from './IngredientForm'
-import IngredientList from './IngredientList'
-import StepForm from './StepForm'
-import StepList from './StepList'
+import IngredientForm from '../Ingredients/IngredientForm'
+import IngredientList from '../Ingredients/IngredientList'
+import StepForm from '../Steps/StepForm'
+import StepList from '../Steps/StepList'
 import RecipeList from './RecipeList'
 
 class RecipesPage extends Component {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const BatchesForm = props => {
-
+debugger;
   let recipe_options = props.recipes.map(recipe => {
     return (
       <option>{recipe.title}</option>

@@ -11,7 +11,6 @@ const Batch = props => {
     prettyEndDate = moment(props.endDate).format("D MMM YYYY")
   }
 
-
   return (
     <li className={batchClass}>
       <p><a href={link}>{props.name}</a></p>
