@@ -1,0 +1,19 @@
+body {
+  background-color: #d0d1cc;
+}
+.honey-background {
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('honeycomb.jpg');
+  color: white;
+  height: auto;
+  margin-bottom: 20px;
+  h1 {
+    margin-bottom: 20px 0;
+  }
+  .button {
+    margin: 20px;
+  }
+}
+
+.fa {
+  color: #cdb658;
+}
