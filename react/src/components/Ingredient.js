@@ -5,8 +5,8 @@ const Ingredient = props => {
   let id = `ingredient-${props.id}`
 
   return (
-    <li id={id} className="ingredient"> {props.amount} {props.unit} {props.name}{' '}
-      <button className="button" type="button" onClick={props.handleDelete}>Delete</button>
+    <li id={id} className="ingredient center"> {props.amount} {props.unit} {props.name}{' '}
+      <button className="waves-effect waves-light btn" type="button" onClick={props.handleDelete}>Delete</button>
     </li>
   );
 };

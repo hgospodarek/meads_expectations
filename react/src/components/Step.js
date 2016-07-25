@@ -15,7 +15,7 @@ const Step = props => {
   }
 
   if(props.yesButton == true) {
-    maybebutton =  <button className="button" type="button" onClick={props.handleStepButton}>{props.buttonText}</button>
+    maybebutton =  <button className="waves-effect waves-light btn" type="button" onClick={props.handleStepButton}>{props.buttonText}</button>
 
   } else {
     maybebutton = <span></span>
