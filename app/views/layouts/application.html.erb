@@ -32,11 +32,14 @@
       </div>
 
       <div class="off-canvas-content" data-off-canvas-content>
-        <div class="title-bar show-for-small-only">
+        <div class="data-sticky-container">
+
+        </div>
+        <div class="title-bar hide-for-large-only">
           <button class="menu-icon" type="button" data-toggle="offCanvas"></button>
           <div class="title-bar-title">Menu</div>
         </div>
-        <div class="top-bar hide-for-small-only">
+        <div class="top-bar show-for-large-only">
           <ul class="menu">
             <% if user_signed_in? %>
             <li><%= link_to 'Recipes', recipes_path, class: "push-down-link" %></li>

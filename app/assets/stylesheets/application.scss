@@ -20,7 +20,11 @@
  @import "colors";
  @import "welcome";
  @import "nav";
+ @import "forms";
 
+body {
+  background-color: $main-background
+}
 
 .completed-step {
   text-decoration: line-through;

@@ -19,27 +19,39 @@ const RecipeForm = props => {
   });
 
   return (
-    <div className="small-12 columns recipe-form">
+    <div className="recipe-form">
         <form onSubmit={props.handleFormSubmit}>
-          <label htmlFor="title">Title</label>
-            <input
-              id="title"
-              type="text"
-              name="title"
-              placeholder="recipe title"
-              value={props.title}
-              onChange={props.handleChange}
-              required={true}
-            />
-          <label htmlFor="sweetness">Sweetness</label>
-            <select
-              id="sweetness"
-              name="sweetness"
-              value={props.sweetness}
-              onChange={props.handleChange}
-            >
-            {sweetness_options}
-            </select>
+          <div className="row">
+            <div className="columns small-12"
+              <label htmlFor="title">Title</label>
+              <input
+                id="title"
+                type="text"
+                name="title"
+                placeholder="recipe title"
+                value={props.title}
+                onChange={props.handleChange}
+                required={true}
+                />
+          </div>
+          <div className="row">
+            <div className="columns small-6">
+              <label htmlFor="sweetness">Sweetness</label>
+              <select
+                id="sweetness"
+                name="sweetness"
+                value={props.sweetness}
+                onChange={props.handleChange}
+                >
+                {sweetness_options}
+              </select>
+            </div>
+          </div>
+          <div className="row">
+            <div className="colums small-6">
+              
+            </div>
+          </div>
             <label htmlFor="variety">Variety</label>
             <select
               id="variety"

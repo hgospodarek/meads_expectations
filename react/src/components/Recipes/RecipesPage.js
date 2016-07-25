@@ -49,7 +49,6 @@ class RecipesPage extends Component {
     });
   }
 
-
   handleChange(e){
     let nextState = {}
     nextState[e.target.name] = e.target.value
@@ -133,53 +132,53 @@ class RecipesPage extends Component {
 
   render() {
     return(
-      <div className="react-recipes row">
-        <div className="recipes-index-left small-12 medium-6 columns">
-          <h3>Recipes</h3>
-          <RecipeList
-            recipes={this.state.recipes}
-          />
-        </div>
-        <div className="recipes-index-right small-12 medium-6 columns">
-          <h3>New Recipe</h3>
-          <div className="react">
-
+      <div className="row column">
+        <div className="react-recipes row">
+          <div className="recipes-index-left small-12 medium-4 columns">
+            <h3>Recipes</h3>
+            <RecipeList
+              recipes={this.state.recipes}
+              />
           </div>
-          <RecipeForm
-            handleFormSubmit={this.handleFormSubmit}
-            handleChange={this.handleChange}
-            title={this.state.title}
-            sweetness={this.state.sweetness}
-            variety={this.state.variety}
-            />
-          <div className="react-recipe-form-sub-bits row">
-            <div className="ingredients-sub-bit small-12 medium-6 columns">
-              <IngredientList
-                ingredients={this.state.ingredients}
-                handleIngredientDelete={this.handleIngredientDelete}
-                />
-              <IngredientForm
-                ingredient={this.state.ingredient}
-                unit={this.state.unit}
-                amount={this.state.amount}
-                handleAddIngredient={this.handleAddIngredient}
+          <div className="recipes-index-right small-12 medium-8 columns">
+            <h3>New Recipe</h3>
+            <div className="section">
+              <RecipeForm
+                handleFormSubmit={this.handleFormSubmit}
                 handleChange={this.handleChange}
+                title={this.state.title}
+                sweetness={this.state.sweetness}
+                variety={this.state.variety}
                 />
             </div>
-            <div className="steps-sub-bit small-12 medium-6 columns">
-              <StepList
-                steps={this.state.steps}
-                buttonText="Delete"
-                handleStepButton={this.handleStepDelete}
-                yesButton={true}
-                stepType={"normal-step"}
-                />
-              <StepForm
-                action={this.state.action}
-                handleChange={this.handleChange}
-                handleAddStep={this.handleAddStep}
-                />
-            </div>
+            <hr></hr>
+              <div className="ingredients-section row">
+                <IngredientList
+                  ingredients={this.state.ingredients}
+                  handleIngredientDelete={this.handleIngredientDelete}
+                  />
+                <IngredientForm
+                  ingredient={this.state.ingredient}
+                  unit={this.state.unit}
+                  amount={this.state.amount}
+                  handleAddIngredient={this.handleAddIngredient}
+                  handleChange={this.handleChange}
+                  />
+              </div>
+              <div className="steps-section row">
+                <StepList
+                  steps={this.state.steps}
+                  buttonText="Delete"
+                  handleStepButton={this.handleStepDelete}
+                  yesButton={true}
+                  stepType={"normal-step"}
+                  />
+                <StepForm
+                  action={this.state.action}
+                  handleChange={this.handleChange}
+                  handleAddStep={this.handleAddStep}
+                  />
+              </div>
           </div>
         </div>
       </div>

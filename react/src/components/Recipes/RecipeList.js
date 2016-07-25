@@ -17,7 +17,7 @@ const RecipeList = props => {
   });
 
   return (
-    <div className="recipe-list">
+    <div className="recipe-list text-center">
         <ul>
           {recipes}
         </ul>
