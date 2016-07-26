@@ -1,0 +1,9 @@
+@import "settings";
+
+.scrolling-list {
+    @include breakpoint(medium) {
+      width: 30%;
+      height: 600px;
+      overflow: scroll;
+    }
+}

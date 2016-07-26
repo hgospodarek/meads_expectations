@@ -134,13 +134,13 @@ class RecipesPage extends Component {
     return(
       <div className="row column">
         <div className="react-recipes row">
-          <div className="recipes-index-left small-12 medium-3 medium-offset-1 columns">
+          <div className="recipes-index-left small-12 medium-4 columns scrolling-list">
             <h3 className="text-center">Recipes</h3>
             <RecipeList
               recipes={this.state.recipes}
               />
           </div>
-          <div className="recipes-index-right small-12 medium-6 columns">
+          <div className="recipes-index-right small-12 medium-8 columns">
             <h3 className="text-center">New Recipe</h3>
             <div className="section">
               <RecipeForm

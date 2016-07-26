@@ -9,7 +9,7 @@ const Recipe = props => {
         <p className="main-text-color">{props.title}</p>
         <p>{props.variety}</p>
         <p>{props.sweetness}</p>
-    </div>
+      </div>
     </a>
   );
 };
