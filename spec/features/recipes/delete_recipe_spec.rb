@@ -12,13 +12,11 @@ feature 'user deletes their recipe', %(
   let(:user) { FactoryGirl.create(:user) }
   let(:recipe) { FactoryGirl.create(:recipe, user: user) }
 
-  scenario 'user deletes their recipe', js: true do
+  scenario 'user deletes their recipe' do
     login_as(user)
     visit recipe_path(recipe)
 
-    accept_confirm do
-      click_link 'Delete Recipe'
-    end
+    click_link 'Delete Recipe'
 
     expect(page).to have_content("Guess you didn't like that one.")
     expect(page).to_not have_content(recipe.title)
