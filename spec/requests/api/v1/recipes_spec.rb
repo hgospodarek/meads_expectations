@@ -85,7 +85,6 @@ RSpec.describe 'Recipes', type: :request do
 
       final_recipes = Recipe.all
       expect(final_recipes.size).to eq(5)
-
     end
   end
 end
