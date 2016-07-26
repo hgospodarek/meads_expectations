@@ -12,7 +12,7 @@ const Step = props => {
   }
 
   if(props.buttonText) {
-    maybebutton =  <i className={props.buttonText} aria-hidden="true" onClick={props.handleStepButton}></i>
+    maybebutton =  <i id="step-button" className={props.buttonText} aria-hidden="true" onClick={props.handleStepButton}></i>
   }
 
   return (

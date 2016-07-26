@@ -23,7 +23,7 @@ feature 'user views their recipes', %{
     login_as(user)
     visit root_path
 
-    click_link 'Recipes'
+    click_link 'main-recipes-link'
 
     expect(page).to have_content(recipe1.title)
     expect(page).to have_content(recipe1.sweetness)
@@ -39,7 +39,7 @@ feature 'user views their recipes', %{
     login_as(user)
     visit root_path
 
-    click_link 'Recipes'
+    click_link 'main-recipes-link'
     recipe2 = FactoryGirl.create(:recipe, title: 'Another Mead',
                                   user_id: user.id)
     not_yours = FactoryGirl.create(:recipe, title: 'Not Your Mead Recipe',

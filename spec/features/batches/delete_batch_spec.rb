@@ -40,6 +40,6 @@ feature 'user deletes a batch', %(
 
   scenario 'unathenticated user cannot delete a batch' do
     visit root_path
-    expect(page).to_not have_content('Batches')
+    expect(page).to_not have_link('Batches')
   end
 end

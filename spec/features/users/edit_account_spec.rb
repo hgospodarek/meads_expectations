@@ -15,7 +15,7 @@ feature 'user edits their account', %Q{
   scenario 'user provides new email and password, and correct current password' do
     login_as(user)
     visit root_path
-    click_link 'Settings'
+    click_link 'main-settings-link'
 
     fill_in 'Email', with: 'another@mail.com'
     fill_in 'user_password', with: 'newpassword'
@@ -30,7 +30,7 @@ feature 'user edits their account', %Q{
     login_as(user)
 
     visit root_path
-    click_link 'Settings'
+    click_link 'main-settings-link'
 
     fill_in 'Email', with: 'another@mail.com'
     fill_in 'Current password', with: user.password
@@ -43,7 +43,7 @@ feature 'user edits their account', %Q{
     login_as(user)
 
     visit root_path
-    click_link "Settings"
+    click_link "main-settings-link"
 
     fill_in "user_password", with: "newpassword"
     fill_in "user_password_confirmation", with: "newpassword"
@@ -57,7 +57,7 @@ feature 'user edits their account', %Q{
     login_as(user)
 
     visit root_path
-    click_link 'Settings'
+    click_link 'main-settings-link'
 
     fill_in 'Email', with: 'another@mail.com'
     fill_in 'user_password', with: 'newpassword'

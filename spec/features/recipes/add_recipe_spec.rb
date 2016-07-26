@@ -16,7 +16,7 @@ So I can use it in the future
   scenario 'user fills out all required information', js: true do
     login_as(user)
     visit root_path
-    click_link 'Recipes'
+    click_link 'main-recipes-link'
     fill_in 'Title', with: 'Meadiocrity'
     select('Sweet', from: 'Sweetness')
     select('Mead', from: 'Variety')
@@ -66,12 +66,12 @@ So I can use it in the future
     fill_in 'Step', with: 'Mix the water into the honey'
     click_button 'New Step'
 
-    within("li#ingredient-1") do
-      click_button 'Delete'
+    within("div#ingredient-1") do
+      find('#ingredient-button').trigger('click')
     end
 
-    within("li#step-3") do
-      click_button 'Delete'
+    within("div#step-3") do
+      find('#step-button').trigger('click')
     end
 
     click_button 'Submit Recipe'

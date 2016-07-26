@@ -16,7 +16,7 @@ feature 'user signs out', %Q{
     fill_in 'user_password', with: user.password
     click_button 'Sign In'
 
-    click_link 'Sign Out'
+    click_link 'main-sign-out-link'
     expect(page).to have_content('Sign In')
     expect(page).to have_content('Smell ya later')
     expect(page).to_not have_content('Sign Out')

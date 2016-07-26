@@ -31,7 +31,7 @@ feature 'user views their batches', %(
     login_as(user)
     visit root_path
 
-    click_link 'Batches'
+    click_link 'main-batches-link'
 
     expect(page).to have_content(oldest_completed.name)
     expect(page).to have_content(oldest_completed.recipe.title)
@@ -51,14 +51,14 @@ feature 'user views their batches', %(
 
     login_as(user)
     visit root_path
-    click_link 'Batches'
+    click_link 'main-batches-link'
 
     expect(page).to_not have_content(user2batch.name)
   end
 
   scenario 'unathenticated user does not see list of batches' do
     visit root_path
-    expect(page).to_not have_content('Batches')
+    expect(page).to_not have_link('Batches')
 
     visit batches_path
     expect(page).to have_content('Dude, sign in or sign up first.')

@@ -16,7 +16,7 @@ feature 'user signs in', %Q{
     user = FactoryGirl.create(:user)
 
     visit root_path
-    click_link 'Sign In'
+    click_link 'main-sign-in-link'
 
     fill_in 'Email', with: user.email
     fill_in 'user_password', with: user.password
