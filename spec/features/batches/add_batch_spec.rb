@@ -21,7 +21,7 @@ feature 'user adds batch', %(
 
     login_as(user)
     visit root_path
-    click_link 'Batches'
+    click_link "main-batches-link"
 
     fill_in 'Name', with: 'New Mead Batch'
     select user_recipe.title, from: 'Recipe'

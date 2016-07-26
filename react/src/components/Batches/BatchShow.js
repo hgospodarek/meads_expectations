@@ -272,7 +272,7 @@ class BatchShow extends Component {
           <h1 className="text-center main-text-color">{this.state.batch.name}</h1>
           <h4 className="text-center">Recipe: {this.state.batch.recipe.title}</h4>
           <h5 className="text-center">{this.state.batch.recipe.sweetness} {this.state.batch.recipe.variety}</h5>
-          <div className="small-6 columns">
+          <div className="small-12 large-6 columns">
             <div className="section">
               <div className="small-12 columns">
                 <StartEndBatch
@@ -282,7 +282,7 @@ class BatchShow extends Component {
                   />
               </div>
               <div className="row">
-                <div className="small-6 columns">
+                <div className="small-6 columns text-center">
                   <Hydrometer
                     hydrometerField={this.state.hydrometerField}
                     reading={this.state.initialHydrometer}
@@ -293,7 +293,7 @@ class BatchShow extends Component {
                     formSubmit={this.handleHydrometer}
                     />
                 </div>
-                <div className="small-6 columns">
+                <div className="small-6 columns text-center">
                   {finalHydro}
                 </div>
               </div>
@@ -312,7 +312,7 @@ class BatchShow extends Component {
             </div>
             <div className="row">
               <div className="columns small-12">
-                <h5 id="progress">Progress:</h5>
+                <h5 id="progress" className="text-center">Progress:</h5>
                 <StepList
                   steps={this.state.completed_steps}
                   stepType={"completed-step"}
@@ -334,7 +334,7 @@ class BatchShow extends Component {
             {saveable}
 
           </div>
-          <div className="small-6 columns">
+          <div className="small-12 large-6 columns">
             {comparison}
           </div>
         </div>

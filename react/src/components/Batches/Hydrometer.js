@@ -8,10 +8,10 @@ const Hydrometer = props => {
     hydrometer =  <div className="hydrometer-form">
     <form onSubmit={onHydroForm}>
       <div className="row">
-        <div className="columns small-8">
+        <div className="columns small-12 medium-8">
           <label htmlFor={props.name} className="text-right middle">{props.label}</label>
         </div>
-        <div className="columns small-4">
+        <div className="columns small-12 medium-4">
           <input
             id={props.name}
             type="number"
@@ -36,9 +36,9 @@ const Hydrometer = props => {
   }
 
   return (
-    <h6 className="hydrometer-form">
+    <p className="hydrometer-form">
       {hydrometer}
-    </h6>
+    </p>
 
   );
 };
