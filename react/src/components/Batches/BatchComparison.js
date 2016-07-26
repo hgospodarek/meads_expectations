@@ -7,14 +7,14 @@ const BatchComparison = props => {
     <div className="row">
       <div className="small-12 columns">
         <h4 className="text-center">Batch to Recipe Comparison</h4>
-        <h5 className="text-center">Followed Recipe Steps Steps</h5>
+        <h5 className="text-center">Followed Recipe Steps</h5>
         <StepList
           steps={props.completedRecipeSteps}
           stepType={"original-step completed-step"}
           />
       </div>
       <div className="row">
-        <h6 className="text-center">Variation</h6>
+        <h5 className="text-center">Variation</h5>
         <div className="small-6 columns">
           <h6 className="text-center">Recipe-Suggested Steps</h6>
             <StepList

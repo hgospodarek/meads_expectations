@@ -49,11 +49,12 @@ class Batch < ActiveRecord::Base
   def completed_recipe_steps
     i = 0
     result = []
-    while (i < recipe_steps.length) && (i < completed_steps.length)
+    branch_found = false
+    while (i < recipe_steps.length) && (i < completed_steps.length) && branch_found == false
       if (recipe_steps[i].action == completed_steps[i].action)
         result.push(completed_steps[i])
       else
-        return result
+        branch_found = true
       end
       i += 1
     end
@@ -69,13 +70,9 @@ class Batch < ActiveRecord::Base
   end
 
   def new_steps
-    i = 0
-    result = []
-    while (i < steps.length)
-      if (i > recipe_steps.length - 1) || (steps[i].action != recipe_steps[i].action)
-        result.push(steps[i])
-      end
-      i += 1
+    result = completed_steps
+    completed_recipe_steps.size.times do
+      result.shift
     end
     result
   end

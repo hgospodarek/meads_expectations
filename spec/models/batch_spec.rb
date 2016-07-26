@@ -115,7 +115,7 @@ RSpec.describe Batch, type: :model do
   end
 
   describe "#new_steps" do
-    it "returns a batch's steps that were not in the original recipe" do
+    it "returns a batch's completed steps that were not in the original recipe" do
       recipe_step1 = FactoryGirl.create(:step, recipe: recipe,
                                         action: 'Pour honey')
 
@@ -133,10 +133,10 @@ RSpec.describe Batch, type: :model do
                                           action: 'Mix it up', recipe: nil)
 
       not_recipe_step = FactoryGirl.create(:step, batch: batch, action:
-                                            'Pitch the yeast', recipe: nil)
+                                            'Pitch the yeast', recipe: nil, completed?: true)
 
       not_recipe_step2 = FactoryGirl.create(:step, batch: batch, action:
-                                            'Wait forever', recipe: nil)
+                                            'Wait forever', recipe: nil, completed?: true)
 
       expect(batch.new_steps).to eq([not_recipe_step, not_recipe_step2])
       expect(batch.new_steps).to_not include(recipe_step1)
