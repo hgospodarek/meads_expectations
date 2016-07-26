@@ -134,13 +134,7 @@ class RecipesPage extends Component {
     return(
       <div className="row column">
         <div className="react-recipes row">
-          <div className="recipes-index-left small-12 medium-4 columns scrolling-list">
-            <h3 className="text-center">Recipes</h3>
-            <RecipeList
-              recipes={this.state.recipes}
-              />
-          </div>
-          <div className="recipes-index-right small-12 medium-8 columns">
+          <div className="recipes-index-left small-12 medium-8 columns">
             <h3 className="text-center">New Recipe</h3>
             <div className="section">
               <RecipeForm
@@ -152,32 +146,38 @@ class RecipesPage extends Component {
                 />
             </div>
             <hr></hr>
-              <div className="ingredients-section">
-                <IngredientList
-                  ingredients={this.state.ingredients}
-                  handleIngredientDelete={this.handleIngredientDelete}
-                  />
-                <IngredientForm
-                  ingredient={this.state.ingredient}
-                  unit={this.state.unit}
-                  amount={this.state.amount}
-                  handleAddIngredient={this.handleAddIngredient}
-                  handleChange={this.handleChange}
-                  />
-              </div>
-              <div className="steps-section">
-                <StepList
-                  steps={this.state.steps}
-                  buttonText="fa fa-trash-o"
-                  handleStepButton={this.handleStepDelete}
-                  stepType={"normal-step"}
-                  />
-                <StepForm
-                  action={this.state.action}
-                  handleChange={this.handleChange}
-                  handleAddStep={this.handleAddStep}
-                  />
-              </div>
+            <div className="ingredients-section">
+              <IngredientList
+                ingredients={this.state.ingredients}
+                handleIngredientDelete={this.handleIngredientDelete}
+                />
+              <IngredientForm
+                ingredient={this.state.ingredient}
+                unit={this.state.unit}
+                amount={this.state.amount}
+                handleAddIngredient={this.handleAddIngredient}
+                handleChange={this.handleChange}
+                />
+            </div>
+            <div className="steps-section">
+              <StepList
+                steps={this.state.steps}
+                buttonText="fa fa-trash-o"
+                handleStepButton={this.handleStepDelete}
+                stepType={"normal-step"}
+                />
+              <StepForm
+                action={this.state.action}
+                handleChange={this.handleChange}
+                handleAddStep={this.handleAddStep}
+                />
+            </div>
+          </div>
+          <div className="recipes-index-right small-12 medium-4 columns">
+            <h3 className="text-center">Recipes</h3>
+            <RecipeList
+              recipes={this.state.recipes}
+              />
           </div>
         </div>
       </div>

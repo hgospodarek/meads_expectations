@@ -79,13 +79,7 @@ class BatchesPage extends Component {
     return(
       <div className="row column">
         <div className="react-batches row">
-          <div className="batches-index-left small-12 medium-3 medium-offset-1 columns">
-            <h3 className="text-center">Batches</h3>
-            <BatchList
-              batches={this.state.batches}
-              />
-          </div>
-          <div className="batches-index-right small-12 medium-6 columns">
+          <div className="batches-index-left small-12 medium-8 columns">
             <h3 className="text-center">New Batch</h3>
             <BatchesForm
               recipes={this.state.recipes}
@@ -93,6 +87,12 @@ class BatchesPage extends Component {
               name={this.state.name}
               handleChange={this.handleChange}
               handleFormSubmit={this.handleFormSubmit}
+              />
+          </div>
+          <div className="batches-index-right small-12 medium-4 columns">
+            <h3 className="text-center">Batches</h3>
+            <BatchList
+              batches={this.state.batches}
               />
           </div>
         </div>

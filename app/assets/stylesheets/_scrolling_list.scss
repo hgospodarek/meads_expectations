@@ -2,8 +2,11 @@
 
 .scrolling-list {
     @include breakpoint(medium) {
-      width: 30%;
+      width: 90%;
       height: 600px;
       overflow: scroll;
+      &::-webkit-scrollbar {
+    display: none;
+}
     }
 }

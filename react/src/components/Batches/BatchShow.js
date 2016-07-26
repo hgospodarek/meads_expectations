@@ -215,7 +215,6 @@ class BatchShow extends Component {
     })
   }
 
-
   render() {
     let finalHydro;
     let saveable;
@@ -256,6 +255,7 @@ class BatchShow extends Component {
                   />
     }
     return(
+      
       <div className="react-batch">
         <StartEndBatch
           startDate={this.state.startDate}
@@ -281,9 +281,8 @@ class BatchShow extends Component {
           <h6>Next Step:</h6>
           <StepList
             steps={this.state.current_step}
-            buttonText="Complete"
+            buttonText="fa fa-check-square-o"
             handleStepButton={this.handleStepComplete}
-            yesButton={true}
             stepType="normal-step"
             />
           <StepForm

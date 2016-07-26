@@ -17,7 +17,7 @@ const RecipeList = props => {
   });
 
   return (
-    <div className="recipe-list text-center">
+    <div className="recipe-list text-center scrolling-list">
       {recipes}
     </div>
   );

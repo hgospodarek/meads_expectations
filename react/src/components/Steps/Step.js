@@ -23,7 +23,7 @@ const Step = props => {
             <span className={props.stepType}>
               {props.action}
             </span>
-            {completeDate}
+            <p>{completeDate}</p>
           </li>
         </div>
         <div className="columns small-1">
