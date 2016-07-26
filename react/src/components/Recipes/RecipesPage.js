@@ -134,14 +134,14 @@ class RecipesPage extends Component {
     return(
       <div className="row column">
         <div className="react-recipes row">
-          <div className="recipes-index-left small-12 medium-4 columns">
-            <h3>Recipes</h3>
+          <div className="recipes-index-left small-12 medium-3 medium-offset-1 columns">
+            <h3 className="text-center">Recipes</h3>
             <RecipeList
               recipes={this.state.recipes}
               />
           </div>
-          <div className="recipes-index-right small-12 medium-8 columns">
-            <h3>New Recipe</h3>
+          <div className="recipes-index-right small-12 medium-6 columns">
+            <h3 className="text-center">New Recipe</h3>
             <div className="section">
               <RecipeForm
                 handleFormSubmit={this.handleFormSubmit}
@@ -152,7 +152,7 @@ class RecipesPage extends Component {
                 />
             </div>
             <hr></hr>
-              <div className="ingredients-section row">
+              <div className="ingredients-section">
                 <IngredientList
                   ingredients={this.state.ingredients}
                   handleIngredientDelete={this.handleIngredientDelete}
@@ -165,12 +165,11 @@ class RecipesPage extends Component {
                   handleChange={this.handleChange}
                   />
               </div>
-              <div className="steps-section row">
+              <div className="steps-section">
                 <StepList
                   steps={this.state.steps}
-                  buttonText="Delete"
+                  buttonText="fa fa-trash-o"
                   handleStepButton={this.handleStepDelete}
-                  yesButton={true}
                   stepType={"normal-step"}
                   />
                 <StepForm

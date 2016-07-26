@@ -37,3 +37,13 @@ body {
 .new-step {
   color: yellow;
 }
+
+.main-text-color {
+  color: $main-color;
+}
+
+.fa {
+  &:hover {
+    cursor: pointer;
+  }
+}

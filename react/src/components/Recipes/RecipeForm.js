@@ -22,7 +22,7 @@ const RecipeForm = props => {
     <div className="recipe-form">
         <form onSubmit={props.handleFormSubmit}>
           <div className="row">
-            <div className="columns small-12"
+            <div className="columns small-12">
               <label htmlFor="title">Title</label>
               <input
                 id="title"
@@ -33,6 +33,7 @@ const RecipeForm = props => {
                 onChange={props.handleChange}
                 required={true}
                 />
+            </div>
           </div>
           <div className="row">
             <div className="columns small-6">
@@ -46,22 +47,21 @@ const RecipeForm = props => {
                 {sweetness_options}
               </select>
             </div>
-          </div>
-          <div className="row">
-            <div className="colums small-6">
-              
+            <div className="columns small-6">
+              <label htmlFor="variety">Variety</label>
+              <select
+                id="variety"
+                name="variety"
+                value={props.variety}
+                onChange={props.handleChange}
+                >
+                {variety_options}
+              </select>
             </div>
           </div>
-            <label htmlFor="variety">Variety</label>
-            <select
-              id="variety"
-              name="variety"
-              value={props.variety}
-              onChange={props.handleChange}
-            >
-            {variety_options}
-            </select>
-              <input type="submit" className="button" value="Submit Recipe" />
+          <div className="text-center">
+            <input type="submit" className="button" value="Submit Recipe" />
+          </div>
         </form>
     </div>
   );

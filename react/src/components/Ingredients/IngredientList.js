@@ -19,10 +19,10 @@ const IngredientList = props => {
   });
 
   return (
-    <div className="row ingredient-list">
-        <ul>
-          {ingredients}
-        </ul>
+    <div className="row column ingredient-list">
+      <ul className="">
+        {ingredients}
+      </ul>
     </div>
   );
 };
