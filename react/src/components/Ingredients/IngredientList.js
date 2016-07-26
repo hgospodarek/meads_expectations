@@ -13,14 +13,15 @@ const IngredientList = props => {
         name={name}
         unit={unit}
         amount={amount}
-        handleDelete={onDelete}
+        handleIngredient={onDelete}
+        buttonText={props.buttonText}
       />
     );
   });
 
   return (
     <div className="row column ingredient-list">
-      <ul className="">
+      <ul>
         {ingredients}
       </ul>
     </div>

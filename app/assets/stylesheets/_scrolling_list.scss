@@ -1,6 +1,7 @@
 @import "settings";
 
 .scrolling-list {
+    margin-left: 20px;
     @include breakpoint(medium) {
       width: 90%;
       height: 600px;

@@ -146,4 +146,25 @@ RSpec.describe Batch, type: :model do
       expect(batch.new_steps).to_not include(incomplete_step)
     end
   end
+
+  describe "#incomplete_recipe_steps" do
+    it "returns incomplete steps from batch's recipe" do
+      recipe_step1 = FactoryGirl.create(:step, recipe: recipe,
+                                        action: 'Pour honey')
+
+      recipe_step2 = FactoryGirl.create(:step, recipe: recipe,
+                                        action: 'Mix it up')
+
+      completed_step = FactoryGirl.create(:step, batch: batch,
+                                          action: 'Pour honey',
+                                          completed?: true, recipe: nil)
+
+      not_recipe_step = FactoryGirl.create(:step, batch: batch, action:
+                                            'Pitch the yeast', recipe: nil)
+
+      expect(batch.incomplete_recipe_steps).to eq([recipe_step2])
+      expect(batch.incomplete_recipe_steps).to_not include(completed_step)
+      expect(batch.incomplete_recipe_steps).to_not include(not_recipe_step)
+    end
+  end
 end

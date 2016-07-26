@@ -5,30 +5,40 @@ const Hydrometer = props => {
   let onHydroForm = () => props.formSubmit(props.modelAttr);
 
   if (props.reading == null) {
-    hydrometer =  <form onSubmit={onHydroForm}>
-      <label htmlFor={props.name}>{props.label}</label>
-      <input
-        id={props.name}
-        type="number"
-        name={props.name}
-        placeholder="0.000"
-        min="0.0"
-        step="0.001"
-        value={props.hydrometerField}
-        onChange={props.handleChange}
-        required={true}
-        />
-      <input type="submit" className="button" value="Record Reading" />
+    hydrometer =  <div className="hydrometer-form">
+    <form onSubmit={onHydroForm}>
+      <div className="row">
+        <div className="columns small-8">
+          <label htmlFor={props.name} className="text-right middle">{props.label}</label>
+        </div>
+        <div className="columns small-4">
+          <input
+            id={props.name}
+            type="number"
+            name={props.name}
+            placeholder="0.000"
+            min="0.0"
+            step="0.001"
+            value={props.hydrometerField}
+            onChange={props.handleChange}
+            required={true}
+            />
+        </div>
+      </div>
+        <div className="text-center">
+          <input type="submit" className="button" value="Record Reading" />
+        </div>
     </form>
+    </div>
 
   } else {
     hydrometer = <span>{props.label}: {props.reading}</span>
   }
 
   return (
-    <h5 className="hydrometer-form">
+    <h6 className="hydrometer-form">
       {hydrometer}
-    </h5>
+    </h6>
 
   );
 };

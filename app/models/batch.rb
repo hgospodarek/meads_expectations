@@ -16,6 +16,8 @@ class Batch < ActiveRecord::Base
   validates :final_hydrometer, numericality: { greater_than: 0 },
   allow_nil: true
 
+  attr_reader :incomplete_recipe_steps
+
   def approx_abv
     if initial_hydrometer && final_hydrometer
       result = (initial_hydrometer - final_hydrometer) / 0.00736
@@ -50,8 +52,18 @@ class Batch < ActiveRecord::Base
     while (i < recipe_steps.length) && (i < completed_steps.length)
       if (recipe_steps[i].action == completed_steps[i].action)
         result.push(completed_steps[i])
+      else
+        return result
       end
       i += 1
+    end
+    result
+  end
+
+  def incomplete_recipe_steps
+    result = recipe_steps.to_a
+    completed_recipe_steps.size.times do
+      result.shift
     end
     result
   end

@@ -2,6 +2,11 @@ import React from 'react';
 
 const Ingredient = props => {
   let id = `ingredient-${props.id}`
+  let maybebutton;
+
+  if(props.buttonText) {
+    maybebutton =  <i className={props.buttonText} aria-hidden="true" onClick={props.handleIngredient}></i>
+  }
 
   return (
     <div id={id} className="ingredient callout small">
@@ -12,7 +17,7 @@ const Ingredient = props => {
           </li>
         </div>
         <div className="columns small-1">
-          <i onClick={props.handleDelete}className="fa fa-trash-o" aria-hidden="true"></i>
+          {maybebutton}
         </div>
       </div>
     </div>

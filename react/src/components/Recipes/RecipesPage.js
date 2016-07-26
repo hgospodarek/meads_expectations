@@ -150,6 +150,7 @@ class RecipesPage extends Component {
               <IngredientList
                 ingredients={this.state.ingredients}
                 handleIngredientDelete={this.handleIngredientDelete}
+                buttonText="fa fa-trash-o"
                 />
               <IngredientForm
                 ingredient={this.state.ingredient}
