@@ -106,10 +106,12 @@ let BatchShow = ({
             <hr></hr>
           </div>
           <div className="row">
-            <h5 className="text-center">Ingredients:</h5>
-            <IngredientList
-              ingredients={batch.ingredients}
-            />
+            <div className="columns small-12">
+              <h5 className="text-center">Ingredients:</h5>
+              <IngredientList
+                ingredients={batch.ingredients}
+                />              
+            </div>
           </div>
           <div className="row">
             <div className="columns small-12">

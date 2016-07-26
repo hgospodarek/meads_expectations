@@ -9,22 +9,18 @@ const Ingredient = props => {
   }
 
   return (
-    <div className="row">
-      <div className="columns small-12">
         <div id={id} className="ingredient callout small">
           <div className="row">
-            <div className="columns small-10">
+            <div className="columns small-11">
               <li>
                 {props.amount} {props.unit} {props.name}
               </li>
             </div>
-            <div className="columns small-2">
+            <div className="columns small-1 text-center">
               {maybebutton}
             </div>
           </div>
         </div>
-      </div>
-    </div>
   );
 };
 

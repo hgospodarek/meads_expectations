@@ -29,7 +29,6 @@ let BatchStepsSection = ({
         handleChange={handleChange}
         handleAddStep={handleBranchOff}
         />
-
     </div>
   );
 };

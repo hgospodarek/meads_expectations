@@ -2,7 +2,6 @@ import React from 'react';
 
 const Step = props => {
   let maybebutton;
-  // let stepClass;
   let completeDate;
   let moment = require('moment');
   let id = `step-${props.id}`
@@ -26,7 +25,7 @@ const Step = props => {
             <p>{completeDate}</p>
           </li>
         </div>
-        <div className="columns small-1">
+        <div className="columns small-1 text-center">
           {maybebutton}
         </div>
       </div>
