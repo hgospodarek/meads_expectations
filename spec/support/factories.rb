@@ -9,7 +9,7 @@ FactoryGirl.define do
 
   factory :recipe do
     user
-    title 'Basic Mead'
+    sequence(:title) { |n| "Basic Mead Recipe #{n}"}
     sweetness 'Semi-Sweet'
     variety 'Mead'
   end

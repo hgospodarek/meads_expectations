@@ -38,7 +38,7 @@ class RecipesPage extends Component {
 
   loadRecipes(){
     $.ajax({
-      url: "/api/recipes",
+      url: "/api/v1/recipes",
       contentType: "application/json"
     })
     .success(data => {
@@ -102,7 +102,7 @@ class RecipesPage extends Component {
 
     $.ajax({
       method: "POST",
-      url:"/api/recipes",
+      url:"/api/v1/recipes",
       contentType: "application/json",
       data: jstring
 

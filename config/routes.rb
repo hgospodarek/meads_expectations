@@ -6,12 +6,14 @@ Rails.application.routes.draw do
   resources :batches, only: [:index, :show, :destroy]
 
   namespace :api do
-    resources :batches, only: [:index, :show, :create, :update] do
-      resources :steps, only: [:create, :update, :destroy]
-    end
-    resources :recipes, only: [:index, :create, :destroy] do
-      resources :ingredients, only: [:create, :index, :destroy]
-      resources :steps, only: [:create, :index, :destroy]
+    namespace :v1 do
+      resources :batches, only: [:index, :show, :create, :update] do
+        resources :steps, only: [:create, :update, :destroy]
+      end
+      resources :recipes, only: [:index, :create, :destroy] do
+        resources :ingredients, only: [:create, :index, :destroy]
+        resources :steps, only: [:create, :index, :destroy]
+      end
     end
   end
 end
