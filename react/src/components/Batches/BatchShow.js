@@ -6,6 +6,9 @@ import StepForm from '../Steps/StepForm'
 import Hydrometer from './Hydrometer'
 import BatchComparison from './BatchComparison'
 import IngredientList from '../Ingredients/IngredientList'
+import BatchToRecipeForm from './BatchToRecipeForm';
+import BatchStepsSection from './BatchStepsSection';
+import BatchHeader from './BatchHeader'
 
 let BatchShow = ({
   action,
@@ -46,26 +49,11 @@ let BatchShow = ({
   }
 
   if (endDate != null) {
-    saveable = <div className="saveable-form">
-      <form onSubmit={handleSaveAsRecipe}>
-        <div className="row">
-          <div className="columns small-12">
-            <input
-              id="new recipe"
-              type="text"
-              name="newTitle"
-              placeholder="new recipe title"
-              value={newTitle}
-              onChange={handleChange}
-              required={true}
-              />
-          </div>
-        </div>
-        <div className="text-center">
-          <input type="submit" className="button" value="Submit Batch as New Recipe?" />
-        </div>
-    </form>
-  </div>
+    saveable = <BatchToRecipeForm
+      handleChange={handleChange}
+      handleSaveAsRecipe={handleSaveAsRecipe}
+      newTitle={newTitle}
+      />
   }
 
   if ((endDate != null ) && batch.variation == true ) {
@@ -79,9 +67,12 @@ let BatchShow = ({
   return(
     <div className="row column">
       <div className="react-batch row">
-        <h1 className="text-center main-text-color">{batch.name}</h1>
-        <h4 className="text-center">Recipe: {batch.recipe.title}</h4>
-        <h5 className="text-center">{batch.recipe.sweetness} {batch.recipe.variety}</h5>
+        <BatchHeader
+          name={batch.name}
+          title={batch.recipe.title}
+          sweetness={batch.recipe.sweetness}
+          variety={batch.recipe.variety}
+          />
         <div className="small-12 large-6 columns">
           <div className="section">
             <div className="small-12 columns">
@@ -122,27 +113,17 @@ let BatchShow = ({
           </div>
           <div className="row">
             <div className="columns small-12">
-              <h5 id="progress" className="text-center">Progress:</h5>
-              <StepList
-                steps={completed_steps}
-                stepType={"completed-step"}
-                />
-              <h6>Next Step:</h6>
-              <StepList
-                steps={current_step}
-                buttonText="fa fa-check-square-o"
-                handleStepButton={handleStepComplete}
-                stepType="normal-step"
-                />
-              <StepForm
+              <BatchStepsSection
                 action={action}
+                completedSteps={completed_steps}
+                currentStep={current_step}
+                handleBranchOff={handleBranchOff}
                 handleChange={handleChange}
-                handleAddStep={handleBranchOff}
+                handleStepComplete={handleStepComplete}
                 />
             </div>
           </div>
           {saveable}
-
         </div>
         <div className="small-12 large-6 columns">
           {comparison}
