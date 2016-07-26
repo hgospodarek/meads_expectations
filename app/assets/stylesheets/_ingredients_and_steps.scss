@@ -1,0 +1,21 @@
+.ingredient.callout, .step.callout {
+  padding-right: 30px;
+  padding-left: 30px;
+
+  border-radius: 10px;
+}
+
+.ingredient-list ul li {
+  list-style: none;
+}
+
+ul, ol {
+  margin-left: 0;
+}
+
+.step-list {
+  p {
+    margin: 0;
+  }
+
+}

@@ -18,7 +18,6 @@ const StepList = props => {
           action={action}
           handleStepButton={onStepButton}
           buttonText={props.buttonText}
-          yesButton={props.yesButton}
           completed={completed}
           updated={updated_at}
           stepType={props.stepType}
@@ -28,10 +27,10 @@ const StepList = props => {
   }
 
   return (
-    <div className="row step-list">
-        <ol>
-          {steps}
-        </ol>
+    <div className="row column step-list">
+      <ol>
+        {steps}
+      </ol>
     </div>
   );
 };

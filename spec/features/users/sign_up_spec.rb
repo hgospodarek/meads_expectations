@@ -14,7 +14,7 @@ feature 'sign up', %(
 
   scenario 'user provides valid required information' do
     visit root_path
-    click_link 'Sign Up'
+    click_link 'main-sign-up-link'
     fill_in 'First Name', with: 'Jon'
     fill_in 'Last Name', with: 'Smith'
     fill_in 'Email', with: 'user@example.com'
@@ -28,7 +28,7 @@ feature 'sign up', %(
 
   scenario 'user does not supply required information' do
     visit root_path
-    click_link 'Sign Up'
+    click_link 'main-sign-up-link'
     click_button 'Sign Up'
 
     expect(page).to have_content("can't be blank")
@@ -37,7 +37,7 @@ feature 'sign up', %(
 
   scenario 'password confirmation does not match' do
     visit root_path
-    click_link 'Sign Up'
+    click_link 'main-sign-up-link'
 
     fill_in 'user_password', with: 'password'
     fill_in 'user_password_confirmation', with: 'somethingDifferent'

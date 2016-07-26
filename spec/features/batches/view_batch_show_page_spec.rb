@@ -66,7 +66,7 @@ feature 'user views batch show page', %(
     batch = FactoryGirl.create(:batch, user: user, name: "A Mead Batch", recipe: user_recipe)
 
     visit root_path
-    expect(page).to_not have_content('Batches')
+    expect(page).to_not have_link('Batches')
 
     visit batch_path(batch)
     expect(page).to have_content('Dude, sign in or sign up first.')

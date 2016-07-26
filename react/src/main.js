@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import RecipesPage from './components/Recipes/RecipesPage';
 import BatchesPage from './components/Batches/BatchesPage';
-import BatchShow from './components/Batches/BatchShow';
+import BatchShowContainer from './components/Batches/BatchShowContainer';
 
 $(function() {
   if(document.getElementById('recipe-form')) {
@@ -26,7 +26,7 @@ $(function() {
     let batchID = document.getElementById('batch-info')
     let id = batchID.className
     ReactDOM.render(
-      <BatchShow id={id}/>,
+      <BatchShowContainer id={id}/>,
       batchID
     )};
 });

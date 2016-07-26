@@ -4,11 +4,13 @@ const Recipe = props => {
   let link = `/recipes/${props.id}`
 
   return (
-    <li>
-      <p><a href={link}>{props.title}</a></p>
-      <p>{props.variety}</p>
-      <p>{props.sweetness}</p>
-    </li>
+    <a href={link}>
+      <div className="callout small">
+        <p className="main-text-color">{props.title}</p>
+        <p>{props.variety}</p>
+        <p>{props.sweetness}</p>
+      </div>
+    </a>
   );
 };
 

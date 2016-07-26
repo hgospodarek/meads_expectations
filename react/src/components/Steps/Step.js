@@ -2,27 +2,34 @@ import React from 'react';
 
 const Step = props => {
   let maybebutton;
-  // let stepClass;
   let completeDate;
   let moment = require('moment');
   let id = `step-${props.id}`
 
   if(props.completed == true) {
-    // stepClass = "strikethrough";
     completeDate = moment(props.updated).format("D MMM, h:mm a")
-  // } else {
-  //   stepClass = "step"
   }
 
   if(props.buttonText) {
-    maybebutton =  <button className="button" type="button" onClick={props.handleStepButton}>{props.buttonText}</button>
-
-  } else {
-    maybebutton = <span></span>
+    maybebutton =  <i id="step-button" className={props.buttonText} aria-hidden="true" onClick={props.handleStepButton}></i>
   }
 
   return (
-    <li id={id}> <span className={props.stepType}>{props.action}</span> {maybebutton}{completeDate}</li>
+    <div id={id} className="step callout small">
+      <div className="row">
+        <div className="columns small-11">
+          <li>
+            <span className={props.stepType}>
+              {props.action}
+            </span>
+            <p>{completeDate}</p>
+          </li>
+        </div>
+        <div className="columns small-1 text-center">
+          {maybebutton}
+        </div>
+      </div>
+    </div>
   );
 };
 

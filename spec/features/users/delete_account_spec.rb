@@ -16,7 +16,7 @@ feature 'user deletes their account', %(
     login_as(user)
 
     visit root_path
-    click_link 'Settings'
+    click_link 'main-settings-link'
 
     accept_confirm do
       click_link('Cancel my account')
@@ -32,7 +32,7 @@ feature 'user deletes their account', %(
     login_as(user)
 
     visit root_path
-    click_link 'Settings'
+    click_link 'main-settings-link'
 
     dismiss_confirm do
       click_link('Cancel my account')

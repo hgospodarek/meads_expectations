@@ -23,10 +23,8 @@ const BatchList = props => {
   });
 
   return (
-    <div className="batch-list">
-        <ul>
-          {batches}
-        </ul>
+    <div className="batch-list text-center scrolling-list">
+      {batches}
     </div>
   );
 };

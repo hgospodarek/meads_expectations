@@ -1,0 +1,25 @@
+.honey-background {
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('honeycomb.jpg');
+  color: white;
+  height: auto;
+  margin-bottom: 20px;
+  h1 {
+    font-size: 3rem;
+    padding: 20px 0;
+  }
+  .button {
+    margin: 20px;
+  }
+}
+
+// .fa {
+//   color: #cdb658;
+// }
+
+.lead-bold {
+  font-weight: bold;
+}
+
+p.lead {
+  font-size: 1.5rem;
+}

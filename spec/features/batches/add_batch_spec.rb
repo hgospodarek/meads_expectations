@@ -21,7 +21,7 @@ feature 'user adds batch', %(
 
     login_as(user)
     visit root_path
-    click_link 'Batches'
+    click_link "main-batches-link"
 
     fill_in 'Name', with: 'New Mead Batch'
     select user_recipe.title, from: 'Recipe'
@@ -53,7 +53,7 @@ feature 'user adds batch', %(
 
   scenario 'unathenticated user cannot create a batch' do
     visit root_path
-    expect(page).to_not have_content('Batches')
+    expect(page).to_not have_link('Batches')
 
     visit batches_path
     expect(page).to have_content('Dude, sign in or sign up first.')
