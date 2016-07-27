@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Steps', type: :request do
-
   let(:user) { FactoryGirl.create(:user) }
 
   describe '#create' do
@@ -12,7 +11,8 @@ RSpec.describe 'Steps', type: :request do
 
       step = FactoryGirl.build(:step, recipe: nil)
 
-      post "/api/v1/batches/#{batch.id}/steps", { step: {action: step.action, batch_id: batch.id } }, format: :json
+      post "/api/v1/batches/#{batch.id}/steps", { step: {action: step.action,
+        batch_id: batch.id } }, format: :json
 
       expect(response.status).to be(201)
     end
@@ -23,20 +23,11 @@ RSpec.describe 'Steps', type: :request do
 
       step = FactoryGirl.build(:step, recipe: nil)
 
-      post "/api/v1/batches/#{batch.id}/steps", { step: { action: step.action, batch_id: batch.id } }, format: :json
+      post "/api/v1/batches/#{batch.id}/steps", { step: { action: step.action,
+        batch_id: batch.id } }, format: :json
       expect(response.status).to_not be(200)
     end
 
-    it 'requires at least the step action and batch id' do
-      recipe = FactoryGirl.create(:recipe, user: user)
-      batch = FactoryGirl.create(:batch, user: user, recipe: recipe)
-      login_as user
-      step = FactoryGirl.build(:step, recipe: nil)
-
-      post "/api/v1/batches/#{batch.id}/steps", { step: { action: nil } }, format: :json
-
-      expect(response.status).to be(422)
-    end
   end
 
   describe '#destroy' do
@@ -49,7 +40,8 @@ RSpec.describe 'Steps', type: :request do
       initial_steps = Step.all
       expect(initial_steps.size).to eq(5)
 
-      delete "/api/v1/batches/#{batch.id}/steps/#{steps.first.id}", format: :json
+      delete "/api/v1/batches/#{batch.id}/steps/#{steps.first.id}",
+      format: :json
 
       final_steps = Step.all
       expect(final_steps.size).to eq(4)
@@ -63,7 +55,8 @@ RSpec.describe 'Steps', type: :request do
       initial_steps = Step.all
       expect(initial_steps.size).to eq(5)
 
-      delete "/api/v1/batches/#{batch.id}/steps/#{steps.first.id}", format: :json
+      delete "/api/v1/batches/#{batch.id}/steps/#{steps.first.id}",
+      format: :json
 
       final_steps = Step.all
       expect(final_steps.size).to eq(5)

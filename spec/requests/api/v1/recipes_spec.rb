@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Recipes', type: :request do
-
   let(:user) { FactoryGirl.create(:user) }
 
   describe '#index' do
@@ -35,7 +34,8 @@ RSpec.describe 'Recipes', type: :request do
 
       recipe = FactoryGirl.build(:recipe, user: nil)
 
-      post '/api/v1/recipes/', { recipe: {title: recipe.title, sweetness: recipe.sweetness, variety: recipe.variety} }, format: :json
+      post '/api/v1/recipes/', { recipe: {title: recipe.title,
+        sweetness: recipe.sweetness, variety: recipe.variety} }, format: :json
 
       expect(response.status).to be(201)
     end
@@ -44,18 +44,10 @@ RSpec.describe 'Recipes', type: :request do
       recipe = FactoryGirl.build(:recipe, user: nil)
       headers = { "ACCEPT" => "application/json" }
 
-      post '/api/v1/recipes/', { recipe: {title: recipe.title, sweetness: recipe.sweetness, variety: recipe.variety} }, headers
+      post '/api/v1/recipes/', { recipe: { title: recipe.title,
+        sweetness: recipe.sweetness, variety: recipe.variety} }, headers
 
       expect(response.status).to be(401)
-    end
-
-    it 'requires at least the recipe title, sweetness, and variety' do
-      login_as user
-      recipe = FactoryGirl.build(:recipe, user: nil)
-
-      post '/api/v1/recipes/', { recipe: { title: recipe.title } }, format: :json
-
-      expect(response.status).to be(422)
     end
   end
 
