@@ -88,6 +88,31 @@ RSpec.describe 'Recipes', type: :request do
     end
   end
 
+  describe '#update' do
+    it 'updates the given recipe with new attributes' do
+      recipe = FactoryGirl.create(:recipe, user: user)
+      login_as user
+
+      expect(recipe.success_count).to be(0)
+
+      patch "/api/v1/recipes/#{recipe.id}", { recipe: { success_count: 1 } }, format: :json
+
+      json = JSON.parse(response.body)
+      expect(response.status).to be(200)
+      expect(json['recipe']['success_count']).to eq(1)
+    end
+
+    it 'does not work for unauthenticated users' do
+      recipe = FactoryGirl.create(:recipe, user: user)
+
+      expect(recipe.success_count).to be(0)
+
+      patch "/api/v1/recipes/#{recipe.id}", { recipe: { success_count: 1 } }, format: :json
+
+      expect(response.status).to_not be(200)
+    end
+  end
+
   describe '#destroy' do
     it 'deletes the given recipe' do
       recipes = FactoryGirl.create_list(:recipe, 5, user: user)
