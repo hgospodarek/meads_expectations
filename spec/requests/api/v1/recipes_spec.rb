@@ -28,6 +28,33 @@ RSpec.describe 'Recipes', type: :request do
     end
   end
 
+  describe '#show' do
+    it 'returns an error if a user is not signed in' do
+      recipes = FactoryGirl.create_list(:recipe, 5, user: user)
+
+      get "/api/v1/recipes/#{recipes.first.id}", format: :json
+      json = JSON.parse(response.body)
+
+      expect(response.status).to be(401)
+    end
+  end
+
+  describe '#show' do
+    it 'retrns a single recipe' do
+      recipe1 = FactoryGirl.create(:recipe, user: user, title: "Recipe 1")
+      recipe2 = FactoryGirl.create(:recipe, user: user, title: "Recipe 2")
+
+      login_as user
+
+      get "/api/v1/recipes/#{recipe1.id}", format: :json
+      json = JSON.parse(response.body)
+
+      expect(response.status).to be(200)
+      expect(response.body).to include(recipe1.title)
+      expect(response.body).to_not include(recipe2.title)
+    end
+  end
+
   describe '#create' do
     it 'creates a new recipe belonging to the current user' do
       login_as user
@@ -58,6 +85,31 @@ RSpec.describe 'Recipes', type: :request do
       format: :json
 
       expect(response.status).to be(422)
+    end
+  end
+
+  describe '#update' do
+    it 'updates the given recipe with new attributes' do
+      recipe = FactoryGirl.create(:recipe, user: user)
+      login_as user
+
+      expect(recipe.success_count).to be(0)
+
+      patch "/api/v1/recipes/#{recipe.id}", { recipe: { success_count: 1 } }, format: :json
+
+      json = JSON.parse(response.body)
+      expect(response.status).to be(200)
+      expect(json['recipe']['success_count']).to eq(1)
+    end
+
+    it 'does not work for unauthenticated users' do
+      recipe = FactoryGirl.create(:recipe, user: user)
+
+      expect(recipe.success_count).to be(0)
+
+      patch "/api/v1/recipes/#{recipe.id}", { recipe: { success_count: 1 } }, format: :json
+
+      expect(response.status).to_not be(200)
     end
   end
 

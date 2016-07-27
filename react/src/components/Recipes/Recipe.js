@@ -7,8 +7,7 @@ const Recipe = props => {
     <a href={link}>
       <div className="callout small">
         <p className="main-text-color">{props.title}</p>
-        <p>{props.variety}</p>
-        <p>{props.sweetness}</p>
+        <p>{props.sweetness} {props.variety}</p>
       </div>
     </a>
   );

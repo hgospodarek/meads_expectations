@@ -25,7 +25,7 @@ feature 'user adds batch', %(
 
     fill_in 'Name', with: 'New Mead Batch'
     select user_recipe.title, from: 'Recipe'
-    click_button 'Submit Batch'
+    click_button 'Start Batch'
 
     expect(page).to have_content('New Mead Batch')
     expect(page).to have_content(user_recipe.title)

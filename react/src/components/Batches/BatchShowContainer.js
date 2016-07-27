@@ -18,7 +18,9 @@ class BatchShowContainer extends Component {
       variation: null,
       hydrometerField: '',
       newTitle: '',
-      batch: null
+      batch: null,
+      successCount: null,
+      failureCount: null
     }
 
     this.loadBatch = this.loadBatch.bind(this);
@@ -31,6 +33,9 @@ class BatchShowContainer extends Component {
     this.removeStepsAhead = this.removeStepsAhead.bind(this);
     this.handleHydrometer = this.handleHydrometer.bind(this);
     this.handleSaveAsRecipe = this.handleSaveAsRecipe.bind(this);
+    this.handleRecipeSuccess = this.handleRecipeSuccess.bind(this);
+    this.handleRecipeFailure = this.handleRecipeFailure.bind(this);
+    this.updateRecipe = this.updateRecipe.bind(this);
   }
 
   componentDidMount(){
@@ -54,11 +59,13 @@ class BatchShowContainer extends Component {
         steps: data.batch.steps,
         recipe: data.batch.recipe,
         variation: data.batch.variation,
-        batch: data.batch
+        batch: data.batch,
+        successCount: data.batch.recipe.success_count,
+        failureCount: data.batch.recipe.failure_count
       })
     })
     .error(data => {
-      console.log(data)
+      alert('failed to load batch')
     })
   }
 
@@ -186,7 +193,8 @@ class BatchShowContainer extends Component {
         "sweetness": this.state.batch.recipe.sweetness,
         "variety": this.state.batch.recipe.variety,
         "ingredients_attributes": recipe_ingredients,
-        "steps_attributes": recipe_steps
+        "steps_attributes": recipe_steps,
+        "success_count": 1
       }
     });
 
@@ -200,12 +208,43 @@ class BatchShowContainer extends Component {
     .success(data => {
       this.loadBatch();
       this.setState({newTitle: ''})
+      alert('Saved as a new recipe')
     })
     .error(data => {
       for (let error of data.responseJSON.errors) {
-        alert(error)
+        alert('Something went wrong')
       }
     })
+  }
+
+  updateRecipe(jstring) {
+    $.ajax({
+      method: "Patch",
+      url: "/api/v1/recipes/" + this.state.batch.recipe.id,
+      contentType: "application/json",
+      data: jstring
+    })
+    .done(data => {
+      this.loadBatch();
+    })
+  }
+
+  handleRecipeSuccess(event) {
+    event.preventDefault();
+    let newSuccessCount = this.state.successCount + 1;
+    let jstring = JSON.stringify({
+      "recipe": { "success_count": newSuccessCount }
+    });
+    this.updateRecipe(jstring)
+  }
+
+  handleRecipeFailure(event) {
+    event.preventDefault();
+    let newFailureCount = this.state.failureCount + 1;
+    let jstring = JSON.stringify({
+      "recipe": { "failure_count": newFailureCount }
+    });
+    this.updateRecipe(jstring)
   }
 
   render() {
@@ -215,6 +254,8 @@ class BatchShowContainer extends Component {
         handleChange={this.handleChange}
         handleEndClick={this.handleEndClick}
         handleHydrometer={this.handleHydrometer}
+        handleRecipeFailure={this.handleRecipeFailure}
+        handleRecipeSuccess={this.handleRecipeSuccess}
         handleSaveAsRecipe={this.handleSaveAsRecipe}
         handleStepComplete={this.handleStepComplete}
         {...this.state}

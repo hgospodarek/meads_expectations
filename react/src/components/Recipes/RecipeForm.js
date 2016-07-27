@@ -2,7 +2,7 @@ import React from 'react';
 
 const RecipeForm = props => {
 
-  let sweetnesses = ['Sweet', 'Semi-Sweet', 'Dry']
+  let sweetnesses = ['Dry', 'Semi-Sweet', 'Sweet']
 
   let varieties = ['Mead', 'Melomel', 'Braggot', 'Hydromel', 'Pyment', 'Cyser', 'Metheglin', 'Rhodomel', 'Sack Mead', 'Show Mead', 'Great Mead', 'Sparkling Mead', 'Morat', 'Hippocras', 'Omphacomel', 'Oxymel', 'Acerglyn', 'Bochet', 'Capsicumel', 'Black Mead', 'Mulled Mead', 'Tej', 'Acan', 'Gverc', 'Dwojniak', 'Poltorak', 'Czworniak', 'Sima', 'Pitarilla', 'Medica', 'Dandaghare', 'Medovina', 'Medovukha', 'iQhilika']
 
@@ -12,7 +12,7 @@ const RecipeForm = props => {
     )
   });
 
-  let variety_options = varieties.map(variety => {
+  let variety_options = varieties.sort().map(variety => {
     return (
       <option>{variety}</option>
     )
@@ -60,7 +60,7 @@ const RecipeForm = props => {
             </div>
           </div>
           <div className="text-center">
-            <input type="submit" className="button" value="Submit Recipe" />
+            <input type="submit" className="button large" value="Save Recipe" />
           </div>
         </form>
     </div>

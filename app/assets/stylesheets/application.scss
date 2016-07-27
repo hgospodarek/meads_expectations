@@ -23,9 +23,37 @@
 @import "forms";
 @import "scrolling_list";
 @import "ingredients_and_steps";
+@import "recipes";
 
 body {
-  background-color: $main-background
+  background-image: url("light_honeycomb.png");
+}
+
+.main-body {
+  background-image: url("light_honeycomb.png");
+}
+
+
+.page-container {
+  background-color: $main-background;
+  margin: 0 auto;
+  max-width: 70em;
+  min-height: 100vh;
+  line-height: 1.5;
+  padding: 4em 1em;
+  border-radius: 10px;
+}
+
+.callout {
+  border-radius: 10px;
+}
+
+.devise-container {
+  max-width: 50em
+}
+
+.callout.warning.notice {
+  margin: 0;
 }
 
 .completed-step {
@@ -41,11 +69,11 @@ body {
 }
 
 .main-text-color {
-  color: $main-color;
+  color: $main-color-darken;
 }
 
 .fa {
-  color: #cdb658;
+  color: $main-color;
   &:hover {
     cursor: pointer;
   }

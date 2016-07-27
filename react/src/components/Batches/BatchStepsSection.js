@@ -24,6 +24,8 @@ let BatchStepsSection = ({
         handleStepButton={handleStepComplete}
         stepType="normal-step"
         />
+      <hr></hr>
+      <h5 className="text-center">Define your own steps?</h5>
       <StepForm
         action={action}
         handleChange={handleChange}

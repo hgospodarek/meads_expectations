@@ -9,6 +9,7 @@ import IngredientList from '../Ingredients/IngredientList'
 import BatchToRecipeForm from './BatchToRecipeForm';
 import BatchStepsSection from './BatchStepsSection';
 import BatchHeader from './BatchHeader'
+import RecipeEval from '../Recipes/RecipeEval';
 
 let BatchShow = ({
   action,
@@ -22,16 +23,19 @@ let BatchShow = ({
   handleChange,
   handleEndClick,
   handleHydrometer,
+  handleRecipeFailure,
+  handleRecipeSuccess,
   handleSaveAsRecipe,
   handleStepComplete,
   hydrometerField,
   initialHydrometer,
   newTitle,
-  startDate
+  startDate,
+  variation
 }) => {
   let finalHydro;
   let saveable;
-  let comparison;
+  let compareOrRecipeEval;
 
   if (batch === null) {
     return null;
@@ -48,7 +52,7 @@ let BatchShow = ({
       />
   }
 
-  if (endDate != null) {
+  if (endDate != null && variation == true) {
     saveable = <BatchToRecipeForm
       handleChange={handleChange}
       handleSaveAsRecipe={handleSaveAsRecipe}
@@ -56,11 +60,16 @@ let BatchShow = ({
       />
   }
 
-  if ((endDate != null ) && batch.variation == true ) {
-    comparison = <BatchComparison
+  if ((endDate != null ) && (batch.variation == true)) {
+    compareOrRecipeEval = <BatchComparison
       completedRecipeSteps={batch.completed_recipe_steps}
       recipeSteps={batch.incomplete_recipe_steps}
       batchSteps={batch.new_steps}
+      />
+  } else if (endDate != null && (batch.variation == false)) {
+    compareOrRecipeEval = <RecipeEval
+      handleRecipeFailure={handleRecipeFailure}
+      handleRecipeSuccess={handleRecipeSuccess}
       />
   }
 
@@ -110,7 +119,7 @@ let BatchShow = ({
               <h5 className="text-center">Ingredients:</h5>
               <IngredientList
                 ingredients={batch.ingredients}
-                />              
+                />
             </div>
           </div>
           <div className="row">
@@ -125,10 +134,10 @@ let BatchShow = ({
                 />
             </div>
           </div>
-          {saveable}
         </div>
         <div className="small-12 large-6 columns">
-          {comparison}
+          {compareOrRecipeEval}
+          {saveable}
         </div>
       </div>
     </div>

@@ -32,7 +32,7 @@ const BatchesForm = props => {
             {recipe_options}
             </select>
             <div className="text-center">
-              <input type="submit" className="button" value="Submit Batch" />              
+              <input type="submit" className="button large" value="Start Batch" />              
             </div>
         </form>
     </div>

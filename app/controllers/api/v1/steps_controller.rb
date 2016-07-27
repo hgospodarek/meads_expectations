@@ -19,6 +19,6 @@ class Api::V1::StepsController < ApiController
   private
 
   def step_params
-    params.require(:step).permit(:action, :batch_id)
+    params.require(:step).permit(:action, :batch_id, :recipe_id)
   end
 end

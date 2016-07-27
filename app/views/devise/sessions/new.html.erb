@@ -1,19 +1,21 @@
-<div class="row column">
-  <h2 class="text-center">Sign In</h2>
+<div class="page-container devise-container">
+  <div class="row column">
+    <h2 class="text-center">Sign In</h2>
 
-  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs row column">
-    <%= f.input :email, required: false, autofocus: true %>
-    <%= f.input :password, required: false %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
-
-  <div class="text-center">
-    <div class="form-actions">
-      <%= f.button :submit, "Sign In" %>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-inputs row column">
+      <%= f.input :email, required: false, autofocus: true %>
+      <%= f.input :password, required: false %>
+      <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
     </div>
-  </div>
-  <% end %>
 
-  <%= render "devise/shared/links" %>
+    <div class="text-center">
+      <div class="form-actions">
+        <%= f.button :submit, "Sign In", class: "large button" %>
+      </div>
+    </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
 </div>

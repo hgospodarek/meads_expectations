@@ -17,6 +17,20 @@ class Api::V1::RecipesController < ApiController
     end
   end
 
+  def show
+    recipe = Recipe.find(params[:id])
+    render json: recipe, status: :ok
+  end
+
+  def update
+    recipe = Recipe.find(params[:id])
+    if recipe.update(recipe_params)
+      render json: recipe, include: :recipe, status: :ok
+    else
+      render json: { errors: recipe.errors }, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     recipe = Recipe.find(params[:id])
     recipe.destroy
@@ -27,6 +41,7 @@ class Api::V1::RecipesController < ApiController
 
   def recipe_params
     params.require(:recipe).permit(:title, :variety, :sweetness,
+                                  :success_count, :failure_count,
                                   :ingredients_attributes =>
                                   [:name, :amount, :unit],
                                   :steps_attributes => [:action])
