@@ -23,15 +23,16 @@
 @import "forms";
 @import "scrolling_list";
 @import "ingredients_and_steps";
+@import "recipes";
 
+body {
+  background-image: url("light_honeycomb.png");
+}
 
 .main-body {
   background-image: url("light_honeycomb.png");
 }
 
-body {
-  background-image: url("light_honeycomb.png");
-}
 
 .page-container {
   background-color: $main-background;
@@ -43,7 +44,13 @@ body {
   border-radius: 10px;
 }
 
+.callout {
+  border-radius: 10px;
+}
 
+.devise-container {
+  max-width: 50em
+}
 
 .callout.warning.notice {
   margin: 0;

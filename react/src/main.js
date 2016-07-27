@@ -4,8 +4,6 @@ import ReactDOM from 'react-dom';
 import RecipesPage from './components/Recipes/RecipesPage';
 import BatchesPage from './components/Batches/BatchesPage';
 import BatchShowContainer from './components/Batches/BatchShowContainer';
-import RecipeShowContainer from './components/Recipes/RecipeShowContainer';
-
 
 $(function() {
   if(document.getElementById('recipe-form')) {
@@ -30,15 +28,5 @@ $(function() {
     ReactDOM.render(
       <BatchShowContainer id={id}/>,
       batchID
-    )};
-});
-
-$(function() {
-  if(document.getElementById('recipe-info')) {
-    let recipeID = document.getElementById('recipe-info')
-    let id = recipeID.className
-    ReactDOM.render(
-      <RecipeShowContainer id={id}/>,
-      recipeID
     )};
 });

@@ -24,7 +24,7 @@ let BatchToRecipeForm = ({
           </div>
         </div>
         <div className="text-center">
-          <input type="submit" className="button" value="Save" />
+          <input type="submit" className="button large" value="Save" />
         </div>
       </form>
     </div>

@@ -6,8 +6,8 @@
           <h4>A place keep track of your mead batches</h4>
         </div>
       </div>
-      <div class="row text-center">
-          <div class="large button-group stacked-for-small">
+      <div class="row">
+          <div class="columns small-12 text-center">
             <% if user_signed_in? %>
             <%= link_to 'Recipes', recipes_path, class: "large button" %>
             <%= link_to 'Batches', batches_path, class: "large button" %>
