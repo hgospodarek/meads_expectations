@@ -34,9 +34,8 @@ RSpec.describe 'Recipes', type: :request do
       login_as user
 
       recipe = FactoryGirl.build(:recipe, user: nil)
-      headers = { "ACCEPT" => "application/json" }
 
-      post '/api/v1/recipes/', { recipe: {title: recipe.title, sweetness: recipe.sweetness, variety: recipe.variety} }, headers
+      post '/api/v1/recipes/', { recipe: {title: recipe.title, sweetness: recipe.sweetness, variety: recipe.variety} }, format: :json
 
       expect(response.status).to be(201)
     end
@@ -53,9 +52,8 @@ RSpec.describe 'Recipes', type: :request do
     it 'requires at least the recipe title, sweetness, and variety' do
       login_as user
       recipe = FactoryGirl.build(:recipe, user: nil)
-      headers = { "ACCEPT" => "application/json" }
 
-      post '/api/v1/recipes/', { recipe: { title: recipe.title } }, headers
+      post '/api/v1/recipes/', { recipe: { title: recipe.title } }, format: :json
 
       expect(response.status).to be(422)
     end
