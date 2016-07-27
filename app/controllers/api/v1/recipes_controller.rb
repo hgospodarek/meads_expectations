@@ -17,6 +17,11 @@ class Api::V1::RecipesController < ApiController
     end
   end
 
+  def show
+    recipe = Recipe.find(params[:id])
+    render json: recipe, status: :ok
+  end
+
   def update
     recipe = Recipe.find(params[:id])
     if recipe.update(recipe_params)

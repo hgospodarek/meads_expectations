@@ -9,6 +9,7 @@ gem 'simple_form'
 gem 'foundation-rails'
 gem 'devise'
 gem 'active_model_serializers'
+gem 'chartkick'
 
 group :development, :test do
   gem 'capybara'

@@ -33,9 +33,58 @@
         <% end %>
       </div>
     </div>
+
+    <div id="recipe-id-div" hidden><%= @recipe.id %></div>
     <div class="text-center">
       <%= link_to 'Delete Recipe', recipe_path(@recipe),
       data: {confirm: "Deleting this recipe will also delete any batches it was applied to.\n\nAre you sure?"}, method: :delete, class: "button" %>
     </div>
-  </div>  
+  </div>
+
+<div class="row">
+  <div class="columns small-4 small-centered">
+
+    <canvas id="myChart" width="80" height="80"></canvas>
+  </div>
+</div>
+<script>
+function pieData() {
+  $chartData = []
+  $recipeId = document.getElementById('recipe-id-div').innerHTML;
+  var $response = $.get('/api/v1/recipes/' + $recipeId,
+    function(data) {
+      $chartData.push(data.recipe.success_count);
+      $chartData.push(data.recipe.failure_count);
+      recipePie($chartData);
+    });
+  };
+
+function recipePie(recipeData) {
+  var ctx = document.getElementById("myChart");
+  var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: [
+        "Success",
+        "Failure",
+    ],
+    datasets: [
+        {
+            data: recipeData,
+            backgroundColor: [
+                "#e3a50f",
+                "#4d4d4d"
+            ],
+            hoverBackgroundColor: [
+              "#e7c36e",
+              "#949494"
+            ]
+        }]
+    }
+  });
+}
+</script>
+<%= javascript_tag do %>
+pieData();
+<% end %>
 </div>

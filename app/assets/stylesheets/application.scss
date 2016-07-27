@@ -26,14 +26,21 @@
 
 
 .main-body {
+  background-image: url("light_honeycomb.png");
+}
+
+body {
+  background-image: url("light_honeycomb.png");
 }
 
 .page-container {
   background-color: $main-background;
   margin: 0 auto;
-  max-width: 80em;
+  max-width: 70em;
+  min-height: 100vh;
   line-height: 1.5;
   padding: 4em 1em;
+  border-radius: 10px;
 }
 
 
@@ -55,11 +62,11 @@
 }
 
 .main-text-color {
-  color: $main-color;
+  color: $main-color-darken;
 }
 
 .fa {
-  color: #cdb658;
+  color: $main-color;
   &:hover {
     cursor: pointer;
   }
