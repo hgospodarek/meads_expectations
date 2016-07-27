@@ -36,9 +36,9 @@ const Hydrometer = props => {
   }
 
   return (
-    <p className="hydrometer-form">
+    <div className="hydrometer-form">
       {hydrometer}
-    </p>
+    </div>
 
   );
 };
