@@ -36,7 +36,7 @@ So I can use it in the future
 
     fill_in 'Step', with: 'Mix the water into the honey'
     click_button 'New Step'
-    click_button 'Submit Recipe'
+    click_button 'Save Recipe'
 
     expect(page).to have_content('Meadiocrity')
   end
@@ -74,7 +74,7 @@ So I can use it in the future
       find('#step-button').trigger('click')
     end
 
-    click_button 'Submit Recipe'
+    click_button 'Save Recipe'
 
     click_link 'Meadiocrity'
     expect(page).to have_content('Sweet')
@@ -101,7 +101,7 @@ So I can use it in the future
     visit recipes_path
 
     fill_in 'Title', with: 'Meadiocrity'
-    click_button 'Submit Recipe'
+    click_button 'Save Recipe'
     click_link 'Meadiocrity'
 
     expect(page).to have_content('Semi-Sweet')
@@ -113,12 +113,12 @@ So I can use it in the future
     visit recipes_path
 
     fill_in 'Title', with: 'Meadiocrity'
-    click_button 'Submit Recipe'
+    click_button 'Save Recipe'
     expect(page).to have_link('Meadiocrity')
 
     fill_in 'Title', with: 'Meadiocrity'
     message = accept_alert do
-      click_button('Submit Recipe')
+      click_button('Save Recipe')
     end
 
     expect(message).to eq("You'll only frustrate yourself later if
