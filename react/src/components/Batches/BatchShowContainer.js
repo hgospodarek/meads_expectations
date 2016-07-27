@@ -226,7 +226,6 @@ class BatchShowContainer extends Component {
     })
     .done(data => {
       this.loadBatch();
-      alert('Recipe success rate updated.')
     })
   }
 

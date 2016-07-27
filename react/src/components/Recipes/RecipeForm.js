@@ -60,7 +60,7 @@ const RecipeForm = props => {
             </div>
           </div>
           <div className="text-center">
-            <input type="submit" className="button" value="Submit Recipe" />
+            <input type="submit" className="button large" value="Save Recipe" />
           </div>
         </form>
     </div>
