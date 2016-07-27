@@ -49,6 +49,16 @@ RSpec.describe 'Recipes', type: :request do
 
       expect(response.status).to be(401)
     end
+
+    it 'requires at least the recipe title, sweetness, and variety' do
+      login_as user
+      recipe = FactoryGirl.build(:recipe, user: nil)
+
+      post '/api/v1/recipes/', { recipe: { title: recipe.title } },
+      format: :json
+
+      expect(response.status).to be(422)
+    end
   end
 
   describe '#destroy' do

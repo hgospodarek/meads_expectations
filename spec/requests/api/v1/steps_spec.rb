@@ -28,6 +28,17 @@ RSpec.describe 'Steps', type: :request do
       expect(response.status).to_not be(200)
     end
 
+    it 'requires at least the step action and batch id' do
+      recipe = FactoryGirl.create(:recipe, user: user)
+      batch = FactoryGirl.create(:batch, user: user, recipe: recipe)
+      login_as user
+      step = FactoryGirl.build(:step, recipe: nil)
+
+      post "/api/v1/batches/#{batch.id}/steps", { step: { action: nil } },
+      format: :json
+
+      expect(response.status).to be(422)
+    end
   end
 
   describe '#destroy' do
