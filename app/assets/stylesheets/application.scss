@@ -24,8 +24,22 @@
 @import "scrolling_list";
 @import "ingredients_and_steps";
 
-body {
-  background-color: $main-background
+
+.main-body {
+}
+
+.page-container {
+  background-color: $main-background;
+  margin: 0 auto;
+  max-width: 80em;
+  line-height: 1.5;
+  padding: 4em 1em;
+}
+
+
+
+.callout.warning.notice {
+  margin: 0;
 }
 
 .completed-step {

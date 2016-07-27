@@ -152,7 +152,7 @@ $hr-margin: rem-calc(20) auto;
 $list-lineheight: $paragraph-lineheight;
 $list-margin-bottom: $paragraph-margin-bottom;
 $list-style-type: disc;
-$list-style-position: outside;
+$list-style-position: inside;
 $list-side-margin: 1.25rem;
 $list-nested-side-margin: 1.25rem;
 $defnlist-margin-bottom: 1rem;
@@ -256,7 +256,7 @@ $button-opacity-disabled: 0.25;
 // ----------------
 
 $buttongroup-margin: 1rem;
-$buttongroup-spacing: 1px;
+$buttongroup-spacing: 1em;
 $buttongroup-child-selector: '.button';
 $buttongroup-expand-max: 6;
 

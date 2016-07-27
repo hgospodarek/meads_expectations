@@ -18,4 +18,8 @@ ul, ol {
     margin: 0;
   }
 
+  ol li {
+    list-style-position: inside;
+  }
+
 }

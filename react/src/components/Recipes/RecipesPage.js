@@ -136,16 +136,6 @@ class RecipesPage extends Component {
         <div className="react-recipes row">
           <div className="recipes-index-left small-12 medium-8 columns">
             <h3 className="text-center">New Recipe</h3>
-            <div className="section">
-              <RecipeForm
-                handleFormSubmit={this.handleFormSubmit}
-                handleChange={this.handleChange}
-                title={this.state.title}
-                sweetness={this.state.sweetness}
-                variety={this.state.variety}
-                />
-            </div>
-            <hr></hr>
             <div className="ingredients-section">
               <IngredientList
                 ingredients={this.state.ingredients}
@@ -160,6 +150,7 @@ class RecipesPage extends Component {
                 handleChange={this.handleChange}
                 />
             </div>
+            <hr></hr>
             <div className="steps-section">
               <StepList
                 steps={this.state.steps}
@@ -171,6 +162,16 @@ class RecipesPage extends Component {
                 action={this.state.action}
                 handleChange={this.handleChange}
                 handleAddStep={this.handleAddStep}
+                />
+            </div>
+            <hr></hr>
+            <div className="section">
+              <RecipeForm
+                handleFormSubmit={this.handleFormSubmit}
+                handleChange={this.handleChange}
+                title={this.state.title}
+                sweetness={this.state.sweetness}
+                variety={this.state.variety}
                 />
             </div>
           </div>

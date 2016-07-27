@@ -7,6 +7,8 @@ let BatchToRecipeForm = ({
 }) => {
   return(
     <div className="saveable-form">
+      <hr></hr>
+      <h5 className="text-center">Save batch as a new recipe?</h5>
       <form onSubmit={handleSaveAsRecipe}>
         <div className="row">
           <div className="columns small-12">
@@ -22,7 +24,7 @@ let BatchToRecipeForm = ({
           </div>
         </div>
         <div className="text-center">
-          <input type="submit" className="button" value="Submit Batch as New Recipe?" />
+          <input type="submit" className="button" value="Save" />
         </div>
       </form>
     </div>

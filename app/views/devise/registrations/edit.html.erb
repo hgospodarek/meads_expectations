@@ -1,4 +1,4 @@
-<div class="row column">
+<div class="page-container">
   <div class="row column">
 
     <h2 class="text-center"><%= current_user.first_name %> <%= current_user.last_name %></h2>
@@ -22,7 +22,7 @@
 
       <div class="text-center row">
         <div class="form-actions">
-          <%= f.button :submit, "Update" %>
+          <%= f.button :submit, "Update", class: "large button" %>
         </div>
       </div>
 

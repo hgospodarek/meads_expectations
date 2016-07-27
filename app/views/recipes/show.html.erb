@@ -1,40 +1,41 @@
-<div class="row column">
-  <div class="row">
-    <div class="small-12 columns">
-      <h1 class="text-center main-text-color"><%= @recipe.title %></h1>
-      <h2 class="text-center"><%= @recipe.sweetness %>  <%= @recipe.variety %></h2>
+<div class="page-container">
+  <div class="row column">
+    <div class="row">
+      <div class="small-12 columns">
+        <h1 class="text-center main-text-color"><%= @recipe.title %></h1>
+        <h2 class="text-center"><%= @recipe.sweetness %>  <%= @recipe.variety %></h2>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="small-12 medium-6 columns">
-      <% if @recipe.ingredients.empty? %>
-      <h5 class="text-center">This recipe has no ingredients.</h5>
-      <% else %>
-      <h3 class="text-center">Ingredients</h3>
-      <ul class="no-bullet">
-        <% @ingredients.each do |ingredient| %>
-        <li> <%= ingredient.amount %> <%= ingredient.unit %> <%= ingredient.name %> </li>
+    <div class="row">
+      <div class="small-12 medium-6 columns">
+        <% if @recipe.ingredients.empty? %>
+        <h5 class="text-center">This recipe has no ingredients.</h5>
+        <% else %>
+        <h3 class="text-center">Ingredients</h3>
+        <ul class="no-bullet">
+          <% @ingredients.each do |ingredient| %>
+          <li> <%= ingredient.amount %> <%= ingredient.unit %> <%= ingredient.name %> </li>
+          <% end %>
+        </ul>
         <% end %>
-      </ul>
-      <% end %>
-    </div>
-    <div class="small-12 medium-6 columns">
-      <% if @recipe.steps.empty? %>
-      <h5 class="text-center">This recipe has no instructions.</h5>
-      <% else %>
-      <h3 class="text-center">Instructions</h3>
-      <ol>
-        <% @steps.each do |step| %>
-        <li><%= step.action %> </li>
+      </div>
+      <div class="small-12 medium-6 columns">
+        <% if @recipe.steps.empty? %>
+        <h5 class="text-center">This recipe has no instructions.</h5>
+        <% else %>
+        <h3 class="text-center">Instructions</h3>
+        <ol>
+          <% @steps.each do |step| %>
+          <li><%= step.action %> </li>
+          <% end %>
+        </ol>
         <% end %>
-      </ol>
-      <% end %>
+      </div>
     </div>
-  </div>
-  <div class="text-center">
-    <%= link_to 'Delete Recipe', recipe_path(@recipe),
-    data: {confirm: 'Deleting this recipe will also delete any batches it
-      was applied to. Are you sure?'}, method: :delete, class: "button" %>
+    <div class="text-center">
+      <%= link_to 'Delete Recipe', recipe_path(@recipe),
+      data: {confirm: "Deleting this recipe will also delete any batches it was applied to.\n\nAre you sure?"}, method: :delete, class: "button" %>
     </div>
-  </div>
+  </div>  
+</div>

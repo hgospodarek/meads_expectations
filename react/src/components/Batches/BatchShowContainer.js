@@ -65,7 +65,7 @@ class BatchShowContainer extends Component {
       })
     })
     .error(data => {
-      console.log(data)
+      alert('failed to load batch')
     })
   }
 
@@ -208,10 +208,11 @@ class BatchShowContainer extends Component {
     .success(data => {
       this.loadBatch();
       this.setState({newTitle: ''})
+      alert('Saved as a new recipe')
     })
     .error(data => {
       for (let error of data.responseJSON.errors) {
-        alert(error)
+        alert('Something went wrong')
       }
     })
   }
@@ -225,6 +226,7 @@ class BatchShowContainer extends Component {
     })
     .done(data => {
       this.loadBatch();
+      alert('Recipe success rate updated.')
     })
   }
 
