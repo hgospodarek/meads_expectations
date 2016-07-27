@@ -1,4 +1,6 @@
-class Api::StepsController < ApiController
+class Api::V1::StepsController < ApiController
+  before_action :authenticate_user!
+
   def create
     step = Step.new(step_params)
     if step.save

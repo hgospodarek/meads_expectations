@@ -1,4 +1,4 @@
-class Api::RecipesController < ApiController
+class Api::V1::RecipesController < ApiController
   before_action :authenticate_user!
 
   def index

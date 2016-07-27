@@ -33,8 +33,4 @@ class Recipe < ActiveRecord::Base
     message: "You'll only frustrate yourself later if
     you make two recipes with the same name" }
 
-  def last_step
-    steps.max_by { |s| s.created_at }
-  end
-
 end

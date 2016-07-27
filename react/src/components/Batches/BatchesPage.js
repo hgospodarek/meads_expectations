@@ -20,7 +20,7 @@ class BatchesPage extends Component {
   }
   loadBatches(){
     $.ajax({
-      url: "/api/batches",
+      url: "/api/v1/batches",
       contentType: "application/json"
     })
     .success(data => {
@@ -30,7 +30,7 @@ class BatchesPage extends Component {
 
   loadRecipes(){
     $.ajax({
-      url: "/api/recipes",
+      url: "/api/v1/recipes",
       contentType: "application/json"
     })
     .success(data => {
@@ -61,7 +61,7 @@ class BatchesPage extends Component {
 
     $.ajax({
       method: "POST",
-      url:"/api/batches",
+      url:"/api/v1/batches",
       contentType: "application/json",
       data: jstring
 

@@ -1,4 +1,4 @@
-class Api::BatchesController < ApiController
+class Api::V1::BatchesController < ApiController
   before_action :authenticate_user!
 
   def index

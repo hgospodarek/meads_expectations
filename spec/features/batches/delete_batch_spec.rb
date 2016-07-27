@@ -14,13 +14,11 @@ feature 'user deletes a batch', %(
   let(:user_recipe) { FactoryGirl.create(:recipe, user_id: user.id) }
   let(:batch1) { FactoryGirl.create(:batch, user_id: user.id, recipe: user_recipe, name: 'Mai Batch') }
 
-  scenario 'user deletes their batch', js: true do
+  scenario 'user deletes their batch' do
     login_as(user)
     visit batch_path(batch1)
 
-    accept_confirm do
-      click_link('Delete Batch')
-    end
+    click_link('Delete Batch')
 
     expect(page).to have_content("Batch deleted. Harsh, man. Harsh.")
     expect(page).to_not have_content(batch1.name)

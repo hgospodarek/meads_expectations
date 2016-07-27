@@ -39,7 +39,7 @@ class BatchShowContainer extends Component {
 
   loadBatch(){
     $.ajax({
-      url: "/api/batches/" + this.state.id,
+      url: "/api/v1/batches/" + this.state.id,
       contentType: "application/json"
     })
     .success(data => {
@@ -84,7 +84,7 @@ class BatchShowContainer extends Component {
   updateBatch(jstring) {
     $.ajax({
       method: "Patch",
-      url: "/api/batches/" + this.state.id,
+      url: "/api/v1/batches/" + this.state.id,
       contentType: "application/json",
       data: jstring
     })
@@ -111,7 +111,7 @@ class BatchShowContainer extends Component {
   createStep() {
     $.ajax({
       method: "POST",
-      url: "/api/batches/:batch_id/steps",
+      url: "/api/v1/batches/:batch_id/steps",
       contentType: "application/json",
       data: JSON.stringify({
         step: {
@@ -131,7 +131,7 @@ class BatchShowContainer extends Component {
     for (let step of stepsAhead) {
       $.ajax({
         method: "Delete",
-        url: "/api/batches/" + this.state.id + "/steps/" + step.id
+        url: "/api/v1/batches/" + this.state.id + "/steps/" + step.id
       })
       .done(data => {
       });
@@ -192,7 +192,7 @@ class BatchShowContainer extends Component {
 
     $.ajax({
       method: "POST",
-      url:"/api/recipes",
+      url:"/api/v1/recipes",
       contentType: "application/json",
       data: jstring
 
