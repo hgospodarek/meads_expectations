@@ -13,7 +13,7 @@
   <div class="off-canvas-wrapper">
     <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
       <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
-        <button class="close-button" aria-label="Close menu" type="button" data-close>
+        <button class="close-button" aria-label="Close menu" type="button" id="swipe-out" data-close>
           <span aria-hidden="true">&times;</span>
         </button>
 
@@ -36,7 +36,7 @@
 
         </div>
         <div class="title-bar hide-for-large">
-          <button id="swipe-in" class="menu-icon" type="button" data-toggle="offCanvas"></button>
+          <button id="swipe-in" class="menu-icon" type="button" data-open="offCanvas"></button>
           <div class="title-bar-title">Menu</div>
         </div>
         <% if user_signed_in? %>
@@ -63,15 +63,4 @@
     </div>
   </div>
 </body>
-<script>
-$(function() {
-  $button = document.getElementById('swipe-in')
-  $("#swipeable").swipe( {
-    swipeRight:function() {
-      $button.trigger("click");
-    },
-    threshold: 75
-  });
-});
-</script>
 </html>
