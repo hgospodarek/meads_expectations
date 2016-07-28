@@ -24,6 +24,7 @@
 @import "scrolling_list";
 @import "ingredients_and_steps";
 @import "recipes";
+@import "callouts";
 
 body {
   background-image: url("light_honeycomb.png");
@@ -44,9 +45,6 @@ body {
   border-radius: 10px;
 }
 
-.callout {
-  border-radius: 10px;
-}
 
 .form-container, .ingredient-list, .step-list {
   max-width: 50em;
@@ -54,26 +52,6 @@ body {
     padding-left: 15%;
     padding-right: 15%;
   }
-}
-
-.variation-list .step-list {
-  padding: 0
-}
-
-.callout.warning.notice {
-  margin: 0;
-}
-
-.completed-step {
-  text-decoration: line-through;
-}
-
-.original-step {
-  color: grey;
-}
-
-.new-step {
-  color: $main-color;
 }
 
 .main-text-color {
