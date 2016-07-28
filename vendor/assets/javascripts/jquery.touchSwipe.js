@@ -1273,7 +1273,7 @@
     function validateDefaultEvent(jqEvent, direction) {
 
       //If the option is set, allways allow the event to bubble up (let user handle weirdness)
-      if (options.preventDefaultEvents === true) {
+      if (options.preventDefaultEvents === false) {
         return;
       }
 

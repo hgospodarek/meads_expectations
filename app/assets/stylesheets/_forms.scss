@@ -22,3 +22,16 @@
 .delete-button {
   background-color: black;
 }
+
+.error {
+  display: block;
+  color: red;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.alert-box.alert {
+  color: red;
+  font-style: italic;
+  font-weight: bold;
+}
