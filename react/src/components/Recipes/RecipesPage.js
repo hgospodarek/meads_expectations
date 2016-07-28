@@ -123,7 +123,7 @@ class RecipesPage extends Component {
     })
     .error(data => {
       for (let error of data.responseJSON.errors) {
-        alert('Oh snap something went wrong')
+        alert(error)
       }
     })
   }
