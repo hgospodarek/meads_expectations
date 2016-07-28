@@ -30,6 +30,7 @@ class RecipesPage extends Component {
     this.handleIngredientDelete = this.handleIngredientDelete.bind(this);
     this.handleStepDelete = this.handleStepDelete.bind(this);
     this.loadRecipes = this.loadRecipes.bind(this);
+    this.createRecipe = this.createRecipe.bind(this);
 
   }
   componentDidMount(){
@@ -77,29 +78,38 @@ class RecipesPage extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    let recipe_ingredients = [];
-    let recipe_steps = []
+    if (this.state.ingredients.length == 0) {
+      alert('Does creating a recipe with no ingredients even make sense?')
+    } else if (this.state.steps.length == 0) {
+      alert('Does creating a recipe with no steps even make sense?')
+    } else {
+      let recipe_ingredients = [];
+      let recipe_steps = []
 
-    for(let ingredient of this.state.ingredients) {
-      delete ingredient.id
-      recipe_ingredients.push(ingredient)
-    }
-
-    for (let i = 0; i < this.state.steps.length; i++) {
-      delete this.state.steps[i].id
-      recipe_steps.push(this.state.steps[i])
-    }
-
-    let jstring = JSON.stringify({
-      "recipe": {
-        "title": this.state.title,
-        "sweetness": this.state.sweetness,
-        "variety": this.state.variety,
-        "ingredients_attributes": recipe_ingredients,
-        "steps_attributes": recipe_steps
+      for(let ingredient of this.state.ingredients) {
+        delete ingredient.id
+        recipe_ingredients.push(ingredient)
       }
-    });
 
+      for (let i = 0; i < this.state.steps.length; i++) {
+        delete this.state.steps[i].id
+        recipe_steps.push(this.state.steps[i])
+      }
+
+      let jstring = JSON.stringify({
+        "recipe": {
+          "title": this.state.title,
+          "sweetness": this.state.sweetness,
+          "variety": this.state.variety,
+          "ingredients_attributes": recipe_ingredients,
+          "steps_attributes": recipe_steps
+        }
+      });
+      this.createRecipe(jstring);
+    }
+  };
+
+  createRecipe(jstring) {
     $.ajax({
       method: "POST",
       url:"/api/v1/recipes",
@@ -113,10 +123,10 @@ class RecipesPage extends Component {
     })
     .error(data => {
       for (let error of data.responseJSON.errors) {
-        alert(error)
+        alert('Oh snap something went wrong')
       }
     })
-  };
+  }
 
   handleIngredientDelete(id) {
     event.preventDefault();
