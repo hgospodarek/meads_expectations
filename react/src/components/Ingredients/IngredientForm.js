@@ -2,7 +2,7 @@ import React from 'react';
 
 const IngredientForm = props => {
   return (
-    <div className="ingredients-form">
+    <div className="ingredients-form form-container">
       <form onSubmit={props.handleAddIngredient}>
         <div className="row">
           <div className="columns small-2">

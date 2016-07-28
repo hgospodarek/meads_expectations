@@ -48,8 +48,16 @@ body {
   border-radius: 10px;
 }
 
-.devise-container {
-  max-width: 50em
+.form-container, .ingredient-list, .step-list {
+  max-width: 50em;
+  @include breakpoint(medium) {
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+}
+
+.variation-list .step-list {
+  padding: 0
 }
 
 .callout.warning.notice {

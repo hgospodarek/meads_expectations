@@ -4,7 +4,7 @@ import StepList from '../Steps/StepList';
 const BatchComparison = props => {
 
   return (
-    <div className="row">
+    <div className="row variation-list">
       <div className="small-12 columns">
         <h4 className="text-center">Batch to Recipe Comparison</h4>
         <h5 className="text-center">Followed Recipe Steps</h5>

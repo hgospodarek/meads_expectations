@@ -2,7 +2,7 @@ import React from 'react';
 
 const StepForm = props => {
   return (
-    <div className="steps-form">
+    <div className="steps-form form-container">
       <form onSubmit={props.handleAddStep}>
         <div className="row">
           <div className="columns small-12">

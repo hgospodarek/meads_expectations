@@ -21,7 +21,7 @@ const IngredientList = props => {
 
   return (
     <div className="row column ingredient-list">
-      <ul>
+      <ul className="ingredient-list">
         {ingredients}
       </ul>
     </div>

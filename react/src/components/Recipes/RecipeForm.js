@@ -19,7 +19,7 @@ const RecipeForm = props => {
   });
 
   return (
-    <div className="recipe-form">
+    <div className="recipe-form form-container">
         <form onSubmit={props.handleFormSubmit}>
           <div className="row">
             <div className="columns small-12">
