@@ -28,7 +28,7 @@ const BatchesForm = props => {
               onChange={props.handleChange}
               required={true}
             >
-            <option defaultValue="" disabled selected>Select your option</option>
+            <option value="">Select your option</option>
             {recipe_options}
             </select>
             <div className="text-center">

@@ -146,7 +146,7 @@ class RecipesPage extends Component {
     if(this.state.recipes == null) {
       return null;
     }
-    
+
     let recipeList;
 
     if(this.state.recipes.length == 0) {

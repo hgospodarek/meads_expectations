@@ -49,6 +49,11 @@ feature 'user adds batch', %(
 
     expect(page).to have_selector("input[id='name'][required]")
     expect(page).to have_selector("select[id='recipe'][required]")
+
+    fill_in 'Name', with: 'New Mead Batch'
+    click_button 'Start Batch'
+
+    expect(Batch.count).to eq(0)
   end
 
   scenario 'unathenticated user cannot create a batch' do
