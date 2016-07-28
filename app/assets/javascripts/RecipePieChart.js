@@ -1,6 +1,6 @@
-$('document').ready(function)() {
+$('document').ready(function() {
 
-  if document.getElementById('recipe-id-div') {
+  if (document.getElementById('recipe-id-div')) {
     function pieData() {
       $chartData = []
       $recipeId = document.getElementById('recipe-id-div').innerHTML;
@@ -37,5 +37,6 @@ $('document').ready(function)() {
         }
       });
     }
+    pieData();
   }
-}
+});
