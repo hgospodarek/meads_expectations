@@ -5,6 +5,7 @@ import IngredientList from '../Ingredients/IngredientList'
 import StepForm from '../Steps/StepForm'
 import StepList from '../Steps/StepList'
 import RecipeList from './RecipeList'
+import BlankCard from '../BlankCard'
 
 class RecipesPage extends Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class RecipesPage extends Component {
       this.setState({recipes: data.recipes});
     })
     .error(data => {
-      alert('oh god something went wrong')
+      alert('oh snap something went wrong')
     });
   }
 
@@ -141,6 +142,18 @@ class RecipesPage extends Component {
   };
 
   render() {
+    let recipeList;
+
+    if(this.state.recipes.length == 0) {
+      recipeList = <BlankCard
+        cardText="recipes"
+        />
+    } else {
+      recipeList = <RecipeList
+        recipes={this.state.recipes}
+        />
+    }
+
     return(
       <div className="row column">
         <div className="react-recipes row">
@@ -187,9 +200,7 @@ class RecipesPage extends Component {
           </div>
           <div className="recipes-index-right small-12 medium-4 columns">
             <h2 className="text-center">Recipes</h2>
-            <RecipeList
-              recipes={this.state.recipes}
-              />
+            {recipeList}
           </div>
         </div>
       </div>

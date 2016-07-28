@@ -56,11 +56,11 @@ feature 'user views their recipes', %{
     expect(page).to have_content('Dude, sign in or sign up first.')
   end
 
-  scenario 'user has no recipes' do
+  scenario 'user has no recipes', js: true do
     login_as(user)
     visit root_path
 
     click_link 'main-recipes-link'
-    expect(page).to have_content('Your recipe cards will appear here once you make some!')
+    expect(page).to have_content("Your recipes will appear here once you've made some!")
   end
 end
