@@ -5,12 +5,13 @@ import IngredientList from '../Ingredients/IngredientList'
 import StepForm from '../Steps/StepForm'
 import StepList from '../Steps/StepList'
 import RecipeList from './RecipeList'
+import BlankCard from '../BlankCard'
 
 class RecipesPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipes: [],
+      recipes: null,
       title: '',
       sweetness: 'Semi-Sweet',
       variety: 'Mead',
@@ -30,6 +31,7 @@ class RecipesPage extends Component {
     this.handleIngredientDelete = this.handleIngredientDelete.bind(this);
     this.handleStepDelete = this.handleStepDelete.bind(this);
     this.loadRecipes = this.loadRecipes.bind(this);
+    this.createRecipe = this.createRecipe.bind(this);
 
   }
   componentDidMount(){
@@ -45,7 +47,7 @@ class RecipesPage extends Component {
       this.setState({recipes: data.recipes});
     })
     .error(data => {
-      alert('oh god something went wrong')
+      alert('oh snap something went wrong')
     });
   }
 
@@ -77,29 +79,38 @@ class RecipesPage extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    let recipe_ingredients = [];
-    let recipe_steps = []
+    if (this.state.ingredients.length == 0) {
+      alert('Does creating a recipe with no ingredients even make sense?')
+    } else if (this.state.steps.length == 0) {
+      alert('Does creating a recipe with no steps even make sense?')
+    } else {
+      let recipe_ingredients = [];
+      let recipe_steps = []
 
-    for(let ingredient of this.state.ingredients) {
-      delete ingredient.id
-      recipe_ingredients.push(ingredient)
-    }
-
-    for (let i = 0; i < this.state.steps.length; i++) {
-      delete this.state.steps[i].id
-      recipe_steps.push(this.state.steps[i])
-    }
-
-    let jstring = JSON.stringify({
-      "recipe": {
-        "title": this.state.title,
-        "sweetness": this.state.sweetness,
-        "variety": this.state.variety,
-        "ingredients_attributes": recipe_ingredients,
-        "steps_attributes": recipe_steps
+      for(let ingredient of this.state.ingredients) {
+        delete ingredient.id
+        recipe_ingredients.push(ingredient)
       }
-    });
 
+      for (let i = 0; i < this.state.steps.length; i++) {
+        delete this.state.steps[i].id
+        recipe_steps.push(this.state.steps[i])
+      }
+
+      let jstring = JSON.stringify({
+        "recipe": {
+          "title": this.state.title,
+          "sweetness": this.state.sweetness,
+          "variety": this.state.variety,
+          "ingredients_attributes": recipe_ingredients,
+          "steps_attributes": recipe_steps
+        }
+      });
+      this.createRecipe(jstring);
+    }
+  };
+
+  createRecipe(jstring) {
     $.ajax({
       method: "POST",
       url:"/api/v1/recipes",
@@ -116,7 +127,7 @@ class RecipesPage extends Component {
         alert(error)
       }
     })
-  };
+  }
 
   handleIngredientDelete(id) {
     event.preventDefault();
@@ -131,6 +142,23 @@ class RecipesPage extends Component {
   };
 
   render() {
+
+    if(this.state.recipes == null) {
+      return null;
+    }
+
+    let recipeList;
+
+    if(this.state.recipes.length == 0) {
+      recipeList = <BlankCard
+        cardText="recipes"
+        />
+    } else {
+      recipeList = <RecipeList
+        recipes={this.state.recipes}
+        />
+    }
+
     return(
       <div className="row column">
         <div className="react-recipes row">
@@ -177,9 +205,7 @@ class RecipesPage extends Component {
           </div>
           <div className="recipes-index-right small-12 medium-4 columns">
             <h2 className="text-center">Recipes</h2>
-            <RecipeList
-              recipes={this.state.recipes}
-              />
+            {recipeList}
           </div>
         </div>
       </div>

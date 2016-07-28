@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require Chart.bundle
+//= require jquery.touchSwipe.min
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

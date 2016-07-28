@@ -30,7 +30,6 @@ class Recipe < ActiveRecord::Base
   numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   validates :title, uniqueness: { scope: :user,
-    message: "You'll only frustrate yourself later if
-    you make two recipes with the same name" }
+    message: "You'll only frustrate yourself later if you make two recipes with the same name." }
 
 end

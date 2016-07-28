@@ -16,7 +16,7 @@ const Ingredient = props => {
                 {props.amount} {props.unit} {props.name}
               </li>
             </div>
-            <div className="columns small-1 text-center">
+            <div className="columns small-1 text-center icon-button">
               {maybebutton}
             </div>
           </div>

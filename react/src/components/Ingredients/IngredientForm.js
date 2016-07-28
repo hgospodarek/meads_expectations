@@ -2,10 +2,10 @@ import React from 'react';
 
 const IngredientForm = props => {
   return (
-    <div className="ingredients-form">
+    <div className="ingredients-form form-container">
       <form onSubmit={props.handleAddIngredient}>
         <div className="row">
-          <div className="columns small-2">
+          <div className="columns small-3">
             <label htmlFor="amount">Amount</label>
             <input
               id="amount"
@@ -14,7 +14,7 @@ const IngredientForm = props => {
               placeholder="0.0"
               value={props.amount}
               onChange={props.handleChange}
-              min="0.0"
+              min="0.1"
               step="any"
               required={true}
               />
@@ -31,7 +31,7 @@ const IngredientForm = props => {
               required={true}
               />
           </div>
-          <div className="columns small-7">
+          <div className="columns small-6">
             <label htmlFor="ingredient">Ingredient</label>
             <input
               id="ingredient"

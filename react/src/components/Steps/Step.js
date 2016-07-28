@@ -25,7 +25,7 @@ const Step = props => {
             <p>{completeDate}</p>
           </li>
         </div>
-        <div className="columns small-1 text-center">
+        <div className="columns small-1 text-center icon-button">
           {maybebutton}
         </div>
       </div>

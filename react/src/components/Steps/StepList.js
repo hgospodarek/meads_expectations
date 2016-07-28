@@ -28,7 +28,7 @@ const StepList = props => {
 
   return (
     <div className="row column step-list">
-      <ol>
+      <ol className="step-list">
         {steps}
       </ol>
     </div>

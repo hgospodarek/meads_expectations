@@ -1,13 +1,19 @@
+@import "colors";
+
 .ingredient.callout, .step.callout {
   padding-right: 30px;
   padding-left: 30px;
 
-  border-radius: 10px;
 }
 
 .ingredient-list ul li {
   list-style: none;
 }
+
+.variation-list .step-list {
+  padding: 0
+}
+
 
 ul, ol {
   margin-left: 0;
@@ -22,4 +28,20 @@ ul, ol {
     list-style-position: inside;
   }
 
+}
+
+.icon-button {
+  padding: 0;
+}
+
+.completed-step {
+  text-decoration: line-through;
+}
+
+.original-step {
+  color: grey;
+}
+
+.new-step {
+  color: $main-color;
 }

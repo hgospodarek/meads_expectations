@@ -10,6 +10,7 @@ So I can use it in the future
   # [x] Must fill out title
   # [x] Sweetness and variety have defaults
   # [x] User can't have two recipes with the same name
+  # [x] Recipes must can't have no steps / no ingredients
 
   let(:user) { FactoryGirl.create(:user) }
 
@@ -76,7 +77,7 @@ So I can use it in the future
 
     click_button 'Save Recipe'
 
-    click_link 'Meadiocrity'
+    find('a[href="/recipes/1"]').click
     expect(page).to have_content('Sweet')
     expect(page).to have_content('Melomel')
     expect(page).to have_content('1.0 gallon water')
@@ -101,8 +102,17 @@ So I can use it in the future
     visit recipes_path
 
     fill_in 'Title', with: 'Meadiocrity'
+
+    fill_in 'Amount', with: 1
+    fill_in 'Unit', with: 'gallon'
+    fill_in 'Ingredient', with: 'water'
+    click_button 'Add Ingredient'
+
+    fill_in 'Step', with: 'Heat the honey gently for a while'
+    click_button 'New Step'
+
     click_button 'Save Recipe'
-    click_link 'Meadiocrity'
+    find('a[href="/recipes/1"]').click
 
     expect(page).to have_content('Semi-Sweet')
     expect(page).to have_content('Mead')
@@ -113,16 +123,60 @@ So I can use it in the future
     visit recipes_path
 
     fill_in 'Title', with: 'Meadiocrity'
+
+    fill_in 'Amount', with: 1
+    fill_in 'Unit', with: 'gallon'
+    fill_in 'Ingredient', with: 'water'
+    click_button 'Add Ingredient'
+
+    fill_in 'Step', with: 'Heat the honey gently for a while'
+    click_button 'New Step'
+
     click_button 'Save Recipe'
-    expect(page).to have_link('Meadiocrity')
+    wait_for_ajax
+    count = Recipe.count
 
     fill_in 'Title', with: 'Meadiocrity'
-    message = accept_alert do
-      click_button('Save Recipe')
-    end
 
-    expect(message).to eq("You'll only frustrate yourself later if
-    you make two recipes with the same name")
+    fill_in 'Amount', with: 1
+    fill_in 'Unit', with: 'gallon'
+    fill_in 'Ingredient', with: 'water'
+    click_button 'Add Ingredient'
+
+    fill_in 'Step', with: 'Heat the honey gently for a while'
+    click_button 'New Step'
+
+    click_button('Save Recipe')
+    expect(Recipe.count).to eq(count)
+  end
+
+  scenario 'user submits recipe without steps', js: true do
+    login_as(user)
+    visit recipes_path
+    count = Recipe.count
+    fill_in 'Title', with: 'Meadiocrity'
+
+    fill_in 'Amount', with: 1
+    fill_in 'Unit', with: 'gallon'
+    fill_in 'Ingredient', with: 'water'
+    click_button 'Add Ingredient'
+    click_button 'Save Recipe'
+
+    expect(Recipe.count).to eq(count)
+  end
+
+  scenario 'user submits recipe without ingredients', js: true do
+    login_as(user)
+    visit recipes_path
+
+    fill_in 'Title', with: 'Meadiocrity'
+
+    fill_in 'Step', with: 'Heat the honey gently for a while'
+    click_button 'New Step'
+
+    click_button 'Save Recipe'
+
+    expect(Recipe.count).to eq(0)
   end
 
   scenario 'unathenticated user cannot add recipe' do

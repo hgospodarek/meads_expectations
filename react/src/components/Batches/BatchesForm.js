@@ -9,7 +9,7 @@ const BatchesForm = props => {
   })
 
   return (
-    <div className="small-12 columns recipe-form">
+    <div className="small-12 columns batch-form form-container">
         <form onSubmit={props.handleFormSubmit}>
           <label htmlFor="name">Name</label>
             <input
@@ -28,11 +28,11 @@ const BatchesForm = props => {
               onChange={props.handleChange}
               required={true}
             >
-            <option defaultValue="" disabled selected>Select your option</option>
+            <option value="">Select your option</option>
             {recipe_options}
             </select>
             <div className="text-center">
-              <input type="submit" className="button large" value="Start Batch" />              
+              <input type="submit" className="button large" value="Start Batch" />
             </div>
         </form>
     </div>

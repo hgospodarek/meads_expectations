@@ -9,6 +9,7 @@ feature 'user views their recipes', %{
   # ACCEPTANCE CRITERIA
   # [x] I must be logged into see my recipes
   # [x] I can only see my recipes, not other users'
+  # [x] If I have no recipes, I see a placeholder
 
   let(:user) { FactoryGirl.create(:user) }
   let(:user2) { FactoryGirl.create(:user) }
@@ -54,5 +55,13 @@ feature 'user views their recipes', %{
 
     visit recipes_path
     expect(page).to have_content('Dude, sign in or sign up first.')
+  end
+
+  scenario 'user has no recipes', js: true do
+    login_as(user)
+    visit root_path
+
+    click_link 'main-recipes-link'
+    expect(page).to have_content("Your recipes will appear here once you've made some!")
   end
 end
