@@ -9,6 +9,7 @@ feature 'user views their recipes', %{
   # ACCEPTANCE CRITERIA
   # [x] I must be logged into see my recipes
   # [x] I can only see my recipes, not other users'
+  # [x] If I have no recipes, I see a placeholder
 
   let(:user) { FactoryGirl.create(:user) }
   let(:user2) { FactoryGirl.create(:user) }

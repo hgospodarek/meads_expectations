@@ -10,7 +10,7 @@ So I can use it in the future
   # [x] Must fill out title
   # [x] Sweetness and variety have defaults
   # [x] User can't have two recipes with the same name
-  # [ ] Recipes must can't have no steps / no ingredients
+  # [x] Recipes must can't have no steps / no ingredients
 
   let(:user) { FactoryGirl.create(:user) }
 

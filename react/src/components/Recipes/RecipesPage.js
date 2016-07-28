@@ -11,7 +11,7 @@ class RecipesPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipes: [],
+      recipes: null,
       title: '',
       sweetness: 'Semi-Sweet',
       variety: 'Mead',
@@ -142,6 +142,11 @@ class RecipesPage extends Component {
   };
 
   render() {
+
+    if(this.state.recipes == null) {
+      return null;
+    }
+    
     let recipeList;
 
     if(this.state.recipes.length == 0) {

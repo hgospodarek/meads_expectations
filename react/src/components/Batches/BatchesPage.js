@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import BatchList from './BatchList'
-import BatchesForm from './BatchesForm'
+import BatchList from './BatchList';
+import BatchesForm from './BatchesForm';
+import BlankCard from '../BlankCard';
 
 class BatchesPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      batches: [],
+      batches: null,
       recipes: [],
       name: '',
       recipe: ''
@@ -76,6 +77,22 @@ class BatchesPage extends Component {
   };
 
   render() {
+    if(this.state.batches == null) {
+      return null;
+    }
+
+    let batchList;
+
+    if(this.state.batches.length == 0) {
+      batchList = <BlankCard
+        cardText="batches"
+        />
+    } else {
+      batchList = <BatchList
+        batches={this.state.batches}
+        />
+    }
+
     return(
       <div className="row column">
         <div className="react-batches row">
@@ -91,9 +108,7 @@ class BatchesPage extends Component {
           </div>
           <div className="batches-index-right small-12 large-4 columns">
             <h3 className="text-center">Batches</h3>
-            <BatchList
-              batches={this.state.batches}
-              />
+            {batchList}
           </div>
         </div>
       </div>
