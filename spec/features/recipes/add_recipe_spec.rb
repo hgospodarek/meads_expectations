@@ -153,17 +153,16 @@ So I can use it in the future
   scenario 'user submits recipe without steps', js: true do
     login_as(user)
     visit recipes_path
-
+    count = Recipe.count
     fill_in 'Title', with: 'Meadiocrity'
 
     fill_in 'Amount', with: 1
     fill_in 'Unit', with: 'gallon'
     fill_in 'Ingredient', with: 'water'
     click_button 'Add Ingredient'
-
     click_button 'Save Recipe'
 
-    expect(Recipe.count).to eq(0)
+    expect(Recipe.count).to eq(count)
   end
 
   scenario 'user submits recipe without ingredients', js: true do
