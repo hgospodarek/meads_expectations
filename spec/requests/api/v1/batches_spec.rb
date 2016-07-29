@@ -73,6 +73,16 @@ RSpec.describe 'Batches', type: :request do
       expect(response.status).to_not be(201)
     end
 
+    it 'requires at least the batch name and recipe title' do
+      login_as user
+      batch = FactoryGirl.build(:batch, user: nil)
+
+      post '/api/v1/batches/', { batch: { name: nil } },
+      format: :json
+
+      expect(response.status).to be(422)
+    end
+
     it 'should copy over recipe steps and ingredients' do
       login_as user
       ingredient = FactoryGirl.create(:ingredient, recipe: recipe)
@@ -107,7 +117,7 @@ RSpec.describe 'Batches', type: :request do
       batch = FactoryGirl.create(:batch, user: user, recipe: recipe)
       login_as user
 
-      patch "/api/v1/batches/#{batch.id}", { batch: { name: nil} },
+      patch "/api/v1/batches/#{batch.id}", { batch: { name: nil } },
       format: :json
 
       expect(response.status).to be(422)
