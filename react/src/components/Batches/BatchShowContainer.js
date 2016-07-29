@@ -64,9 +64,6 @@ class BatchShowContainer extends Component {
         failureCount: data.batch.recipe.failure_count
       })
     })
-    .error(data => {
-      alert('failed to load batch')
-    })
   }
 
   handleChange(e){
@@ -102,10 +99,10 @@ class BatchShowContainer extends Component {
 
   handleStepComplete(id) {
     event.preventDefault();
-    let completedStep = this.state.steps.filter(item => item.id == id)
+    let completedStep = this.state.steps.filter(item => item.id === id)
     completedStep[0]['completed?'] = true
 
-    let newSteps = this.state.steps.filter(item => item.id !=id)
+    let newSteps = this.state.steps.filter(item => item.id !== id)
     newSteps.push(completedStep)
     this.setState({steps: newSteps})
 
@@ -133,7 +130,7 @@ class BatchShowContainer extends Component {
   }
 
   removeStepsAhead() {
-    let stepsAhead = this.state.steps.filter(item => item['completed?'] == false);
+    let stepsAhead = this.state.steps.filter(item => item['completed?'] === false);
 
     for (let step of stepsAhead) {
       $.ajax({
@@ -147,7 +144,7 @@ class BatchShowContainer extends Component {
 
   handleBranchOff() {
     event.preventDefault()
-    if (this.state.variation != true) {
+    if (this.state.variation !== true) {
       let jstring = JSON.stringify({"batch": {"variation": true}})
       this.updateBatch(jstring)
       this.setState({ variation: true })

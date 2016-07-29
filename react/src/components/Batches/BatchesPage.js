@@ -71,19 +71,16 @@ class BatchesPage extends Component {
       this.loadBatches();
       this.setState({name: ''})
     })
-    .error(data => {
-      (data.batch.errors)
-    })
   }
 
   render() {
-    if(this.state.batches == null) {
+    if(this.state.batches === null) {
       return null;
     }
 
     let batchList;
 
-    if(this.state.batches.length == 0) {
+    if(this.state.batches.length === 0) {
       batchList = <BlankCard
         cardText="batches"
         />
