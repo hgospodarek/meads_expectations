@@ -16,7 +16,7 @@ const BatchesForm = props => {
               id="name"
               type="text"
               name="name"
-              placeholder="batch name"
+              placeholder="First Mead Attempt"
               value={props.name}
               onChange={props.handleChange}
               required={true}

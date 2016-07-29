@@ -25,17 +25,16 @@
 @import "ingredients_and_steps";
 @import "recipes";
 @import "callouts";
-
-body {
-  // background-image: url("light_honeycomb.png");
-  // background-attachment: fixed;
-}
+@import "batch";
 
 .main-body {
   background-image: url("light_honeycomb.png");
   background-attachment: fixed;
+  @include breakpoint(large) {
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
 }
-
 
 .page-container {
   background-color: $main-background;
@@ -62,7 +61,9 @@ body {
 
 .fa {
   color: $main-color;
-  &:hover {
-    cursor: pointer;
+  &.fa-trash-o, &.fa-check-square-o {
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

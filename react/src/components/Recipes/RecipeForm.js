@@ -28,7 +28,7 @@ const RecipeForm = props => {
                 id="title"
                 type="text"
                 name="title"
-                placeholder="recipe title"
+                placeholder="Happy Meadium"
                 value={props.title}
                 onChange={props.handleChange}
                 required={true}

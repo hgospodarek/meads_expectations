@@ -110,7 +110,7 @@ let BatchShow = ({
           </div>
           <div className="row">
             <div className="columns small-12">
-              <h5 className="text-center">Approx. ABV: {approxABV}</h5>
+              <h5 className="text-center abv">Approx. ABV: {approxABV}</h5>
             </div>
             <hr></hr>
           </div>
