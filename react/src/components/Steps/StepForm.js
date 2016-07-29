@@ -11,7 +11,7 @@ const StepForm = props => {
               id="action"
               type="text"
               name="action"
-              placeholder="step"
+              placeholder="Mix all ingredients"
               value={props.action}
               onChange={props.handleChange}
               required={true}

@@ -25,7 +25,7 @@ const IngredientForm = props => {
               id="unit"
               type="text"
               name="unit"
-              placeholder="unit"
+              placeholder="lbs"
               value={props.unit}
               onChange={props.handleChange}
               required={true}
@@ -37,7 +37,7 @@ const IngredientForm = props => {
               id="ingredient"
               type="text"
               name="ingredient"
-              placeholder="ingredient"
+              placeholder="honey"
               value={props.ingredient}
               onChange={props.handleChange}
               required={true}
