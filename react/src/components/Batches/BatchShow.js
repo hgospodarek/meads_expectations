@@ -40,7 +40,7 @@ let BatchShow = ({
   if (batch === null) {
     return null;
   }
-  if (initialHydrometer != null) {
+  if (initialHydrometer !== null) {
     finalHydro = <Hydrometer
       hydrometerField={hydrometerField}
       reading={finalHydrometer}
@@ -52,7 +52,7 @@ let BatchShow = ({
       />
   }
 
-  if (endDate != null && variation == true) {
+  if (endDate !== null && variation == true) {
     saveable = <BatchToRecipeForm
       handleChange={handleChange}
       handleSaveAsRecipe={handleSaveAsRecipe}
@@ -60,13 +60,13 @@ let BatchShow = ({
       />
   }
 
-  if ((endDate != null ) && (batch.variation == true)) {
+  if ((endDate !== null ) && (batch.variation == true)) {
     compareOrRecipeEval = <BatchComparison
       completedRecipeSteps={batch.completed_recipe_steps}
       recipeSteps={batch.incomplete_recipe_steps}
       batchSteps={batch.new_steps}
       />
-  } else if (endDate != null && (batch.variation == false)) {
+  } else if (endDate !== null && (batch.variation == false)) {
     compareOrRecipeEval = <RecipeEval
       handleRecipeFailure={handleRecipeFailure}
       handleRecipeSuccess={handleRecipeSuccess}

@@ -46,9 +46,6 @@ class RecipesPage extends Component {
     .success(data => {
       this.setState({recipes: data.recipes});
     })
-    .error(data => {
-      alert('oh snap something went wrong')
-    });
   }
 
   handleChange(e){
@@ -79,9 +76,9 @@ class RecipesPage extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    if (this.state.ingredients.length == 0) {
+    if (this.state.ingredients.length === 0) {
       alert('Does creating a recipe with no ingredients even make sense?')
-    } else if (this.state.steps.length == 0) {
+    } else if (this.state.steps.length === 0) {
       alert('Does creating a recipe with no steps even make sense?')
     } else {
       let recipe_ingredients = [];
@@ -122,11 +119,6 @@ class RecipesPage extends Component {
       this.loadRecipes();
       this.setState({title: '', ingredients: [], steps: []})
     })
-    .error(data => {
-      for (let error of data.responseJSON.errors) {
-        alert(error)
-      }
-    })
   }
 
   handleIngredientDelete(id) {
@@ -143,13 +135,13 @@ class RecipesPage extends Component {
 
   render() {
 
-    if(this.state.recipes == null) {
+    if(this.state.recipes === null) {
       return null;
     }
 
     let recipeList;
 
-    if(this.state.recipes.length == 0) {
+    if(this.state.recipes.length === 0) {
       recipeList = <BlankCard
         cardText="recipes"
         />
