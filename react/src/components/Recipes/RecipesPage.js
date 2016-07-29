@@ -21,7 +21,7 @@ class RecipesPage extends Component {
       amount: 0.0,
       unit: '',
       tempId: 1,
-      action: '',
+      action: ''
     }
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -108,7 +108,7 @@ class RecipesPage extends Component {
       });
       this.createRecipe(jstring);
     }
-  };
+  }
 
   createRecipe(jstring) {
     $.ajax({
@@ -131,15 +131,15 @@ class RecipesPage extends Component {
 
   handleIngredientDelete(id) {
     event.preventDefault();
-    let newIngredients = this.state.ingredients.filter(item => item.id != id)
+    let newIngredients = this.state.ingredients.filter(item => item.id !== id)
     this.setState({ingredients: newIngredients})
-  };
+  }
 
   handleStepDelete(id) {
     event.preventDefault();
-    let newSteps = this.state.steps.filter(item => item.id != id)
+    let newSteps = this.state.steps.filter(item => item.id !== id)
     this.setState({steps: newSteps})
-  };
+  }
 
   render() {
 

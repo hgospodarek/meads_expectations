@@ -261,7 +261,7 @@
     allowPageScroll: "auto",
     fallbackToMouseEvents: true,
     excludedElements: "label, button, input, select, textarea, a, .noSwipe",
-    preventDefaultEvents: true
+    preventDefaultEvents: false
   };
 
 
