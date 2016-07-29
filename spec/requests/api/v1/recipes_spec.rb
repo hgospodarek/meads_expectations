@@ -62,7 +62,7 @@ RSpec.describe 'Recipes', type: :request do
       recipe = FactoryGirl.build(:recipe, user: nil)
 
       post '/api/v1/recipes/', { recipe: {title: recipe.title,
-        sweetness: recipe.sweetness, variety: recipe.variety} }, format: :json
+        sweetness: recipe.sweetness, variety: recipe.variety } }, format: :json
 
       expect(response.status).to be(201)
     end
@@ -100,6 +100,16 @@ RSpec.describe 'Recipes', type: :request do
       json = JSON.parse(response.body)
       expect(response.status).to be(200)
       expect(json['recipe']['success_count']).to eq(1)
+    end
+
+    it 'should not remove any required information' do
+      login_as user
+      recipe = FactoryGirl.create(:recipe, user: user)
+
+      patch "/api/v1/recipes/#{recipe.id}", { recipe: { title: nil } },
+      format: :json
+
+      expect(response.status).to be(422)
     end
 
     it 'does not work for unauthenticated users' do

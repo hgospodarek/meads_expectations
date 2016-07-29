@@ -72,6 +72,29 @@ RSpec.describe 'Batches', type: :request do
 
       expect(response.status).to_not be(201)
     end
+
+    it 'requires at least the batch name and recipe title' do
+      login_as user
+      batch = FactoryGirl.build(:batch, user: nil)
+
+      post '/api/v1/batches/', { batch: { name: nil } },
+      format: :json
+
+      expect(response.status).to be(422)
+    end
+
+    it 'should copy over recipe steps and ingredients' do
+      login_as user
+      ingredient = FactoryGirl.create(:ingredient, recipe: recipe)
+      step = FactoryGirl.create(:step, recipe: recipe)
+      batch = FactoryGirl.build(:batch, user: nil, recipe: recipe)
+
+      post '/api/v1/batches/', { batch: { name: batch.name, recipe: batch.recipe.title } }, format: :json
+
+      batch = Batch.find(1)
+      expect(batch.steps.first.action).to eq(step.action)
+      expect(batch.ingredients.first.name).to eq(ingredient.name)
+    end
   end
 
   describe '#update' do
@@ -88,6 +111,16 @@ RSpec.describe 'Batches', type: :request do
       json = JSON.parse(response.body)
       expect(response.status).to be(200)
       expect(json['batch']['end_date']).to eq(end_date.to_s)
+    end
+
+    it 'should not remove any required information' do
+      batch = FactoryGirl.create(:batch, user: user, recipe: recipe)
+      login_as user
+
+      patch "/api/v1/batches/#{batch.id}", { batch: { name: nil } },
+      format: :json
+
+      expect(response.status).to be(422)
     end
 
     it 'does not work for unauthenticated users' do
