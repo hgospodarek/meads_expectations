@@ -5,17 +5,17 @@
 
 http://meads-expectations.herokuapp.com
 
-A Rails web app where users can track their mead brewing recipes and batches. Users apply a recipe to a batch and receive a to-do list generated from the recipe steps.
+A Rails web app where users can track their mead brewing recipes and batches. Users apply a recipe to a batch and receive a to-do list generated from the recipe steps. Users can enter an initial and final hydrometer reading, which will calculate the batch's ABV.
 
 If they complete the steps, they are prompted to mark the recipe attempt as a success or failure, which produces a chart on the recipe page.
 
-If they choose to deviate from the recipe and record their own steps, they are presented with a comparison of suggested steps vs. actual steps once the batch is finished.
+If they choose to deviate from the recipe and record their own steps, they are presented with a comparison of suggested steps vs. actual steps once the batch is finished. Users can then choose to save these steps as a new recipe.
 
 
 ## Functionality
 - Devise authorization
 - Rails back end performs steps comparison and calculates ABV based on user hydrometer readings
-- React components and AJAX eliminate page reload when creating recipes and batches, and all tracking of batch progress.
+- React components and AJAX eliminate page reload when creating recipes and batches, and all tracking of batch progress
 - Chart.js presents recipe success / failure ratio
 - Use of Foundation framework and jQuery TouchSwipe for mobile-friendliness
 
@@ -25,7 +25,7 @@ If they choose to deviate from the recipe and record their own steps, they are p
 - Postgres
 
 ## Instructions
-1. Clone down the repo git@github.com:hgospodarek/meads_expectations.git
+1. Clone down the repo `git@github.com:hgospodarek/meads_expectations.git`
 2. `cd meads_expectations`
 3. `bundle install`
 4. `npm install`
