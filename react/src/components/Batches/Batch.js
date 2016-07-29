@@ -2,7 +2,6 @@ import React from 'react';
 import moment from 'moment';
 
 const Batch = props => {
-  // let batchClass = `batch-${props.id}`
   let link = `/batches/${props.id}`
   let prettyStartDate = moment(props.startDate).format("D MMM YYYY")
   let prettyEndDate;
@@ -10,7 +9,7 @@ const Batch = props => {
   if (props.endDate) {
     prettyEndDate = moment(props.endDate).format("D MMM YYYY")
   }
-  
+
   return (
     <a href={link}>
       <div className="callout small">

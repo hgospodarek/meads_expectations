@@ -27,11 +27,13 @@
 @import "callouts";
 
 body {
-  background-image: url("light_honeycomb.png");
+  // background-image: url("light_honeycomb.png");
+  // background-attachment: fixed;
 }
 
 .main-body {
   background-image: url("light_honeycomb.png");
+  background-attachment: fixed;
 }
 
 
