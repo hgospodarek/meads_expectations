@@ -1,4 +1,15 @@
 <div class="page-container">
   <div id="batch-info" class="<%= @batch.id %>"></div>
   <%= link_to 'Delete Batch', batch_path(@batch), data: { confirm: "Are you sure?" }, method: :delete, class: "button delete-button" %>
+
+  <div class="batch-photo form">
+  <%= form_for [@batch, @batch_photo] do |f| %>
+    <%= f.label :batch_photo%>
+    <%= f.file_field :batch_photo %>
+
+    <%= f.label :caption%>
+    <%= f.text_field :caption %>
+    <%= f.submit "Upload Photo" %>
+  <% end %>
+  </div>
 </div>

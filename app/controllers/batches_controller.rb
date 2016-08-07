@@ -6,6 +6,7 @@ class BatchesController < ApplicationController
 
   def show
     @batch = Batch.find(params[:id])
+    @batch_photo = BatchPhoto.new
   end
 
   def destroy
