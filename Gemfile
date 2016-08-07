@@ -11,6 +11,7 @@ gem 'foundation-rails'
 gem 'devise'
 gem 'active_model_serializers'
 gem 'chartkick'
+gem 'haml'
 
 group :development, :test do
   gem 'capybara'

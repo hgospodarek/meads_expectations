@@ -1,0 +1,52 @@
+.section.welcome-page
+  .honeycomb-background{"title" => "honeycomb background"}
+    .row
+      .small-12.columns.text-center
+        %h1.text-center Meads Expectations
+        %h4 A place to keep track of your mead batches
+
+    .row
+      .columns.small-12.text-center
+        - if user_signed_in?
+          = link_to 'Recipes', recipes_path, class: "large button"
+          = link_to 'Batches', batches_path, class: "large button"
+        - else
+          = link_to 'Sign Up', new_user_registration_path, class: "large button"
+          = link_to 'Sign In', new_user_session_path, class: "large button"
+        - end
+
+.page-container
+  .row.column
+    .row
+      .columns.small-12.medium-6
+        .icon-block
+          %h2.text-center
+            %i.fa.fa-upload{"aria-hidden" => "true"}
+          %h4.text-center.lead-bold Save recipes
+
+          %p.lead.text-center Choose a mead sweetness and variety and enter your recipe's ingredients and instructions to apply to your batches. View and track success and failure with recipe use.
+
+      .columns.small-12.medium-6
+        .icon-block
+          %h2.text-center
+            %i.fa.fa-list{"aria-hidden" => "true"}
+          %h4.text-center.lead-bold Track your progress
+
+          %p.lead.text-center See what needs to be done next with batch to-do lists generated from the recipe. Easily record your hydrometer readings and have your batch's ABV calculated for you.
+
+      .columns.small-12.medium-6
+        .icon-block
+          %h2.text-center
+            %i.fa.fa-plus-circle{"aria-hidden" => "true"}
+
+          %h4.text-center.lead-bold Add your own steps
+
+          %p.lead.text-center Want to try something different? Add your own steps instead of following the recipe suggestions. Save your new steps as a recipe once your batch is done.
+
+      .columns.small-12.medium-6
+        .icon-block
+          %h2.text-center
+            %i.fa.fa-exchange{"aria-hidden" => "true"}
+          %h4.text-center.lead-bold Analyze your batch
+
+          %p.lead.text-center See what you did differently. Batches that are variations of a recipe will display a comparison against the original instructions once finished.

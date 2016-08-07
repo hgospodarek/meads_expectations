@@ -1,0 +1,53 @@
+!!! 5
+%html{ :lang => "en" }
+%head
+  %title Meads Expectations
+
+  = stylesheet_link_tag 'application', media: 'all'
+  = javascript_include_tag 'application'
+
+  %meta{ :name => "viewport" :content => "width=device-width, initial-scale=1.0" }
+  = csrf_meta_tags
+
+  %link{ :rel => "stylesheet", :href => "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" }
+
+%body#swipeable
+  .off-canvas-wrapper
+    .off-canvas-wrapper-inner{"data-off-canvas-wrapper" => ""}
+      .off-canvas.position-left#offCanvas{"data-off-canvas" => ""}
+        %button#swipe-out.close-button{"aria-label" => "Close menu", :type => "button", "data-close" => ""}
+          %span{"aria-hidden" => "true"} &times
+
+        %ul.vertical.menu
+          %li= link_to (image_tag 'noun_18918_cc.svg', class: "bee", alt: "bee logo home link"), root_path
+          - if user_signed_in?
+          %li= link_to 'Recipes', recipes_path
+          %li= link_to 'Batches', batches_path
+          %li= link_to 'Settings', edit_user_registration_path
+          %li= link_to 'Sign Out', destroy_user_session_path, method: :delete
+          - else
+          %li= link_to 'Sign Up', new_user_registration_path, id: "main-sign-up-link"
+          %li= link_to 'Sign In', new_user_session_path, id: "main-sign-in-link"
+          - end
+
+      .off-canvas-content{"data-off-canvas-content" => ""}
+        .data-sticky-container
+        .title-bar.hide-for-large
+          %button#swipe-in.menu-icon{"type" => "button" "data-open" => "offCanvas"}
+          .title-bar-title Menu
+
+        - if user_signed_in?
+        .top-bar.show-for-large
+          - if user_signed_in?
+            = render "layouts/authenticated_nav"
+          - else
+            = render "layouts/unauthenticated_nav"
+          - end
+        - end
+
+        - flash.each do |key, value|
+          %div{:class => "callout warning flash #{key}"}
+            = value
+        - end
+        .main-body
+          = yield
