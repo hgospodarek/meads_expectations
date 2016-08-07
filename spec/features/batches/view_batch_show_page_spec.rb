@@ -29,7 +29,7 @@ feature 'user views batch show page', %(
     expect(page).to have_content(batch.recipe.title)
     expect(page).to have_content(batch.recipe.variety)
     expect(page).to have_content(batch.recipe.sweetness)
-    expect(page).to have_content(batch.created_at.localtime.strftime("%d %b %Y"))
+    expect(page).to have_content(batch.created_at.localtime.strftime("%-d %b %Y"))
     expect(page).to have_content(batch.end_date.to_formatted_s(:rfc822))
     expect(page).to have_content(batch.initial_hydrometer)
     expect(page).to have_content(batch.final_hydrometer)
@@ -45,7 +45,7 @@ feature 'user views batch show page', %(
     visit batch_path(batch)
 
     expect(page).to have_content(step.action)
-    expect(page).to have_content(step.updated_at.localtime.strftime("%d %b, %l:%M %P"))
+    expect(page).to have_content(step.updated_at.localtime.strftime("%-d %b, %l:%M %P"))
 
   end
   scenario 'user sees the next suggested step', js: true do
